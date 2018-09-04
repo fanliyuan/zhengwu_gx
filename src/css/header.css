@@ -1,0 +1,23 @@
+.header .title{
+  font-size: 34px;
+  color: #dd0019;
+  padding: 32px 0 34px 100px;
+}
+.header .nav ul{
+  background: #005ea5;
+  padding-left: 100px;
+}
+.header .nav ul li{
+  float: left;
+  font-size: 18px;
+  color: white;
+  line-height: 60px;
+  padding: 0 50px;
+}
+.header .nav ul li a{
+  color: white !important;
+  text-decoration-line: none;
+}
+.header .nav ul li:hover{
+  background: #0872c5;
+}

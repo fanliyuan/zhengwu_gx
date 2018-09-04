@@ -11,7 +11,7 @@ gulp.task('build', function() {
       basepath: './src/'
     }))
     .pipe(gulp.dest('dist'));
-  gulp.src(['src/assets/**.js', '!node_modules/**/*']).pipe(gulp.dest('dist/assets'));
+  gulp.src(['src/assets/*', '!node_modules/**/*']).pipe(gulp.dest('dist/assets'));
   gulp.src(['src/js/**.js', '!node_modules/**/*']).pipe(jsFilter).pipe(uglify()).pipe(jsFilter.restore).pipe(gulp.dest('dist/js'));
   gulp.src(['src/css/**.css', '!node_modules/**/*']).pipe(gulp.dest('dist/css'));
   gulp.src(['src/img/**.*', '!node_modules/**/*']).pipe(gulp.dest('dist/img'));
