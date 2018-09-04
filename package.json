@@ -10,6 +10,7 @@
   "license": "MIT",
   "devDependencies": {},
   "dependencies": {
+    "gulp": "^3.9.1",
     "gulp-file-include": "^2.0.1",
     "gulp-filter": "^5.1.0",
     "gulp-uglify": "^3.0.1"
