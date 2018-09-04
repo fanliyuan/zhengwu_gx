@@ -3,8 +3,11 @@
   "version": "1.0.0",
   "description": "政务数据共享交换系统--开放门户网站",
   "scripts": {
+    "precommit": "npm run lint-staged",
     "start": "gulp watch",
-    "build": "gulp build"
+    "build": "gulp build",
+    "lint-staged": "lint-staged",
+    "prettier": "prettier --write ./src/js/* .src/css/*"
   },
   "author": "ChouEric",
   "license": "MIT",
@@ -13,6 +16,14 @@
     "gulp": "^3.9.1",
     "gulp-file-include": "^2.0.1",
     "gulp-filter": "^5.1.0",
-    "gulp-uglify": "^3.0.1"
+    "gulp-uglify": "^3.0.1",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.2.2",
+    "prettier": "^1.14.2"
+  },
+  "lint-staged": {
+    "**/*.{js,css}": [
+      "npm run prettier"
+    ]
   }
 }
