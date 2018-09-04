@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../assets/jquery.min.js"></script>
+</head>
+<body>
+    @@include('commons/header.html')
+    <p> 这是 layout  的内容 </p>
+    <div>这是 div div div </div>
+    @@include('commons/footer.html')
+    <script>
+      console.log($('div').innerHeight())
+    </script>
+</body>
+</html>

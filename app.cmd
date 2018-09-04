@@ -1,0 +1,1 @@
+npm run build && cd dist && http-server -p 9090 -o
