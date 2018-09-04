@@ -2,6 +2,8 @@ var gulp = require('gulp');
 var fileinclude  = require('gulp-file-include');
 var uglify = require('gulp-uglify');
 var filter=require('gulp-filter');/*过滤器：筛选，恢复*/
+// var browserSync = require('browser-sync');
+// var reload = browserSync.reload;
 
 gulp.task('build', function() {
   var jsFilter=filter('**/*.js',{restore:true});
@@ -16,6 +18,10 @@ gulp.task('build', function() {
   gulp.src(['src/css/**.css', '!node_modules/**/*']).pipe(gulp.dest('dist/css'));
   gulp.src(['src/img/**.*', '!node_modules/**/*']).pipe(gulp.dest('dist/img'));
 });
+
+// gulp.watch(['src/pages/*.html','src/commons/*.html','src/js/*.js','src/css/*.css','src/img/*','!dist/**/*.html','!dist/**/*.js','!dist/**/*.css','!dist/img/**/*'], ['build']);
+// });
+
 // 监听文件修改
 gulp.task('watch',function () {
   gulp.watch(['src/pages/*.html','src/commons/*.html','src/js/*.js','src/css/*.css','src/img/*','!dist/**/*.html','!dist/**/*.js','!dist/**/*.css','!dist/img/**/*'], ['build']);
