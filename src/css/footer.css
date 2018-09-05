@@ -1,10 +1,10 @@
-.footer{
+.footer {
   height: 200px;
   background: #005392;
   color: white;
   text-align: center;
 }
-footer a{
+footer a {
   color: white !important;
 }
 .footer .abouts {
@@ -16,10 +16,10 @@ footer a{
 .footer .abouts li {
   padding: 0;
 }
-.footer .abouts li+li{
+.footer .abouts li + li {
   margin-left: 8px;
 }
-.footer .abouts li+li::before{
+.footer .abouts li + li::before {
   content: "";
   display: inline-block;
   border-left: 1px solid white;

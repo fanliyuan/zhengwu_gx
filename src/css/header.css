@@ -1,29 +1,30 @@
-.header .title{
+.header .title {
   font-size: 34px;
   color: #dd0019;
   padding: 32px 0 34px 100px;
 }
-.header .nav{
+.header .nav {
   background: #005ea5;
 }
-.header .nav ul{
+.header .nav ul {
   padding-left: 100px;
 }
-.header .nav ul li{
+.header .nav ul li {
   float: left;
   font-size: 18px;
   color: white;
+}
+.header .nav ul li a {
+  display: inline-block;
   line-height: 60px;
   padding: 0 50px;
-}
-.header .nav ul li a{
   color: white !important;
   text-decoration-line: none;
 }
-.header .nav ul li:hover{
+.header .nav ul li:hover {
   background: #0872c5;
 }
-.header .nav .search{
+.header .nav .search {
   margin-top: 15px;
   margin-right: 100px;
 }
@@ -36,12 +37,12 @@
   padding-left: 10px;
   width: 300px;
 }
-.header .nav .search .button{
+.header .nav .search .button {
   height: 30px;
   border: 0 none;
   border-radius: 4px;
   background: #017bdb;
   padding: 0 26px;
-  color: #FFF;
+  color: #fff;
   cursor: pointer;
 }
