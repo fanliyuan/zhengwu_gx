@@ -1,0 +1,29 @@
+.footer{
+  height: 200px;
+  background: #005392;
+  color: white;
+  text-align: center;
+}
+footer a{
+  color: white !important;
+}
+.footer .abouts {
+  display: inline-block;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  padding-top: 78px;
+}
+.footer .abouts li {
+  padding: 0;
+}
+.footer .abouts li+li{
+  margin-left: 8px;
+}
+.footer .abouts li+li::before{
+  content: "";
+  display: inline-block;
+  border-left: 1px solid white;
+  height: 12px;
+  vertical-align: middle;
+  margin-right: 8px;
+}
