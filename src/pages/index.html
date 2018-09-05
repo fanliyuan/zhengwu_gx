@@ -4,20 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>开放门户</title>
+    <title>首页</title>
     <link rel="shortcut icon" href="../img/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="../assets/reset.css">
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/home.css">
     <script src="../assets/jquery.min.js"></script>
 </head>
 <body>
 <body>
     @@include('commons/header.html')
-    <p> 这是 layout  的内容 </p>
-    <div>这是 div asdfadfsa  </div>
+        <div class="carousel">
+
+        </div>
+        <div class="newInstitutionSource">
+            <h2 class="content1_title">最新目录信息资源</h2>
+            <ul>
+                <li>
+                    <div>
+                        <img src="" alt="">
+                    </div>
+                    <div>
+                        <h2>贵阳市主要粮油副食品每日监测表</h2>
+                        <ul>
+                            <li>
+                                <h3>
+                                    <p>所含格式:</p>
+                                    <span>XLS</span>
+                                    <span>XLM</span>
+                                    <span>JSON</span>
+                                    <span>CSV</span>
+                                </h3>
+                            </li>
+                            <li>
+                                <h3>
+                                    <p>所属主题:</p>
+                                    <span>经济管理</span>
+                                </h3>
+                                <h3>
+                                    <p>所属部门:</p>
+                                    <span>市发改委</span>
+                                </h3>
+                            </li>
+                            <li>
+                                <p>资源摘要</p>
+                                <span>
+                                    提供贵阳市主要粮油副食品日监价格,包括商品名称、规格、单位、主要农贸市场价格、主要超市价格
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li></li>
+            </ul>
+        </div>
     @@include('commons/footer.html')
     <script>
       console.log($('div').innerHeight())
