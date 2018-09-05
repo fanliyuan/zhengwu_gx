@@ -1,3 +1,38 @@
-.header .nav ul li.index {
-  background: #0872c5;
+* {
+  box-sizing: border-box;
+}
+.carousel {
+  width: 100%;
+}
+.newInstitutionSource {
+  width: 1200px;
+  margin: 30px auto;
+}
+.content1_title {
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: #015293;
+  position: relative;
+  margin-left: 10px;
+}
+.content1_title::after {
+  position: absolute;
+  left: -10px;
+  top: 0;
+  bottom: 0;
+  display: block;
+  content: "";
+  border-left: 3px solid #015293;
+}
+.newInstitutionSource > ul > li {
+  display: inline-block;
+
+  height: 300px;
+  width: 590px;
+  background: #f5f5f5;
+  margin-top: 20px;
+  vertical-align: middle;
+}
+.newInstitutionSource > ul > li:nth-child(2n) {
+  margin-left: 10px;
 }
