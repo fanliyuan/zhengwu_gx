@@ -1,10 +1,10 @@
 * {
   box-sizing: border-box;
 }
-.clear:after{
-  display:block;
-  content:"";
-  clear:both;
+.clear:after {
+  display: block;
+  content: "";
+  clear: both;
 }
 .carousel {
   width: 100%;
@@ -36,42 +36,42 @@
   background: #f5f5f5;
   margin-top: 20px;
   vertical-align: middle;
-  position:relative;
-  padding:15px 20px;
+  position: relative;
+  padding: 15px 20px;
 }
 .newInstitutionSource > ul > li:nth-child(2n) {
-  float:right;
+  float: right;
 }
-.item_img{
-  position:absolute;
-  width:109px;
-  left:0;
-  top:0;
-  bottom:0;
-  text-align:center;
+.item_img {
+  position: absolute;
+  width: 109px;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  text-align: center;
 }
-.item_img > img{
-  width:74px;
-  height:74px;
-  position:absolute;
-  top:50%;
-  transform:translate(-50%,-50%);
+.item_img > img {
+  width: 74px;
+  height: 74px;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
-.item_content{
-  margin-left:109px;
-  position:relative;
+.item_content {
+  margin-left: 109px;
+  position: relative;
 }
-.item_content:after{
-  content:"";
-  display:block;
-  position:absolute;
-  left:-20px;
-  top:0;
-  bottom:0;
-  border-left:1px solid #ddd;
+.item_content:after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: -20px;
+  top: 0;
+  bottom: 0;
+  border-left: 1px solid #ddd;
 }
-.item_content h2{
-  font-size:16px;
-  color:#333;
-  font-weight:bold;
+.item_content h2 {
+  font-size: 16px;
+  color: #333;
+  font-weight: bold;
 }
