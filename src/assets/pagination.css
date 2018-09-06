@@ -1,9 +1,13 @@
+.pagination-container{
+  text-align: center;
+}
 .paginationjs {
   line-height: 1.6;
-  font-family: Marmelad, "Lucida Grande", Arial, "Hiragino Sans GB", Georgia,
+  font-family: 'Microsoft Yahei',Marmelad, "Lucida Grande", Arial, "Hiragino Sans GB", Georgia,
     sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   box-sizing: initial;
+  display: inline-block;
 }
 .paginationjs:after {
   display: table;
@@ -27,49 +31,57 @@
 }
 .paginationjs .paginationjs-pages li {
   float: left;
-  border: 1px solid #aaa;
-  border-right: none;
   list-style: none;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+}
+.paginationjs .paginationjs-pages li:hover{
+  border: 1px solid #0872c5;
+}
+.paginationjs .paginationjs-pages li.disabled:hover{
+  border: 1px solid #aaa;
+}
+.paginationjs .paginationjs-pages li+li{
+  margin-left: 10px;
 }
 .paginationjs .paginationjs-pages li > a {
-  min-width: 30px;
-  height: 28px;
-  line-height: 28px;
+  min-width: 38px;
+  height: 34px;
+  line-height: 34px;
   display: block;
-  background: #fff;
   font-size: 14px;
   color: #333;
   text-decoration: none;
   text-align: center;
 }
 .paginationjs .paginationjs-pages li > a:hover {
-  background: #eee;
+  background: #0872c5;
 }
 .paginationjs .paginationjs-pages li.active {
-  border: none;
+  border: 1px solid #0872c5;
+  border-radius: 4px;
 }
 .paginationjs .paginationjs-pages li.active > a {
-  height: 30px;
-  line-height: 30px;
-  background: #aaa;
+  height: 34px;
+  line-height: 34px;
+  background: #0872c5;
   color: #fff;
 }
 .paginationjs .paginationjs-pages li.disabled > a {
-  opacity: 0.3;
+  opacity: 0.8;
+  cursor: no-drop;
 }
 .paginationjs .paginationjs-pages li.disabled > a:hover {
   background: 0 0;
 }
-.paginationjs .paginationjs-pages li:first-child,
 .paginationjs .paginationjs-pages li:first-child > a {
-  border-radius: 3px 0 0 3px;
+  padding: 0px 20px;
 }
 .paginationjs .paginationjs-pages li:last-child {
   border-right: 1px solid #aaa;
-  border-radius: 0 3px 3px 0;
 }
 .paginationjs .paginationjs-pages li:last-child > a {
-  border-radius: 0 3px 3px 0;
+  padding: 0px 20px;
 }
 .paginationjs .paginationjs-go-input > input[type="text"] {
   width: 30px;
@@ -321,7 +333,7 @@
   background-color: #ce4541;
 }
 .paginationjs .paginationjs-pages li.paginationjs-next {
-  border-right: 1px solid #aaa\9;
+  border-right: 1px solid #aaa;
 }
 .paginationjs .paginationjs-go-input > input[type="text"] {
   line-height: 28px\9;
@@ -333,4 +345,11 @@
 .paginationjs.paginationjs-big .paginationjs-go-input > input[type="text"] {
   height: 36px\9;
   line-height: 36px\9;
+}
+.paginationjs .pagination-footer {
+  height: 36px;
+  line-height: 36px;
+  padding-left: 10px;
+  color: #333;
+  float: left;
 }

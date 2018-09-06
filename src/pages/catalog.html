@@ -12,13 +12,70 @@
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/catalog.css">
-    <script src="../js/index.1.js"></script>
 </head>
 <body>
+    <script>
+        if (!location.search) {
+            location.assign('?catalog=1')
+        }
+    </script>
     @@include('commons/header.html')
 
-    <p> 这是 是index1首页 sadfasdf的内容 </p>
+    <div class="layout">
+        <div class="catalog" id="catalog"></div>
+        <div class="time" id="time"></div>
+        <div class="type" id="type"></div>
+        <div class="sort">
+            <span class="label">排序方式</span>
+            <ul class="clearfix" style="display: inline-block;vertical-align: top">
+                <li class="fl row">默认</li>
+                <li class="fl row">更新时间</li>
+                <li class="fl row">数据量</li>
+                <li class="fl row">访问量</li>
+            </ul>
+        </div>
+    </div>
 
     @@include('commons/footer.html')
+    <script>
+        var data = [ { title: '综合政务', href: '?catalog=1', }, { title: '经济管理', href: '?catalog=2' }, { title: '经济管理', href: 'javascript:;' }, { title: '经济管理', href: 'javascript:;' }, { title: '经济管理', href: 'javascript:;' }, { title: '经济管理', href: 'javascript:;' }, { title: '经济管理', href: 'javascript:;' }, { title: '经济管理', href: 'javascript:;' }, { title: '经济管理', href: 'javascript:;' }, { title: '经济管理', href: 'javascript:;' }, { title: '经济管理', href: 'javascript:;' }, { title: '经济管理', href: 'javascript:;' }, { title: '经济管理', href: 'javascript:;' }, { title: '经济管理', href: 'javascript:;' }, { title: '经济管理', href: 'javascript:;' }, { title: '经济管理', href: 'javascript:;' }]
+        function getCatalogHtml(data) {
+            var html = '<ul class="clearfix">'
+            data.forEach(function(item, index) {
+                html += '<li class="row fl'
+                    + (index%8 === 0 ? ' ml0':'')
+                    + '">'
+                    + '<a '
+                    + 'href="'
+                    + (item.href || 'javascript:;')
+                    + '">'
+                    + '<img src="../img/catalog1.png" class="img" /><span class="span">'
+                    + (item.title || '')
+                    + '</span></a>'
+                    + '</li>'
+            })
+            html += '</ul>';
+            return html
+        }
+        $('#catalog').html(getCatalogHtml(data))
+        var timeData = ['全部', 2018, 2017, 2016, 2015, 2014, 2013, 2012]
+        function getTimeHtml(data) {
+            var html = '<span class="label">选择时间</span><ul class="clearfix" style="display: inline-block;vertical-align: top;">'
+            data.forEach(function(item) {
+                html += '<li class="row fl">'+item+'</li>'
+            })
+            return html+'</ul>'
+        }
+        $('#time').html(getTimeHtml(timeData))
+        var typeData = ['全部', 'XLS', 'XML', 'JSON', 'CSV']
+        function getTypeHtml(data) {
+            var html = '<span class="label">格式分类</span><ul class="clearfix" style="display: inline-block;vertical-align: top;">'
+            data.forEach(function(item) {
+                html += '<li class="row fl">'+item+'</li>'
+            })
+            return html+'</ul>'
+        }
+        $('#type').html(getTypeHtml(typeData))
+    </script>
 </body>
 </html>

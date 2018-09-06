@@ -1,3 +1,95 @@
 .header .nav ul li.catalog {
   background: #0872c5;
 }
+.catalog .row {
+  margin-top: 30px;
+  margin-left: 96px;
+  text-align: center;
+}
+.catalog .row.ml0{
+  margin-left: 0;
+}
+.catalog .row .img{
+  display: block;
+  margin-bottom: 20px;
+}
+.catalog .row .span{
+  color: #333;
+}
+.time{
+  margin-top: 40px;
+}
+.time .label{
+  display: inline-block;
+  font-weight: bold;
+  height: 28px;
+  line-height: 28px;
+  color: #333;
+}
+.time .label::after{
+  content: ":";
+  margin: 0 14px 0 4px;
+}
+.time .row{
+  width: 80px;
+  height: 28px;
+  line-height: 28px;
+  margin-right: 10px;
+  text-align: center;
+  background: #f5f5f5;
+  color: #333;
+  cursor: pointer;
+}
+.time .row.active{
+  color: white;
+  background: #0dbbf3;
+}
+.type{
+  margin-top: 20px;
+}
+.type .label{
+  display: inline-block;
+  font-weight: bold;
+  height: 28px;
+  line-height: 28px;
+  color: #333;
+}
+.type .label::after{
+  content: ":";
+  margin: 0 14px 0 4px;
+}
+.type .row{
+  width: 80px;
+  height: 28px;
+  line-height: 28px;
+  margin-right: 10px;
+  text-align: center;
+  background: #f5f5f5;
+  color: #333;
+  cursor: pointer;
+}
+.type .row.active{
+  color: white;
+  background: #0dbbf3;
+}
+.sort{
+  margin-top: 20px;
+  color: #333;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #999;
+  margin-bottom: 30px;
+}
+.sort .label {
+  font-weight: bold;
+}
+.sort .label::after{
+  content: ":";
+  margin: 0 14px 0 4px;
+}
+.sort .row {
+  margin-right: 30px;
+  cursor: pointer;
+}
+.sort .row.active{
+  background: #0dbbf3;
+}

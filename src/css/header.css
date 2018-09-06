@@ -6,9 +6,9 @@
 .header .nav {
   background: #005ea5;
 }
-.header .nav ul {
+/* .header .nav ul {
   padding-left: 100px;
-}
+} */
 .header .nav ul li {
   float: left;
   font-size: 18px;
