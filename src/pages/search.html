@@ -17,50 +17,59 @@
 </head>
 <body>
     @@include('commons/header.html')
-
-    <div>
-      <table id="myTable">
-        <thead>
-          <tr>
-            <td>Header 1</td>
-            <td>Header 2</td>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="ugly">
-            <td>Row 1 Col 1</td>
-            <td>Row 1 Col 2</td>
-          </tr>
-          <tr class="ugly">
-            <td>Row 2 Col 1</td>
-            <td>Row 2 Col 2</td>
-          </tr>
-          <!-- ... -->
-        </tbody>
-      </table>
+    <div class="layout">
+        <div class="search-title">检索结果</div>
+        <div id="data-container" class="data-container"></div>
+        <div id="pagination-container" class="pagination-container"></div>
     </div>
-    <div id="data-container"></div>
-    <div id="pagination-container"></div>
-
     <script>
+      // 内容模板
       function simpleTemplating(data) {
-          var html = '<ul>';
-          $.each(data, function (index, item) {
-            html += '<li>' + item + '</li>';
-          });
-          html += '</ul>';
-          return html;
-        }
+        var html = '<ul>';
+        $.each(data, function (index, item) {
+          html += '<li class="row"><h4 class="title"><a href="'
+            + (item.href || "javascript:;")
+            +'">' 
+            + (item.title || '暂无')
+            + '</a></h4><p class="content">'
+            + (item.content || '暂无')
+            + '</p><p class="description">'
+            + (item.description || '暂无')
+            +'</p></li>';
+        });
+        html += '</ul>';
+        return html;
+      }
+      // 从地址栏获取搜索关键字
+      var keywords = decodeURI(window.location.search.replace('?keywords=', ''))
      $('#pagination-container').pagination({
-        dataSource: [1, 2, 3, 4, 5, 6, 7,1,123,12,31,23,213,12,31,23,1,23,123,1,23,12,31,23,1,31,31,23,213,12,31,23,1,23,123,1,23,12,31,23,1,31,31,23,213,12,31,23,1,23,123,1,23,12,31,23,1,31,31,23,213,12,31,23,1,23,123,1,23,12,31,23,1,31,31,23,213,12,31,23,1,23,123,1,23,12,31,23,1,31,31,23,213,12,31,23,1,23,123,1,23,12,31,23,1,31,31,23,213,12,31,23,1,23,123,1,23,12,31,23,1,31,31,23,213,12,31,23,1,23,123,1,23,12,31,23,1,31,31,23,213,12,31,23,1,23,123,1,23,12,31,23,1,31,31,23,213,12,31,23,1,23,123,1,23,12,31,23,1,31,31,23,213,12,31,23,1,23,123,1,23,12,31,23,1,31,31,23,213,12,31,23,1,23,123,1,23,12,31,23,1,31,31,23,213,12,31,23,1,23,123,1,23,12,31,23,1,31,31,23,213,12,31,23,1,23,123,1,23,12,31,23,1,31,31,23,213,12,31,23,1,23,123,1,23,12,31,23,1,31,31,23,213,12,31,23,1,23,123,1,23,12,31,23,1,31,31,23,213,12,31,23,1,23,123,1,23,12,31,23,1,31],
+        dataSource: 'http://127.0.0.1:9900/fakedata1.json?keywords='+keywords,
+        locator: 'data',
+        totalNumberLocator: function(res) {
+          return res.total
+        },
         callback: function (data, pagination) {
-          // template method of yourself
-          var html = simpleTemplating(data);
-          $('#data-container').html(html);
-        }
-      }) 
+          // 数据遍历,同时替换关键字,使关键字加上标签,实现关键字变色
+          for(var i = 0; i < data.length; i++) {
+            data[i].title=data[i].title.replace(new RegExp(keywords, 'g'),'<span class="red">'+keywords+'</span>')
+            }
+            // 生成html模板字符串
+            var html = simpleTemplating(data);
+            // 渲染dom
+            $('#data-container').html(html);
+        },
+        pageSize: 10,
+        prevText: '上一页',
+        nextText: '上一页',
+        ellipsisText: '···',
+        footer: function(currentPage, totalPage, totalNumber) {
+          return '<span class="pagination-footer">每页10条数据,'+'共'+totalPage+'页</span>'
+        },
+        pageLink: 'javascript:;'
+      })
     </script>
 
     @@include('commons/footer.html')
+    <script src="../js/common.js"></script>
 </body>
 </html>
