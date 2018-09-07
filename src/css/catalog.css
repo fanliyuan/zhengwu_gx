@@ -9,22 +9,28 @@
 .catalog .row.ml0 {
   margin-left: 0;
 }
-.catalog .row .icon{
+.catalog .row .icon {
   width: 66px;
   height: 66px;
   display: block;
   margin-bottom: 20px;
 }
-.catalog .row .icon .no_active{
+.catalog .row .icon .no_active {
   display: block;
 }
-.catalog .row .icon .active{
+.catalog .row .icon .active {
   display: none;
 }
-.catalog .row .icon:hover .no_active{
+.catalog .row .icon:hover .no_active {
   display: none;
 }
-.catalog .row .icon:hover .active{
+.catalog .row .icon:hover .active {
+  display: block;
+}
+.catalog .row.click .icon .no_active {
+  display: none;
+}
+.catalog .row.click .icon .active {
   display: block;
 }
 .catalog .row .span {
