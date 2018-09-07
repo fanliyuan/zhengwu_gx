@@ -9,9 +9,23 @@
 .catalog .row.ml0 {
   margin-left: 0;
 }
-.catalog .row .img {
+.catalog .row .icon{
+  width: 66px;
+  height: 66px;
   display: block;
   margin-bottom: 20px;
+}
+.catalog .row .icon .no_active{
+  display: block;
+}
+.catalog .row .icon .active{
+  display: none;
+}
+.catalog .row .icon:hover .no_active{
+  display: none;
+}
+.catalog .row .icon:hover .active{
+  display: block;
 }
 .catalog .row .span {
   color: #333;
@@ -91,9 +105,9 @@
   cursor: pointer;
 }
 .sort .row.active {
-  color: #0dbbf3 !important;;
+  color: #0dbbf3 !important;
 }
-.card .item{
+.card .item {
   width: 550px;
   height: 140px;
   padding: 20px 20px 40px;
@@ -103,39 +117,39 @@
   transform: scale(1);
   transition: all linear 0.1s;
 }
-.card .item:hover{
+.card .item:hover {
   transform: scale(1.02);
   transition: all linear 0.1s;
 }
-.card .item .left{
+.card .item .left {
   line-height: 200px;
 }
-.card .item .right{
+.card .item .right {
   width: 435px;
   margin-left: 20px;
   padding-left: 20px;
   border-left: 1px solid #ccc;
 }
-.card .item .right .title{
+.card .item .right .title {
   font-size: 16px;
   font-weight: bold;
   margin-bottom: 20px;
 }
-.card .item .right .row{
+.card .item .right .row {
   margin-bottom: 14px;
   font-style: 14px;
 }
-.card .item .right .row div{
+.card .item .right .row div {
   display: inline-block;
   width: 49%;
 }
 /* .card .item .right .label{} */
-.card .item .right .label::after{
+.card .item .right .label::after {
   content: ":";
   margin-left: 2px;
   margin-right: 4px;
 }
-.card .item .right .tag{
+.card .item .right .tag {
   display: inline-block;
   width: 48px;
   height: 18px;
@@ -147,10 +161,10 @@
   margin-right: 5px;
   cursor: default;
 }
-.card .item .right .bold{
+.card .item .right .bold {
   font-weight: bold;
 }
-.card .item .hot-flag{
+.card .item .hot-flag {
   position: absolute;
   left: 0;
   top: 0;
@@ -158,7 +172,7 @@
   height: 57px;
   background: url("../img/new.png");
 }
-.card .item .new-flag{
+.card .item .new-flag {
   position: absolute;
   left: 0;
   top: 0;
@@ -166,9 +180,9 @@
   height: 57px;
   background: url("../img/hot.png");
 }
-.card .item.ml20{
+.card .item.ml20 {
   margin-left: 20px;
 }
-.pagination-container{
+.pagination-container {
   margin: 20px 0;
 }

@@ -96,7 +96,7 @@
         </ul>
     </script>
     <script>
-        var data = [ { title: '综合政务', href: '?catalog=1', }, { title: '经济管理', href: '?catalog=2' }, { title: '经济管理', href: 'javascript:;' }, { title: '经济管理', href: 'javascript:;' }, { title: '经济管理', href: 'javascript:;' }, { title: '经济管理', href: 'javascript:;' }, { title: '经济管理', href: 'javascript:;' }, { title: '经济管理', href: 'javascript:;' }, { title: '经济管理', href: 'javascript:;' }, { title: '经济管理', href: 'javascript:;' }, { title: '经济管理', href: 'javascript:;' }, { title: '经济管理', href: 'javascript:;' }, { title: '经济管理', href: 'javascript:;' }, { title: '经济管理', href: 'javascript:;' }, { title: '经济管理', href: 'javascript:;' }, { title: '经济管理', href: 'javascript:;' }]
+        var data = [ { title: '综合政务', href: '?catalog=1', }, { title: '经济管理', href: '?catalog=2' }, { title: '国土资源', href: 'javascript:;' }, { title: '工业交通', href: 'javascript:;' }, { title: '信息产业', href: 'javascript:;' }, { title: '城乡建设', href: 'javascript:;' }, { title: '农业水利', href: 'javascript:;' }, { title: '财政收支', href: 'javascript:;' }, { title: '商业贸易', href: 'javascript:;' }, { title: '旅游服务', href: 'javascript:;' }, { title: '气象水文', href: 'javascript:;' }, { title: '对外事务', href: 'javascript:;' }, { title: '政法监察', href: 'javascript:;' }, { title: '科技教育', href: 'javascript:;' }, { title: '文化卫生', href: 'javascript:;' }, { title: '军事国防', href: 'javascript:;' }]
         function getCatalogHtml(data) {
             var html = '<ul class="clearfix">'
             data.forEach(function(item, index) {
@@ -107,7 +107,10 @@
                     + 'href="'
                     + (item.href || 'javascript:;')
                     + '">'
-                    + '<img src="../img/catalog1.png" class="img" /><span class="span">'
+                    + '<div class="icon">'
+                    + '<img src="../img/catalog_icon/icon_'+(index+1)+'.png" class="no_active">'
+                    + '<img src="../img/catalog_icon/icon_'+(index+1)+'_on.png" class="active">'
+                    +'</div><span class="span">'
                     + (item.title || '')
                     + '</span></a>'
                     + '</li>'
