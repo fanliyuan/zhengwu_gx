@@ -7,11 +7,21 @@
     <title>Document</title>
     <link rel="shortcut icon" href="../img/favicon.png" type="image/x-icon">
     <script src="../assets/jquery.min.js"></script>
+    <script src="../assets/moment.min.js"></script>
+    <!-- 一下代码是IE8的兼容性代码,需要时应该用到条件注释 -->
+    <!--[if IE 8]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.5.7/es5-shim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.5.7/es5-sham.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/json3/3.3.2/json3.min.js"></script>
+    <![endif]-->
     <link rel="stylesheet" href="../assets/reset.css">
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/catalog.css">
+    <link rel="stylesheet" href="../css/iconfont.css">
+    <script src="../assets/pagination.min.js"></script>
+    <link rel="stylesheet" href="../assets/pagination.css">
 </head>
 <body>
     <script>
@@ -28,15 +38,63 @@
         <div class="sort">
             <span class="label">排序方式</span>
             <ul class="clearfix" style="display: inline-block;vertical-align: top">
-                <li class="fl row">默认</li>
-                <li class="fl row">更新时间</li>
-                <li class="fl row">数据量</li>
-                <li class="fl row">访问量</li>
+                <li class="fl row iconfont icon-paixu">默认</li>
+                <li class="fl row iconfont icon-paixu">更新时间</li>
+                <li class="fl row iconfont icon-paixu">数据量</li>
+                <li class="fl row iconfont icon-paixu">访问量</li>
             </ul>
         </div>
+        <div class="card" id="card"></div>
+        <div id="pagination-container" class="pagination-container"></div>
     </div>
 
     @@include('commons/footer.html')
+    <script src="../assets/art-template.js"></script>
+    <script type="text/html" id="card-list">
+        <ul class="clearfix">
+        {{each $data item index}}
+            <li class="fl item clearfix {{if index%2 === 1}}ml20{{/if}}">
+                {{if item.hot}}<div class="hot-flag"></div>{{/if}}
+                {{if item.new}}<div class="new-flag"></div>{{/if}}
+                <div class="left fl">
+                    <img src="{{item.icon || '../img/new1.png'}}" alt="">
+                </div>
+                <div class="right fl">
+                    <div class="title">{{item.title}}</div>
+                    <div class="row">
+                        <span class="label">所含格式</span>
+                        {{each item.types sub}}
+                            <span class="tag">{{sub}}</span>
+                        {{/each}}
+                    </div>
+                    <div class="row bold">
+                        <div>
+                            <span class="label">更新时间</span>
+                            <span>{{item.updateTime}}</span>
+                        </div>
+                        <div>
+                            <span class="label">发布时间</span>
+                            <span>{{item.publicationTime}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div>
+                            <span class="label">所属主题</span>
+                            <span>{{item.classify}}</span>
+                        </div>
+                        <div>
+                            <span class="label">所属部门</span>
+                            <span>{{item.department}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <p class="summary">{{item.summary || '暂无'}}</p>
+                    </div>
+                </div>
+            </li>
+        {{/each}}
+        </ul>
+    </script>
     <script>
         var data = [ { title: '综合政务', href: '?catalog=1', }, { title: '经济管理', href: '?catalog=2' }, { title: '经济管理', href: 'javascript:;' }, { title: '经济管理', href: 'javascript:;' }, { title: '经济管理', href: 'javascript:;' }, { title: '经济管理', href: 'javascript:;' }, { title: '经济管理', href: 'javascript:;' }, { title: '经济管理', href: 'javascript:;' }, { title: '经济管理', href: 'javascript:;' }, { title: '经济管理', href: 'javascript:;' }, { title: '经济管理', href: 'javascript:;' }, { title: '经济管理', href: 'javascript:;' }, { title: '经济管理', href: 'javascript:;' }, { title: '经济管理', href: 'javascript:;' }, { title: '经济管理', href: 'javascript:;' }, { title: '经济管理', href: 'javascript:;' }]
         function getCatalogHtml(data) {
@@ -76,6 +134,131 @@
             return html+'</ul>'
         }
         $('#type').html(getTypeHtml(typeData))
+    </script>
+    <script>
+        var cardData = [
+            {
+                title: '贵阳市主要粮油副食品每日监测表',
+                types: ['XLS', 'XML', 'JSON', 'CSV'],
+                new: true,
+                updateTime: '2018-1-1',
+                publicationTime: '2013-12-2',
+                classify: '经济管理',
+                department: '市发改委',
+                summary: '资源摘要：提供贵阳市主要粮油副食品日监价格，包括商品名称、规 格、单位、主要农贸市场价格、主要超市价格...'
+            },
+            {
+                title: '北京市主要粮油副食品每日监测表',
+                types: ['XLS', 'XML', 'JSON', 'CSV'],
+                hot: true,
+                updateTime: '2018-2-3',
+                publicationTime: '2013-12-2',
+                classify: '经济管理',
+                department: '市发改委',
+                summary: '资源摘要：提供贵阳市主要粮油副食品日监价格，包括商品名称、规 格、单位、主要农贸市场价格、主要超市价格...'
+            },
+            {
+                title: '北京市主要粮油副食品每日监测表',
+                types: ['XLS', 'XML', 'JSON', 'CSV'],
+                updateTime: '2018-2-3',
+                publicationTime: '2013-12-2',
+                classify: '经济管理',
+                department: '市发改委',
+                summary: '资源摘要：提供贵阳市主要粮油副食品日监价格，包括商品名称、规 格、单位、主要农贸市场价格、主要超市价格...'
+            },
+            {
+                title: '北京市主要粮油副食品每日监测表',
+                types: ['XLS', 'XML', 'JSON', 'CSV'],
+                updateTime: '2018-2-3',
+                publicationTime: '2013-12-2',
+                classify: '经济管理',
+                department: '市发改委',
+                summary: '资源摘要：提供贵阳市主要粮油副食品日监价格，包括商品名称、规 格、单位、主要农贸市场价格、主要超市价格...'
+            },
+            {
+                title: '北京市主要粮油副食品每日监测表',
+                types: ['XLS', 'XML', 'JSON', 'CSV'],
+                updateTime: '2018-2-3',
+                publicationTime: '2013-12-2',
+                classify: '经济管理',
+                department: '市发改委',
+                summary: '资源摘要：提供贵阳市主要粮油副食品日监价格，包括商品名称、规 格、单位、主要农贸市场价格、主要超市价格...'
+            },
+            {
+                title: '北京市主要粮油副食品每日监测表',
+                types: ['XLS', 'XML', 'JSON', 'CSV'],
+                updateTime: '2018-2-3',
+                publicationTime: '2013-12-2',
+                classify: '经济管理',
+                department: '市发改委',
+                summary: '资源摘要：提供贵阳市主要粮油副食品日监价格，包括商品名称、规 格、单位、主要农贸市场价格、主要超市价格...'
+            },
+            {
+                title: '北京市主要粮油副食品每日监测表',
+                types: ['XLS', 'XML', 'JSON', 'CSV'],
+                updateTime: '2018-2-3',
+                publicationTime: '2013-12-2',
+                classify: '经济管理',
+                department: '市发改委',
+                summary: '资源摘要：提供贵阳市主要粮油副食品日监价格，包括商品名称、规 格、单位、主要农贸市场价格、主要超市价格...'
+            },
+            {
+                title: '北京市主要粮油副食品每日监测表',
+                types: ['XLS', 'XML', 'JSON', 'CSV'],
+                updateTime: '2018-2-3',
+                publicationTime: '2013-12-2',
+                classify: '经济管理',
+                department: '市发改委',
+                summary: '资源摘要：提供贵阳市主要粮油副食品日监价格，包括商品名称、规 格、单位、主要农贸市场价格、主要超市价格...'
+            },
+            {
+                title: '北京市主要粮油副食品每日监测表',
+                types: ['XLS', 'XML', 'JSON', 'CSV'],
+                updateTime: '2018-2-3',
+                publicationTime: '2013-12-2',
+                classify: '经济管理',
+                department: '市发改委',
+                summary: '资源摘要：提供贵阳市主要粮油副食品日监价格，包括商品名称、规 格、单位、主要农贸市场价格、主要超市价格...'
+            },
+            {
+                title: '北京市主要粮油副食品每日监测表',
+                types: ['XLS', 'XML', 'JSON', 'CSV'],
+                updateTime: '2018-2-3',
+                publicationTime: '2013-12-2',
+                classify: '经济管理',
+                department: '市发改委',
+                summary: '资源摘要：提供贵阳市主要粮油副食品日监价格，包括商品名称、规 格、单位、主要农贸市场价格、主要超市价格...'
+            },
+        ]
+        $('#card').html(template('card-list', cardData))
+    </script>
+    <script>
+        // var keywords = decodeURI(window.location.search.replace('?keywords=', ''))
+        $('#pagination-container').pagination({
+        dataSource: 'http://127.0.0.1:9090/fakedata1.json',
+        locator: 'data',
+        totalNumberLocator: function(res) {
+          return res.total
+        },
+        callback: function (data, pagination) {
+          // 数据遍历,同时替换关键字,使关键字加上标签,实现关键字变色
+          for(var i = 0; i < data.length; i++) {
+            data[i].title=data[i].title.replace(new RegExp('keywords', 'g'),'<span class="red">'+'keywords'+'</span>')
+            }
+            // 生成html模板字符串
+            // var html = simpleTemplating(data);
+            // // 渲染dom
+            // $('#data-container').html(html);
+        },
+        pageSize: 10,
+        prevText: '上一页',
+        nextText: '上一页',
+        ellipsisText: '···',
+        footer: function(currentPage, totalPage, totalNumber) {
+          return '<span class="pagination-footer">每页10条数据,'+'共'+totalPage+'页</span>'
+        },
+        pageLink: 'javascript:;'
+      })
     </script>
 </body>
 </html>
