@@ -1,10 +1,10 @@
-.pagination-container{
+.pagination-container {
   text-align: center;
 }
 .paginationjs {
   line-height: 1.6;
-  font-family: 'Microsoft Yahei',Marmelad, "Lucida Grande", Arial, "Hiragino Sans GB", Georgia,
-    sans-serif;
+  font-family: "Microsoft Yahei", Marmelad, "Lucida Grande", Arial,
+    "Hiragino Sans GB", Georgia, sans-serif;
   font-size: 16px;
   box-sizing: initial;
   display: inline-block;
@@ -35,13 +35,13 @@
   border: 1px solid #aaa;
   border-radius: 4px;
 }
-.paginationjs .paginationjs-pages li:hover{
+.paginationjs .paginationjs-pages li:hover {
   border: 1px solid #0872c5;
 }
-.paginationjs .paginationjs-pages li.disabled:hover{
+.paginationjs .paginationjs-pages li.disabled:hover {
   border: 1px solid #aaa;
 }
-.paginationjs .paginationjs-pages li+li{
+.paginationjs .paginationjs-pages li + li {
   margin-left: 10px;
 }
 .paginationjs .paginationjs-pages li > a {

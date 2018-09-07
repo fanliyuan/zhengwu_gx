@@ -1,8 +1,8 @@
-.data-container{
+.data-container {
   width: 1200px;
   margin: 0 auto;
 }
-.search-title{
+.search-title {
   margin-top: 40px;
   line-height: 24px;
   color: #005a9f;
@@ -11,7 +11,7 @@
   padding-bottom: 8px;
   border-bottom: 1px solid #aaa;
 }
-.search-title::before{
+.search-title::before {
   content: "";
   display: inline-block;
   border-left: 4px solid #005a9f;
@@ -19,15 +19,15 @@
   height: 24px;
   vertical-align: top;
 }
-.data-container ul{
+.data-container ul {
   margin-top: 16px;
 }
-.data-container .row{
+.data-container .row {
   height: 108px;
   padding: 20px 0;
   border-bottom: 1px solid #aaa;
 }
-.data-container .row .title{
+.data-container .row .title {
   font-size: 16px;
   color: #076fc3;
 }
@@ -36,16 +36,16 @@
   color: #076fc3;
   text-decoration-line: underline;
 }
-.data-container .row .content{
+.data-container .row .content {
   margin-top: 20px;
   font-size: 12px;
 }
-.data-container .row .description{
-  margin-top: 20px; 
+.data-container .row .description {
+  margin-top: 20px;
   font-size: 12px;
   color: #919191;
 }
-.pagination-container{
+.pagination-container {
   margin-top: 68px;
   margin-bottom: 50px;
 }

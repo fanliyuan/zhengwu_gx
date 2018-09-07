@@ -6,31 +6,31 @@
   margin-left: 96px;
   text-align: center;
 }
-.catalog .row.ml0{
+.catalog .row.ml0 {
   margin-left: 0;
 }
-.catalog .row .img{
+.catalog .row .img {
   display: block;
   margin-bottom: 20px;
 }
-.catalog .row .span{
+.catalog .row .span {
   color: #333;
 }
-.time{
+.time {
   margin-top: 40px;
 }
-.time .label{
+.time .label {
   display: inline-block;
   font-weight: bold;
   height: 28px;
   line-height: 28px;
   color: #333;
 }
-.time .label::after{
+.time .label::after {
   content: ":";
   margin: 0 14px 0 4px;
 }
-.time .row{
+.time .row {
   width: 80px;
   height: 28px;
   line-height: 28px;
@@ -40,25 +40,25 @@
   color: #333;
   cursor: pointer;
 }
-.time .row.active{
+.time .row.active {
   color: white;
   background: #0dbbf3;
 }
-.type{
+.type {
   margin-top: 20px;
 }
-.type .label{
+.type .label {
   display: inline-block;
   font-weight: bold;
   height: 28px;
   line-height: 28px;
   color: #333;
 }
-.type .label::after{
+.type .label::after {
   content: ":";
   margin: 0 14px 0 4px;
 }
-.type .row{
+.type .row {
   width: 80px;
   height: 28px;
   line-height: 28px;
@@ -68,11 +68,11 @@
   color: #333;
   cursor: pointer;
 }
-.type .row.active{
+.type .row.active {
   color: white;
   background: #0dbbf3;
 }
-.sort{
+.sort {
   margin-top: 20px;
   color: #333;
   padding-bottom: 18px;
@@ -82,7 +82,7 @@
 .sort .label {
   font-weight: bold;
 }
-.sort .label::after{
+.sort .label::after {
   content: ":";
   margin: 0 14px 0 4px;
 }
@@ -90,6 +90,6 @@
   margin-right: 30px;
   cursor: pointer;
 }
-.sort .row.active{
+.sort .row.active {
   background: #0dbbf3;
 }
