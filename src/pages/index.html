@@ -52,29 +52,13 @@
         <div class="content3">
             <div class="newInstitutionSource">
                 <h2 class="content_title">推荐主题分类</h2>
-                <ul class="best_item">
-                    <li style="background:url(../img/recommentTC1.png) center">
-                        <div class="recomment_content">
-                            <ul>
-                                <li>
-
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li style="background:url(../img/recommentTC2.png) center">
-                    
-                    </li>
-                    <li style="background:url(../img/recommentTC3.png) center">
-                
-                    </li>
-                    <li style="background:url(../img/recommentTC2.png) center">
-                
-                    </li>
-                    <li style="background:url(../img/recommentTC1.png) center"></li>
-                </ul>
             </div>
         </div>
+        <div class="content4">
+            <div class="newInstitutionSource">
+                <h2 class="content_title">目录分类</h2>
+            </div>
+            </div>
     @@include('commons/footer.html')
     <script src="../assets/art-template.js"></script>
     <script type="text/html" id="card-list">
@@ -107,6 +91,27 @@
             </li>
             {{/each}}
         </ul>
+    </script>
+    <script type="text/html" id="recomment-list">
+        <ul class="best_item">
+            {{each $data item}}
+            <li style="background:url(../img/{{item.bgImg}}) center">
+                <div class="recomment_content layout-center">
+                    <ul>
+                        <li class="retc_img">
+                            <img src="../img/{{item.icon}}" alt="" class="layout-center">
+                        </li>
+                        <li class="retc_title">
+                            <h1>{{item.title}}</h1>
+                        </li>
+                        <li class="retc_btn">
+                            <a href="{{item.url}}">查看详情</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            {{/each}}
+            </ul>
     </script>
     <script>
         var cardData = [
@@ -155,6 +160,41 @@
         ]
         $('.content1 .newInstitutionSource').append(template('card-list', cardData))
         $('.content2 .newInstitutionSource').append(template('card-list', cardData))
+    </script>
+    <script>
+        var recommentData = [
+            {
+                icon:'01.png',
+                title:"综合政务",
+                url:"#",
+                bgImg:'recommentTC1.png'
+            },
+            {
+                icon:'02.png',
+                title:"信息产业",
+                url:"#",
+                bgImg:'recommentTC2.png'
+            },
+            {
+                icon:'03.png',
+                title:"经济管理",
+                url:"#",
+                bgImg:'recommentTC3.png'
+            },
+            {
+                icon:'04.png',
+                title:"文化卫生",
+                url:"#",
+                bgImg:'recommentTC2.png'
+            },
+            {
+                icon:'../img/05.png',
+                title:"科技教育",
+                url:"#",
+                bgImg:'recommentTC1.png'
+            },
+        ]
+        $('.content3 .newInstitutionSource').append(template('recomment-list', recommentData))
     </script>
     <script>        
         var mySwiper = new Swiper ('.swiper-container', {
