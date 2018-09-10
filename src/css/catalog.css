@@ -141,6 +141,9 @@
   font-weight: bold;
   margin-bottom: 20px;
 }
+.card .item .right .title a {
+  color: #333;
+}
 .card .item .right .row {
   margin-bottom: 14px;
   font-style: 14px;

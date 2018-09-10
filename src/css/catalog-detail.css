@@ -1,0 +1,89 @@
+.layout .title {
+  margin-top: 40px;
+  line-height: 24px;
+  color: #005a9f;
+  font-weight: 700;
+  font-size: 18px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #aaa;
+}
+.layout .title::before {
+  content: "";
+  display: inline-block;
+  border-left: 4px solid #005a9f;
+  margin-right: 8px;
+  height: 24px;
+  vertical-align: top;
+}
+.info {
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+.info .item {
+  border-bottom: 1px solid white;
+}
+.info .item > span {
+  display: inline-block;
+  box-sizing: border-box;
+}
+.info .item .name {
+  width: 200px;
+  height: 47px;
+  line-height: 47px;
+  text-align: center;
+  font-weight: bold;
+  background: #f7f7f7;
+  border-right: 1px solid white;
+}
+.info .item .value {
+  width: 400px;
+  height: 47px;
+  line-height: 47px;
+  background: #fbfbfb;
+  border-right: 1px solid white;
+  padding-left: 20px;
+}
+.info .item.summary {
+  background: #f7f7f7;
+  padding-left: 70px;
+  font-weight: bold;
+}
+.info .item.summary .value {
+  width: 1000px;
+  font-weight: normal;
+  margin-left: 69px;
+  background: #fbfbfb;
+  height: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  line-height: 28px;
+  border-left: 1px solid white;
+  vertical-align: middle;
+}
+.list {
+  width: 100%;
+  margin-bottom: 30px;
+}
+.list > thead {
+  line-height: 47px;
+  font-weight: bold;
+  text-align: center;
+  background: #f7f7f7;
+}
+.list > thead > tr {
+  border-bottom: 1px solid white;
+}
+.list > thead td + td {
+  border-left: 1px solid white;
+}
+.list > tbody {
+  line-height: 47px;
+  text-align: center;
+  background: #fbfbfb;
+}
+.list > tbody > tr {
+  border-bottom: 1px solid white;
+}
+.list > tbody > tr > td + td {
+  border-left: 1px solid white;
+}
