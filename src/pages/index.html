@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>首页</title>
-    <link rel="shortcut icon" href="../img/logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../img/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="../assets/reset.css">
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/iconfont.css">
     <link rel="stylesheet" href="../assets/swiper.min.css">
     <script src="../assets/jquery.min.js"></script>
     <script src="../assets/swiper.min.js"></script>
@@ -38,92 +39,122 @@
                 <div class="swiper-pagination"></div>
             </div>
         </div>
-        <div class="newInstitutionSource">
-            <h2 class="content1_title">最新目录信息资源</h2>
-            <ul class="clear">
-                <li>
-                    <div class="item_img">
-                        <img src="../img/new1.png" alt="">
-                    </div>
-                    <div class="item_content">
-                        <h2>贵阳市主要粮油副食品每日监测表</h2>
-                        <ul>
-                            <li>
-                                所含格式:&nbsp;&nbsp;
-                                <span>XLS</span>
-                                <span>XLM</span>
-                                <span>JSON</span>
-                                <span>CSV</span>
-                            </li>
-                            <li>
-                                <ul>
-                                    <li>所属主题:&nbsp;&nbsp;<span>经济管理</span></li>
-                                    <li>所属部门:&nbsp;&nbsp;<span></span>市发改委</span></li>
-                                </ul>
-                            </li>
-                            <li>
-                                资源摘要:&nbsp;&nbsp;<span>提供贵阳市主要粮油副食品日监价格,包括商品名称、规格、单位、主要农贸市场价格、主要超市价格</span>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li>
-                        <div class="item_img">
-                            <img src="../img/new1.png" alt="">
-                        </div>
-                        <div class="item_content">
-                            <h2>贵阳市主要粮油副食品每日监测表</h2>
+        <div class="content1">
+            <div class="newInstitutionSource">
+                <h2 class="content_title">最新目录信息资源</h2>
+            </div>
+        </div>
+        <div class="content2">
+            <div class="newInstitutionSource">
+                <h2 class="content_title">最热目录信息资源</h2>
+            </div>
+        </div>
+        <div class="content3">
+            <div class="newInstitutionSource">
+                <h2 class="content_title">推荐主题分类</h2>
+                <ul class="best_item">
+                    <li style="background:url(../img/recommentTC1.png) center">
+                        <div class="recomment_content">
                             <ul>
                                 <li>
-                                    所含格式:&nbsp;&nbsp;
-                                    <span>XLS</span>
-                                    <span>XLM</span>
-                                    <span>JSON</span>
-                                    <span>CSV</span>
-                                </li>
-                                <li>
-                                    <ul>
-                                        <li>所属主题:&nbsp;&nbsp;<span>经济管理</span></li>
-                                        <li>所属部门:&nbsp;&nbsp;<span></span>市发改委</span></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    资源摘要:&nbsp;&nbsp;<span>提供贵阳市主要粮油副食品日监价格,包括商品名称、规格、单位、主要农贸市场价格、主要超市价格</span>
+
                                 </li>
                             </ul>
                         </div>
                     </li>
-                    <li>
-                        <div class="item_img">
-                                <img src="../img/new1.png" alt="">
-                            </div>
-                            <div class="item_content">
-                                <h2>贵阳市主要粮油副食品每日监测表</h2>
-                                <ul>
-                                    <li>
-                                        所含格式:&nbsp;&nbsp;
-                                        <span>XLS</span>
-                                        <span>XLM</span>
-                                        <span>JSON</span>
-                                        <span>CSV</span>
-                                    </li>
-                                    <li>
-                                        <ul>
-                                            <li>所属主题:&nbsp;&nbsp;<span>经济管理</span></li>
-                                            <li>所属部门:&nbsp;&nbsp;<span></span>市发改委</span></li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        资源摘要:&nbsp;&nbsp;<span>提供贵阳市主要粮油副食品日监价格,包括商品名称、规格、单位、主要农贸市场价格、主要超市价格</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-            </ul>
+                    <li style="background:url(../img/recommentTC2.png) center">
+                    
+                    </li>
+                    <li style="background:url(../img/recommentTC3.png) center">
+                
+                    </li>
+                    <li style="background:url(../img/recommentTC2.png) center">
+                
+                    </li>
+                    <li style="background:url(../img/recommentTC1.png) center"></li>
+                </ul>
+            </div>
         </div>
     @@include('commons/footer.html')
+    <script src="../assets/art-template.js"></script>
+    <script type="text/html" id="card-list">
+        <ul class="clear">
+        {{each $data item}}
+            <li>
+                <div class="item_img">
+                    <img src="{{item.icon || '../img/new1.png'}}" alt="">
+                </div>
+                <div class="item_content">
+                    <h2>{{item.supperTitle}}</h2>
+                    <ul>
+                        <li>
+                            所含格式:&nbsp;&nbsp;
+                            {{each item.types sub}}
+                            <span class="spe_block">{{sub}}</span>
+                            {{/each}}
+                        </li>
+                        <li>
+                            <ul>
+                                <li>所属主题:&nbsp;&nbsp;<span>{{item.classify}}</span></li>
+                                <li>所属部门:&nbsp;&nbsp;<span></span>{{item.department}}</span></li>
+                            </ul>
+                        </li>
+                        <li>
+                            资源摘要:&nbsp;&nbsp;<span>{{item.summary || '暂无'}}</span>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            {{/each}}
+        </ul>
+    </script>
     <script>
-      console.log($('div').innerHeight())
+        var cardData = [
+            {
+                title: '贵阳市主要粮油副食品每日监测表',
+                types: ['XLS', 'XML', 'JSON', 'CSV'],
+                supperTitle:'贵阳市主要粮油副食品每日监测表',
+                // new: true,
+                updateTime: '2018-1-1',
+                publicationTime: '2013-12-2',
+                classify: '经济管理',
+                department: '市发改委',
+                summary: '资源摘要：提供贵阳市主要粮油副食品日监价格，包括商品名称、规 格、单位、主要农贸市场价格、主要超市价格...'
+            },
+            {
+                title: '北京市主要粮油副食品每日监测表',
+                types: ['XLS', 'XML', 'JSON', 'CSV'],
+                supperTitle:'贵阳市主要粮油副食品每日监测表',
+                // hot: true,
+                updateTime: '2018-2-3',
+                publicationTime: '2013-12-2',
+                classify: '经济管理',
+                department: '市发改委',
+                summary: '资源摘要：提供贵阳市主要粮油副食品日监价格，包括商品名称、规 格、单位、主要农贸市场价格、主要超市价格...'
+            },
+            {
+                title: '北京市主要粮油副食品每日监测表',
+                types: ['XLS', 'XML', 'JSON', 'CSV'],
+                supperTitle:'贵阳市主要粮油副食品每日监测表',
+                updateTime: '2018-2-3',
+                publicationTime: '2013-12-2',
+                classify: '经济管理',
+                department: '市发改委',
+                summary: '资源摘要：提供贵阳市主要粮油副食品日监价格，包括商品名称、规 格、单位、主要农贸市场价格、主要超市价格...'
+            },
+            {
+                title: '北京市主要粮油副食品每日监测表',
+                types: ['XLS', 'XML', 'JSON', 'CSV'],
+                supperTitle:'贵阳市主要粮油副食品每日监测表',
+                updateTime: '2018-2-3',
+                publicationTime: '2013-12-2',
+                classify: '经济管理',
+                department: '市发改委',
+                summary: '资源摘要：提供贵阳市主要粮油副食品日监价格，包括商品名称、规 格、单位、主要农贸市场价格、主要超市价格...'
+            },
+        ]
+        $('.content1 .newInstitutionSource').append(template('card-list', cardData))
+        $('.content2 .newInstitutionSource').append(template('card-list', cardData))
     </script>
     <script>        
         var mySwiper = new Swiper ('.swiper-container', {
@@ -137,10 +168,7 @@
           pagination: {
             el: '.swiper-pagination',
           },
-        })        
-    </script>
-    <script>
-        $.ajax()
+        })   
     </script>
 </body>
 </html>
