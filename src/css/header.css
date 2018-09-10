@@ -30,12 +30,13 @@
 }
 .header .nav .search input {
   font-size: 14px;
+  width: 300px;
+  height: 30px;
   line-height: 30px;
   border: 0 none;
   border-radius: 4px;
   padding: 0;
   padding-left: 10px;
-  width: 300px;
 }
 .header .nav .search .button {
   height: 30px;
