@@ -11,13 +11,32 @@
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../assets/swiper.min.css">
     <script src="../assets/jquery.min.js"></script>
+    <script src="../assets/swiper.min.js"></script>
 </head>
 <body>
 <body>
     @@include('commons/header.html')
         <div class="carousel">
-
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="../img/banner1.png" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="../img/banner2.png" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="../img/banner3.png" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="../img/banner4.png" alt="">
+                    </div>
+                </div>
+                <!-- 如果需要分页器 -->
+                <div class="swiper-pagination"></div>
+            </div>
         </div>
         <div class="newInstitutionSource">
             <h2 class="content1_title">最新目录信息资源</h2>
@@ -30,41 +49,98 @@
                         <h2>贵阳市主要粮油副食品每日监测表</h2>
                         <ul>
                             <li>
-                                <h3>
-                                    <p>所含格式:</p>
-                                    <span>XLS</span>
-                                    <span>XLM</span>
-                                    <span>JSON</span>
-                                    <span>CSV</span>
-                                </h3>
+                                所含格式:&nbsp;&nbsp;
+                                <span>XLS</span>
+                                <span>XLM</span>
+                                <span>JSON</span>
+                                <span>CSV</span>
                             </li>
                             <li>
-                                <h3>
-                                    <p>所属主题:</p>
-                                    <span>经济管理</span>
-                                </h3>
-                                <h3>
-                                    <p>所属部门:</p>
-                                    <span>市发改委</span>
-                                </h3>
+                                <ul>
+                                    <li>所属主题:&nbsp;&nbsp;<span>经济管理</span></li>
+                                    <li>所属部门:&nbsp;&nbsp;<span></span>市发改委</span></li>
+                                </ul>
                             </li>
                             <li>
-                                <p>资源摘要</p>
-                                <span>
-                                    提供贵阳市主要粮油副食品日监价格,包括商品名称、规格、单位、主要农贸市场价格、主要超市价格
-                                </span>
+                                资源摘要:&nbsp;&nbsp;<span>提供贵阳市主要粮油副食品日监价格,包括商品名称、规格、单位、主要农贸市场价格、主要超市价格</span>
                             </li>
                         </ul>
                     </div>
                 </li>
-                <li></li>
-                <li></li>
-                <li></li>
+                <li>
+                        <div class="item_img">
+                            <img src="../img/new1.png" alt="">
+                        </div>
+                        <div class="item_content">
+                            <h2>贵阳市主要粮油副食品每日监测表</h2>
+                            <ul>
+                                <li>
+                                    所含格式:&nbsp;&nbsp;
+                                    <span>XLS</span>
+                                    <span>XLM</span>
+                                    <span>JSON</span>
+                                    <span>CSV</span>
+                                </li>
+                                <li>
+                                    <ul>
+                                        <li>所属主题:&nbsp;&nbsp;<span>经济管理</span></li>
+                                        <li>所属部门:&nbsp;&nbsp;<span></span>市发改委</span></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    资源摘要:&nbsp;&nbsp;<span>提供贵阳市主要粮油副食品日监价格,包括商品名称、规格、单位、主要农贸市场价格、主要超市价格</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item_img">
+                                <img src="../img/new1.png" alt="">
+                            </div>
+                            <div class="item_content">
+                                <h2>贵阳市主要粮油副食品每日监测表</h2>
+                                <ul>
+                                    <li>
+                                        所含格式:&nbsp;&nbsp;
+                                        <span>XLS</span>
+                                        <span>XLM</span>
+                                        <span>JSON</span>
+                                        <span>CSV</span>
+                                    </li>
+                                    <li>
+                                        <ul>
+                                            <li>所属主题:&nbsp;&nbsp;<span>经济管理</span></li>
+                                            <li>所属部门:&nbsp;&nbsp;<span></span>市发改委</span></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        资源摘要:&nbsp;&nbsp;<span>提供贵阳市主要粮油副食品日监价格,包括商品名称、规格、单位、主要农贸市场价格、主要超市价格</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
             </ul>
         </div>
     @@include('commons/footer.html')
     <script>
       console.log($('div').innerHeight())
+    </script>
+    <script>        
+        var mySwiper = new Swiper ('.swiper-container', {
+          direction: 'horizontal',
+          speed:1000,
+          loop: true,
+          autoplay:{
+              delay:3000,
+          },
+          // 如果需要分页器
+          pagination: {
+            el: '.swiper-pagination',
+          },
+        })        
+    </script>
+    <script>
+        $.ajax()
     </script>
 </body>
 </html>
