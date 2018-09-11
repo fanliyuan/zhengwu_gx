@@ -130,7 +130,7 @@
         <div class="ontop clearfix">
             <img src="{{$data.top.imgUrl || '../img/news_pattern.png'}}" alt="" width="200" height="130" class="fl">
             <div class="fl">
-                <h3>{{$data.top.title}}</h3>
+                <a href="article?id={{$data.top.id}}"><h3>{{$data.top.title}}</h3></a>
                 <p class="from">
                     <label>来源 : </label>
                     <span>{{$data.top.origin || '暂无'}}</span>
@@ -145,9 +145,11 @@
         <ul class="affiche_list">
             {{each $data.list item}}
                 <li class="affiche_row">
-                    <span class="affiche_origin">[{{item.origin}}]</span>
-                    <span class="affiche_title">{{item.title}}</span>
-                    <span class="affiche_time">{{item.time}}</span>
+                    <a href="article?id={{item.id}}">
+                        <span class="affiche_origin">[{{item.origin}}]</span>
+                        <span class="affiche_title">{{item.title}}</span>
+                        <span class="affiche_time">{{item.time}}</span>
+                    </a>
                 </li>
             {{/each}}
             <li></li>
