@@ -33,20 +33,25 @@
   font-size: 18px;
   color: #015293;
   position: relative;
-  margin-left: 10px;
-  margin-bottom: 20px;
+  /* margin-left: 10px; */
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ddd;
 }
 .content2 {
   background: #f5f5f5;
 }
-.content_title::after {
-  position: absolute;
+.content_title::before {
+  /* position: absolute;
   left: -10px;
   top: 0;
-  bottom: 0;
-  display: block;
+  bottom: 0; */
+  height: 18px;
+  display: inline-block;
+  margin-right: 10px;
   content: "";
   border-left: 3px solid #015293;
+  vertical-align: middle;
 }
 .newInstitutionSource > ul > li {
   display: inline-block;
@@ -166,4 +171,94 @@
 }
 .content4 .newInstitutionSource {
   padding-top: 0;
+}
+.catalog .row {
+  margin-top: 30px;
+  margin-left: 96px;
+  text-align: center;
+}
+.catalog .row.ml0 {
+  margin-left: 0;
+}
+.catalog .row .icon {
+  width: 66px;
+  height: 66px;
+  display: block;
+  margin-bottom: 20px;
+}
+.catalog .row .icon .no_active {
+  display: block;
+}
+.catalog .row .icon .active {
+  display: none;
+}
+.catalog .row .icon:hover .no_active {
+  display: none;
+}
+.catalog .row .icon:hover .active {
+  display: block;
+}
+.catalog .row.click .icon .no_active {
+  display: none;
+}
+.catalog .row.click .icon .active {
+  display: block;
+}
+.catalog .row .span {
+  color: #333;
+}
+.content5 {
+  background: #f5f5f5;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+.content5 .layout_center {
+  width: 1200px;
+  margin: 0 auto;
+}
+.content5 .layout_center .half_block {
+  width: 560px;
+}
+.content5 .half_block .more {
+  font-size: 14px;
+  line-height: 18px;
+  color: #6eafee;
+}
+.ontop {
+  margin: 20px 0;
+}
+.ontop > div {
+  width: 350px;
+  margin-left: 10px;
+}
+.ontop > div > h3 {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+}
+.ontop > div .from {
+  margin: 20px 0;
+  color: #ccc;
+}
+.ontop > div .affiche_content {
+  line-height: 1.5;
+  color: #999;
+}
+.affiche_list {
+  color: #999;
+}
+.affiche_list .affiche_row {
+  margin-bottom: 10px;
+}
+.affiche_list .affiche_origin {
+  margin-right: 20px;
+}
+.affiche_list .affiche_title {
+  color: #333;
+  display: inline-block;
+  width: 350px;
+  margin-right: 20px;
+}
+.affiche_list .affiche_time {
+  text-align: right;
 }

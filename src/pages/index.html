@@ -57,8 +57,21 @@
         <div class="content4">
             <div class="newInstitutionSource">
                 <h2 class="content_title">目录分类</h2>
+                <div class="catalog" id="catalog"></div>
             </div>
+        </div>
+        <div class="content5">
+            <div class="layout_center clearfix">
+                <div class="half_block fl clearfix">
+                    <h2 class="content_title"><span>重要新闻</span><a href="javascript:;" class="more fr">查看更多&gt;&gt;</a></h2>
+                    <div id="important_news"></div>
+                </div>
+                <div class="half_block fr clearfix">
+                    <h2 class="content_title"><span>通知公告</span><a href="javascript:;" class="more fr">查看更多&gt;&gt;</a></h2>
+                    <div id="affiche"></div>
+                </div>
             </div>
+        </div>
     @@include('commons/footer.html')
     <script src="../assets/art-template.js"></script>
     <script type="text/html" id="card-list">
@@ -112,6 +125,33 @@
             </li>
             {{/each}}
             </ul>
+    </script>
+    <script type="text/html" id="affiche_template">
+        <div class="ontop clearfix">
+            <img src="{{$data.top.imgUrl || '../img/news_pattern.png'}}" alt="" width="200" height="130" class="fl">
+            <div class="fl">
+                <h3>{{$data.top.title}}</h3>
+                <p class="from">
+                    <label>来源 : </label>
+                    <span>{{$data.top.origin || '暂无'}}</span>
+                    <label class="time">时间 : </label>
+                    <span>{{$data.top.time || '未知'}}</span>
+                </p>
+                <p class="affiche_content">
+                    {{$data.top.content || '暂无'}}
+                </p>
+            </div>
+        </div>
+        <ul class="affiche_list">
+            {{each $data.list item}}
+                <li class="affiche_row">
+                    <span class="affiche_origin">[{{item.origin}}]</span>
+                    <span class="affiche_title">{{item.title}}</span>
+                    <span class="affiche_time">{{item.time}}</span>
+                </li>
+            {{/each}}
+            <li></li>
+        </ul>
     </script>
     <script>
         var cardData = [
@@ -195,6 +235,126 @@
             },
         ]
         $('.content3 .newInstitutionSource').append(template('recomment-list', recommentData))
+    </script>
+    <script>
+        var queryData = {}
+        var data = [ { title: '综合政务', href: '?catalog=1',id:1, }, { title: '经济管理', href: '?catalog=2',id:2, }, { title: '国土资源', href: 'javascript:;', id:3 }, { title: '工业交通', href: 'javascript:;' }, { title: '信息产业', href: 'javascript:;' }, { title: '城乡建设', href: 'javascript:;' }, { title: '农业水利', href: 'javascript:;' }, { title: '财政收支', href: 'javascript:;' }, { title: '商业贸易', href: 'javascript:;' }, { title: '旅游服务', href: 'javascript:;' }, { title: '气象水文', href: 'javascript:;' }, { title: '对外事务', href: 'javascript:;' }, { title: '政法监察', href: 'javascript:;' }, { title: '科技教育', href: 'javascript:;' }, { title: '文化卫生', href: 'javascript:;' }, { title: '军事国防', href: 'javascript:;' }]
+        function getCatalogHtml(data) {
+            var html = '<ul class="clearfix">'
+            data.forEach(function(item, index) {
+                html += '<li class="row fl'
+                    + (index%8 === 0 ? ' ml0':'')
+                    + '"'
+                    + 'data-href="'+index+'"'
+                    + 'data-id="'+(item.id)+'"'
+                    +'>'
+                    + '<a '
+                    + 'href="'
+                    + 'javascript:;'
+                    + '">'
+                    + '<div class="icon">'
+                    + '<img src="../img/catalog_icon/icon_'+(index+1)+'.png" class="no_active">'
+                    + '<img src="../img/catalog_icon/icon_'+(index+1)+'_on.png" class="active">'
+                    +'</div><span class="span">'
+                    + (item.title || '')
+                    + '</span></a>'
+                    + '</li>'
+            })
+            html += '</ul>';
+            return html
+        }
+        $('#catalog').html(getCatalogHtml(data)).children('ul').delegate('li', 'click', function() {
+            // alert($(this).attr('data-href'))
+            queryData.catalogId = $(this).data('id')
+            createPagination()
+            $(this).parent().children('.click').removeClass('click');
+            $(this).addClass('click')
+            // console.log(target)
+        })
+    </script>
+    <script>
+        var newsData = {
+            top: {
+            title: '陈敏尔：推进“两学一做”学习教育常...',
+            origin: '贵州晚报',
+            time: '2018-06-15',
+            content: '5月15日,全省推进“两学一做”学习教育常态化制度化工作部署会在贵阳召开。省委书记、省人大常委会主任陈敏尔出席会议并讲话。他强'
+            },
+            list: [
+                {
+                    title: '陈敏尔：推进“两学一做”学习教育常...',
+                    origin: '贵州晚报',
+                    time: '2018-06-15',
+                    content: '5月15日,全省推进“两学一做”学习教育常态化制度化工作部署会在贵阳召开。省委书记、省人大常委会主任陈敏尔出席会议并讲话。他强'
+                },
+                {
+                    title: '陈敏尔：推进“两学一做”学习教育常...',
+                    origin: '北京晚报',
+                    time: '2018-06-15',
+                    content: '5月15日,全省推进“两学一做”学习教育常态化制度化工作部署会在贵阳召开。省委书记、省人大常委会主任陈敏尔出席会议并讲话。他强'
+                },
+                {
+                    title: '陈敏尔：推进“两学一做”学习教育常...',
+                    origin: '天津日报',
+                    time: '2018-06-15',
+                    content: '5月15日,全省推进“两学一做”学习教育常态化制度化工作部署会在贵阳召开。省委书记、省人大常委会主任陈敏尔出席会议并讲话。他强'
+                },
+                {
+                    title: '陈敏尔：推进“两学一做”学习教育常...',
+                    origin: '潇湘晨报',
+                    time: '2018-06-15',
+                    content: '5月15日,全省推进“两学一做”学习教育常态化制度化工作部署会在贵阳召开。省委书记、省人大常委会主任陈敏尔出席会议并讲话。他强'
+                },
+                {
+                    title: '陈敏尔：推进“两学一做”学习教育常...',
+                    origin: '贵州晚报',
+                    time: '2018-06-15',
+                    content: '5月15日,全省推进“两学一做”学习教育常态化制度化工作部署会在贵阳召开。省委书记、省人大常委会主任陈敏尔出席会议并讲话。他强'
+                },
+            ]
+        }
+        var afficheData = {
+            top: {
+            title: '陈敏尔：推进“两学一做”学习教育常...',
+            origin: '贵州晚报',
+            time: '2018-06-15',
+            content: '5月15日,全省推进“两学一做”学习教育常态化制度化工作部署会在贵阳召开。省委书记、省人大常委会主任陈敏尔出席会议并讲话。他强'
+            },
+            list: [
+                {
+                    title: '陈敏尔：推进“两学一做”学习教育常...',
+                    origin: '贵州晚报',
+                    time: '2018-06-15',
+                    content: '5月15日,全省推进“两学一做”学习教育常态化制度化工作部署会在贵阳召开。省委书记、省人大常委会主任陈敏尔出席会议并讲话。他强'
+                },
+                {
+                    title: '陈敏尔：推进“两学一做”学习教育常...',
+                    origin: '北京晚报',
+                    time: '2018-06-15',
+                    content: '5月15日,全省推进“两学一做”学习教育常态化制度化工作部署会在贵阳召开。省委书记、省人大常委会主任陈敏尔出席会议并讲话。他强'
+                },
+                {
+                    title: '陈敏尔：推进“两学一做”学习教育常...',
+                    origin: '天津日报',
+                    time: '2018-06-15',
+                    content: '5月15日,全省推进“两学一做”学习教育常态化制度化工作部署会在贵阳召开。省委书记、省人大常委会主任陈敏尔出席会议并讲话。他强'
+                },
+                {
+                    title: '陈敏尔：推进“两学一做”学习教育常...',
+                    origin: '潇湘晨报',
+                    time: '2018-06-15',
+                    content: '5月15日,全省推进“两学一做”学习教育常态化制度化工作部署会在贵阳召开。省委书记、省人大常委会主任陈敏尔出席会议并讲话。他强'
+                },
+                {
+                    title: '陈敏尔：推进“两学一做”学习教育常...',
+                    origin: '贵州晚报',
+                    time: '2018-06-15',
+                    content: '5月15日,全省推进“两学一做”学习教育常态化制度化工作部署会在贵阳召开。省委书记、省人大常委会主任陈敏尔出席会议并讲话。他强'
+                },
+            ]
+        }
+        $('#important_news').html(template('affiche_template', newsData))
+        $('#affiche').html(template('affiche_template', newsData))
     </script>
     <script>        
         var mySwiper = new Swiper ('.swiper-container', {
