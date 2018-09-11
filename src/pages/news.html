@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/footer.css">
-    <link rel="stylesheet" href="../css/index.css">
+    <!-- <link rel="stylesheet" href="../css/index.css"> -->
     <link rel="stylesheet" href="../css/news.css">
     <link rel="stylesheet" href="../assets/swiper.min.css">
     <script src="../assets/jquery.min.js"></script>
@@ -43,11 +43,89 @@
                             <div class="swiper-pagination"></div>
                         </div>
                     </div>
-                    <div class="news_new"></div>
+                    <div class="news_new">
+                        <div class="content5">
+                            <div class="layout_center clearfix">
+                                <div class="half_block fl clearfix">
+                                    <div id="important_news"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     @@include('commons/footer.html')
+    <script src="../assets/art-template.js"></script>
+    <script type="text/html" id="affiche_template">
+        <div class="ontop clearfix">
+            <div class="fl">
+                <h3>{{$data.top.title}}</h3>
+                <p class="from">
+                    <label>来源 : </label>
+                    <span>{{$data.top.origin || '暂无'}}</span>
+                    <label class="time">时间 : </label>
+                    <span>{{$data.top.time || '未知'}}</span>
+                </p>
+                <p class="affiche_content">
+                    {{$data.top.content || '暂无'}}
+                </p>
+            </div>
+        </div>
+        <ul class="affiche_list">
+            {{each $data.list item}}
+                <li class="affiche_row">
+                    <span class="affiche_origin">[{{item.origin}}]</span>
+                    <span class="affiche_title">{{item.title}}</span>
+                    <span class="affiche_time">{{item.time}}</span>
+                </li>
+            {{/each}}
+            <li></li>
+        </ul>
+    </script>
+    <script>
+        var newsData = {
+            top: {
+            title: '陈敏尔：推进“两学一做”学习教育常...',
+            origin: '贵州晚报',
+            time: '2018-06-15',
+            content: '5月15日,全省推进“两学一做”学习教育常态化制度化工作部署会在贵阳召开。省委书记、省人大常委会主任陈敏尔出席会议并讲话。他强'
+            },
+            list: [
+                {
+                    title: '陈敏尔：推进“两学一做”学习教育常...',
+                    origin: '贵州晚报',
+                    time: '2018-06-15',
+                    content: '5月15日,全省推进“两学一做”学习教育常态化制度化工作部署会在贵阳召开。省委书记、省人大常委会主任陈敏尔出席会议并讲话。他强'
+                },
+                {
+                    title: '陈敏尔：推进“两学一做”学习教育常...',
+                    origin: '北京晚报',
+                    time: '2018-06-15',
+                    content: '5月15日,全省推进“两学一做”学习教育常态化制度化工作部署会在贵阳召开。省委书记、省人大常委会主任陈敏尔出席会议并讲话。他强'
+                },
+                {
+                    title: '陈敏尔：推进“两学一做”学习教育常...',
+                    origin: '天津日报',
+                    time: '2018-06-15',
+                    content: '5月15日,全省推进“两学一做”学习教育常态化制度化工作部署会在贵阳召开。省委书记、省人大常委会主任陈敏尔出席会议并讲话。他强'
+                },
+                {
+                    title: '陈敏尔：推进“两学一做”学习教育常...',
+                    origin: '潇湘晨报',
+                    time: '2018-06-15',
+                    content: '5月15日,全省推进“两学一做”学习教育常态化制度化工作部署会在贵阳召开。省委书记、省人大常委会主任陈敏尔出席会议并讲话。他强'
+                },
+                {
+                    title: '陈敏尔：推进“两学一做”学习教育常...',
+                    origin: '贵州晚报',
+                    time: '2018-06-15',
+                    content: '5月15日,全省推进“两学一做”学习教育常态化制度化工作部署会在贵阳召开。省委书记、省人大常委会主任陈敏尔出席会议并讲话。他强'
+                },
+            ]
+        }
+        $('#important_news').html(template('affiche_template', newsData))
+    </script>
     <script>        
             var mySwiper = new Swiper ('.swiper-container', {
               direction: 'horizontal',
