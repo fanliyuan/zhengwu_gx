@@ -4,21 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>开放动态</title>
     <link rel="shortcut icon" href="../img/favicon.png" type="image/x-icon">
     <script src="../assets/jquery.min.js"></script>
     <link rel="stylesheet" href="../assets/reset.css">
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/news.css">
-    <script src="../js/index.1.js"></script>
+    <link rel="stylesheet" href="../assets/swiper.min.css">
+    <script src="../assets/jquery.min.js"></script>
+    <script src="../assets/swiper.min.js"></script>
 </head>
 <body>
     @@include('commons/header.html')
-
-    <p> 这是 是index1首页 sadfasdf的内容 </p>
-
+        <div class="contentN1">
+            <div class="newInstitutionSource">
+                <h2 class="content_title">最新动态</h2>
+                <div class="clear">
+                    <div class="news_img">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <img src="../img/banner1.png" alt="">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="../img/banner2.png" alt="">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="../img/banner3.png" alt="">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="../img/banner4.png" alt="">
+                                </div>
+                            </div>
+                            <!-- 如果需要分页器 -->
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+                    <div class="news_new"></div>
+                </div>
+            </div>
+        </div>
     @@include('commons/footer.html')
+    <script>        
+            var mySwiper = new Swiper ('.swiper-container', {
+              direction: 'horizontal',
+              speed:1000,
+              loop: true,
+              autoplay:{
+                  delay:3000,
+              },
+              // 如果需要分页器
+              pagination: {
+                el: '.swiper-pagination',
+              },
+            })   
+    </script>
 </body>
 </html>
