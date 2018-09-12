@@ -156,3 +156,24 @@
   font-weight: bold;
   color: #333;
 }
+.hotItem ul {
+  display: flex;
+  justify-content: space-between;
+}
+.hotItem li {
+  position: relative;
+}
+.hotItem li span {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  line-height: 28px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  padding: 0 10px;
+}
+.hotItem li img {
+  width: 285px;
+  height: 180px;
+}
