@@ -182,7 +182,7 @@
             }
             queryURI = queryURI ? '?'+queryURI.replace(/&$/,'') : ''
             $('#pagination-container').pagination({
-            dataSource: 'http://127.0.0.1:9090/fakedata1.json'+queryURI,
+            dataSource: '/fakedata1.json'+queryURI,
             locator: 'data',
             totalNumberLocator: function(res) {
             return res.total

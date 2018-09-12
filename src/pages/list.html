@@ -8,55 +8,56 @@
     <link rel="shortcut icon" href="../img/logo.png" type="image/x-icon">
     <script src="../assets/jquery.min.js"></script>
     <script src="../assets/pagination.min.js"></script>
+    <script src="../assets/art-template.js"></script>
     <link rel="stylesheet" href="../assets/reset.css">
+    <link rel="stylesheet" href="../css/iconfont.css">
     <link rel="stylesheet" href="../assets/pagination.css">
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/footer.css">
-    <link rel="stylesheet" href="../css/search.css">
+    <link rel="stylesheet" href="../css/list.css">
 </head>
 <body>
     @@include('commons/header.html')
     <div class="layout">
-        <div class="search-title">检索结果</div>
-        <div id="data-container" class="data-container"></div>
-        <div id="pagination-container" class="pagination-container"></div>
+        <div id="list_container" class="list_container"></div>
+        <div id="pagination_container" class="pagination_container"></div>
     </div>
+    @@include('commons/footer.html')
+    <script type="text/html" id="list_template">
+      <div class="list_title">政策法规</div>
+      <ul>
+        {{each $data item}}
+        <li class="row">
+          <h4 class="title"><a href="{{item.href || 'javascript'}}">{{item.title}}</a></h4>
+          <p class="content">{{item.content || '暂无'}}</p>
+          <p class="description">
+            <label>主题词</label>
+            <span>{{item.keywords}}</span>
+            <label>发布日期</label>
+            <span>{{item.time}}</span>
+            {{if item.attachmentUrl}}
+            <a href="{{item.attachmentUrl}}" download="{{item.attachmentName || ''}}" class="iconfont icon-fujian attachment">附件下载</a>
+            {{/if}}
+          </p>
+        </li>
+        {{/each}}
+      </ul>
+    </script>
     <script>
-      // 内容模板
-      function simpleTemplating(data) {
-        var html = '<ul>';
-        $.each(data, function (index, item) {
-          html += '<li class="row"><h4 class="title"><a href="'
-            + (item.href || "javascript:;")
-            +'">' 
-            + (item.title || '暂无')
-            + '</a></h4><p class="content">'
-            + (item.content || '暂无')
-            + '</p><p class="description">'
-            + (item.description || '暂无')
-            +'</p></li>';
-        });
-        html += '</ul>';
-        return html;
-      }
       // 从地址栏获取搜索关键字
       var keywords = decodeURI(window.location.search.replace('?keywords=', ''))
-     $('#pagination-container').pagination({
+      $('title').text('政策法规')
+     $('#pagination_container').pagination({
         dataSource: '/fakedata1.json?keywords='+keywords,
         locator: 'data',
         totalNumberLocator: function(res) {
           return res.total
         },
         callback: function (data, pagination) {
-          // 数据遍历,同时替换关键字,使关键字加上标签,实现关键字变色
-          for(var i = 0; i < data.length; i++) {
-            data[i].title=data[i].title.replace(new RegExp(keywords, 'g'),'<span class="red">'+keywords+'</span>')
-            }
             // 生成html模板字符串
-            var html = simpleTemplating(data);
             // 渲染dom
-            $('#data-container').html(html);
+            $('#list_container').html(template('list_template', data));
         },
         pageSize: 10,
         prevText: '上一页',
@@ -68,8 +69,5 @@
         pageLink: 'javascript:;'
       })
     </script>
-
-    @@include('commons/footer.html')
-    <script src="../js/common.js"></script>
 </body>
 </html>

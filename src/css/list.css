@@ -1,0 +1,67 @@
+.list_container {
+  width: 1200px;
+  margin: 0 auto;
+}
+.list_title {
+  margin-top: 40px;
+  line-height: 24px;
+  color: #005a9f;
+  font-weight: 700;
+  font-size: 18px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #aaa;
+}
+.list_title::before {
+  content: "";
+  display: inline-block;
+  border-left: 4px solid #005a9f;
+  margin-right: 8px;
+  height: 24px;
+  vertical-align: top;
+}
+.list_container ul {
+  margin-top: 16px;
+}
+.list_container .row {
+  height: 108px;
+  padding: 20px 0;
+  border-bottom: 1px solid #aaa;
+}
+.list_container .row .title {
+  font-size: 16px;
+  color: #076fc3;
+}
+
+.list_container .row .title a {
+  color: #333;
+  font-weight: bold;
+  /* text-decoration-line: underline; */
+}
+.list_container .row .content {
+  margin-top: 20px;
+  font-size: 12px;
+}
+.list_container .row .description {
+  margin-top: 20px;
+  font-size: 12px;
+  color: #919191;
+}
+.list_container .row .description label::after {
+  content: ":";
+  display: inline-block;
+  margin-left: 4px;
+  margin-right: 8px;
+}
+.list_container .row .description * + label,
+.list_container .row .description * + a {
+  margin-left: 50px;
+}
+.pagination_container {
+  margin-top: 68px;
+  margin-bottom: 50px;
+  text-align: center;
+}
+.attachment {
+  font-size: 12px;
+  color: #0971c5;
+}

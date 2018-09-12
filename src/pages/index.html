@@ -62,11 +62,11 @@
         <div class="content5">
             <div class="layout_center clearfix">
                 <div class="half_block fl clearfix">
-                    <h2 class="content_title"><span>重要新闻</span><a href="javascript:;" class="more fr">查看更多&gt;&gt;</a></h2>
+                    <h2 class="content_title"><span>重要新闻</span><a href="cards.html?id=1" class="more fr">查看更多&gt;&gt;</a></h2>
                     <div id="important_news"></div>
                 </div>
                 <div class="half_block fr clearfix">
-                    <h2 class="content_title"><span>通知公告</span><a href="javascript:;" class="more fr">查看更多&gt;&gt;</a></h2>
+                    <h2 class="content_title"><span>通知公告</span><a href="cards.html?id=2" class="more fr">查看更多&gt;&gt;</a></h2>
                     <div id="affiche"></div>
                 </div>
             </div>
@@ -81,7 +81,7 @@
                     <img src="{{item.icon || '../img/new1.png'}}" alt="">
                 </div>
                 <div class="item_content">
-                    <h2>{{item.supperTitle}}</h2>
+                    <a href="catalog-detail.html?id={{item.id}}"><h2>{{item.supperTitle}}</h2></a>
                     <ul>
                         <li>
                             所含格式:&nbsp;&nbsp;
@@ -129,7 +129,7 @@
         <div class="ontop clearfix">
             <img src="{{$data.top.imgUrl || '../img/news_pattern.png'}}" alt="" width="200" height="130" class="fl">
             <div class="fl">
-                <a href="article?id={{$data.top.id}}"><h3>{{$data.top.title}}</h3></a>
+                <a href="news-detail.html?id={{$data.top.id}}"><h3>{{$data.top.title}}</h3></a>
                 <p class="from">
                     <label>来源 : </label>
                     <span>{{$data.top.origin || '暂无'}}</span>
@@ -144,7 +144,7 @@
         <ul class="affiche_list">
             {{each $data.list item}}
                 <li class="affiche_row">
-                    <a href="article?id={{item.id}}">
+                    <a href="news-detail.html?id={{item.id}}">
                         <span class="affiche_origin">[{{item.origin}}]</span>
                         <span class="affiche_title">{{item.title}}</span>
                         <span class="affiche_time">{{item.time}}</span>
@@ -251,7 +251,8 @@
                     +'>'
                     + '<a '
                     + 'href="'
-                    + 'javascript:;'
+                    + 'catalog.html?id='
+                    + index 
                     + '">'
                     + '<div class="icon">'
                     + '<img src="../img/catalog_icon/icon_'+(index+1)+'.png" class="no_active">'
