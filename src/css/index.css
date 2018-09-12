@@ -1,3 +1,6 @@
+.header .nav ul li.index {
+  background: #0872c5;
+}
 * {
   box-sizing: border-box;
 }
