@@ -81,29 +81,42 @@
         </div>
         <div class="hotItem">
             <div class="newInstitutionSource">
-                <h2 class="content_title">最新动态</h2>
-                <ul>
-                    <li>
-                        <img src="../img/banner1.png" alt="">
-                        <span>陈敏尔:推进"两学一做" 学习教育常态化...</span>
-                    </li>
-                    <li>
-                        <img src="../img/banner1.png" alt="">
-                        <span>陈敏尔:推进"两学一做" 学习教育常态化...</span>
-                    </li>
-                    <li>
-                        <img src="../img/banner1.png" alt="">
-                        <span>陈敏尔:推进"两学一做" 学习教育常态化...</span>
-                    </li>
-                    <li>
-                        <img src="../img/banner1.png" alt="">
-                        <span>陈敏尔:推进"两学一做" 学习教育常态化...</span>
-                    </li>
-                </ul>
+                <h2 class="content_title">热门政题</h2>
             </div>
         </div>
     @@include('commons/footer.html')
     <script src="../assets/art-template.js"></script>
+    <script type="text/html" id="hot_zt">
+        <ul>
+            {{each $data item}}
+            <li>
+                <img src="../img/{{item.img}}" alt="">
+                <span>{{item.info}}</span>
+            </li>
+            {{/each}}
+        </ul>
+    </script>
+    <script>
+        var hotData=[
+            {
+                img:'banner1.png',
+                info:'陈敏尔:推进"两学一做"学习教育常态化...'
+            },
+            {
+                img:'banner2.png',
+                info:'陈敏尔:推进"两学一做"学习教育常态化...'
+            },
+            {
+                img:'banner3.png',
+                info:'陈敏尔:推进"两学一做"学习教育常态化...'
+            },
+            {
+                img:'banner4.png',
+                info:'陈敏尔:推进"两学一做"学习教育常态化...'
+            }
+        ]
+        $('.hotItem .newInstitutionSource').append(template('hot_zt', hotData))
+    </script>
     <script type="text/html" id="affiche_template">
         <div class="ontop clearfix">
                 <div class="fl">
