@@ -56,7 +56,7 @@
       var keywords = decodeURI(window.location.search.replace('?keywords=', ''))
       $('title').text('重要新闻')
       $('#pagination_container').pagination({
-        dataSource: 'http://127.0.0.1:9090/fakedata1.json?keywords='+keywords,
+        dataSource: '/fakedata1.json?keywords='+keywords,
         locator: 'data',
         totalNumberLocator: function(res) {
           return res.total

@@ -43,7 +43,7 @@
       // 从地址栏获取搜索关键字
       var keywords = decodeURI(window.location.search.replace('?keywords=', ''))
      $('#pagination-container').pagination({
-        dataSource: 'http://127.0.0.1:9090/fakedata1.json?keywords='+keywords,
+        dataSource: '/fakedata1.json?keywords='+keywords,
         locator: 'data',
         totalNumberLocator: function(res) {
           return res.total
