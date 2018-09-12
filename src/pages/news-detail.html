@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>动态详情</title>
+    <link rel="shortcut icon" href="../img/logo.png" type="image/x-icon">
+    <script src="../assets/jquery.min.js"></script>
+    <link rel="stylesheet" href="../assets/reset.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/news-detail.css">
+    <link rel="stylesheet" href="../assets/swiper.min.css">
+    <link rel="stylesheet" href="../assets/quill.bubble.css">
+    <link rel="stylesheet" href="../assets/quill.core.css">
+    <link rel="stylesheet" href="../assets/quill.snow.css">
+    <script src="../assets/jquery.min.js"></script>
+    <script src="../assets/swiper.min.js"></script>
+</head>
+<body>
+    @@include('commons/header.html')
+    <div class="new_detail">
+        <div class="newInstitutionSource">
+        </div>
+    </div>
+    @@include('commons/footer.html')
+    <script src="../assets/art-template.js"></script>
+    <script type="text/html" id="news_article">
+        <h2 class="content_title"><span>所在位置 > </span><span>{{$data.position1}} > </span><a href="#">{{$data.position2}}</a></h2>
+        <div class="class_content">
+          <h1>{{$data.title}}</h1>
+          <h5>来源:{{$data.source}} &nbsp;&nbsp;时间:{{$data.time}}</h5>
+          <div class="detail_img">
+            <img src="../img/{{$data.bigImg}}" alt="">
+          </div>
+          <div class="content">
+              {{$data.data}}
+          </div>
+        </div>
+    </script>
+    <script>
+      var articleData=
+        {
+          position1:"开放动态",
+          position2:"动态详情",
+          title:'陈敏尔:推进"两学一做"学习教育常态化制度化',
+          source:"贵阳晚报",
+          time:"2018-06-15",
+          bigImg:'detail_img.png',
+          data:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo delectus eligendi, provident quis suscipit nesciunt eaque. Magni, facere ea sint nam soluta similique excepturi tempora? Doloribus quisquam accusamus obcaecati doloremque.",
+        }
+      $(".new_detail .newInstitutionSource").html(template('news_article',articleData))
+    </script>
+</body>
+</html>
