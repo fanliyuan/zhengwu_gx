@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>搜索结果页</title>
+    <link rel="shortcut icon" href="../img/logo.png" type="image/x-icon">
+    <script src="../assets/jquery.min.js"></script>
+    <script src="../assets/pagination.min.js"></script>
+    <script src="../assets/art-template.js"></script>
+    <link rel="stylesheet" href="../assets/reset.css">
+    <link rel="stylesheet" href="../css/iconfont.css">
+    <link rel="stylesheet" href="../assets/pagination.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/cards.css">
+</head>
+<body>
+    @@include('commons/header.html')
+    <div class="layout">
+        <div id="list_container" class="list_container"></div>
+        <div id="pagination_container" class="pagination_container"></div>
+    </div>
+    @@include('commons/footer.html')
+    <script type="text/html" id="list_template">
+      <div class="list_title">重要新闻</div>
+      <ul>
+        {{each $data item}}
+        <li class="row clearfix">
+          <div class="row_left">
+            <img src="{{item.imgUrl || '../img/cards_pattern.png'}}" alt="" width="200" height="120">
+          </div>
+          <div class="row_right">
+              <a href="article?id={{item.id}}" class="title"><h3>{{item.title}}</h3></a>
+              <p class="description">
+                <label>来源</label>
+                <span>{{item.origin}}</span>
+                <label>时间</label>
+                <span>{{item.time}}</span>
+                {{if item.attachmentUrl}}
+                <a href="{{item.attachmentUrl}}" download="{{item.attachmentName}}" class="iconfont icon-fujian attachment">附件下载</a>
+                {{/if}}
+              </p>
+              <p class="content">
+                {{item.content}}
+              </p>
+          </div>
+        </li>
+        {{/each}}
+      </ul>
+    </script>
+    <script>
+      // 从地址栏获取搜索关键字
+      var keywords = decodeURI(window.location.search.replace('?keywords=', ''))
+      $('title').text('重要新闻')
+      $('#pagination_container').pagination({
+        dataSource: 'http://127.0.0.1:9090/fakedata1.json?keywords='+keywords,
+        locator: 'data',
+        totalNumberLocator: function(res) {
+          return res.total
+        },
+        callback: function (data, pagination) {
+            // 生成html模板字符串
+            // 渲染dom
+            $('#list_container').html(template('list_template', data));
+        },
+        pageSize: 10,
+        prevText: '上一页',
+        nextText: '上一页',
+        ellipsisText: '···',
+        footer: function(currentPage, totalPage, totalNumber) {
+          return '<span class="pagination-footer">每页10条数据,'+'共'+totalPage+'页</span>'
+        },
+        pageLink: 'javascript:;'
+      })
+    </script>
+</body>
+</html>
