@@ -58,11 +58,11 @@
         <div class="content5">
                 <div class="layout_center clearfix">
                     <div class="half_block fl clearfix">
-                        <h2 class="content_title"><span>重要新闻</span><a href="news-detail.html" class="more fr">查看更多&gt;&gt;</a></h2>
+                        <h2 class="content_title"><span>重要新闻</span><a href="cards.html" class="more fr">查看更多&gt;&gt;</a></h2>
                         <div id="floor1"></div>
                     </div>
                     <div class="half_block fr clearfix">
-                        <h2 class="content_title"><span>通知公告</span><a href="news-detail.html" class="more fr">查看更多&gt;&gt;</a></h2>
+                        <h2 class="content_title"><span>通知公告</span><a href="cards.html" class="more fr">查看更多&gt;&gt;</a></h2>
                         <div id="floor2"></div>
                     </div>
                 </div>
@@ -70,11 +70,11 @@
         <div class="content5 bg_white">
             <div class="layout_center clearfix">
                 <div class="half_block fl clearfix">
-                    <h2 class="content_title"><span>最新政策</span><a href="news-detail.html" class="more fr">查看更多&gt;&gt;</a></h2>
+                    <h2 class="content_title"><span>最新政策</span><a href="list.html" class="more fr">查看更多&gt;&gt;</a></h2>
                     <div id="floor3"></div>
                 </div>
                 <div class="half_block fr clearfix">
-                    <h2 class="content_title"><span>政策解读</span><a href="news-detail.html" class="more fr">查看更多&gt;&gt;</a></h2>
+                    <h2 class="content_title"><span>政策解读</span><a href="list.html" class="more fr">查看更多&gt;&gt;</a></h2>
                     <div id="floor4"></div>
                 </div>
             </div>
@@ -120,7 +120,7 @@
     <script type="text/html" id="affiche_template">
         <div class="ontop clearfix">
                 <div class="fl">
-                    <a href="article?id={{$data.top.id}}"><h3>{{$data.top.title}}</h3></a>
+                    <a href="news-detail"><h3>{{$data.top.title}}</h3></a>
                     <p class="from">
                         <label>来源 : </label>
                         <span>{{$data.top.origin || '暂无'}}</span>
@@ -135,7 +135,7 @@
             <ul class="affiche_list">
                 {{each $data.list item}}
                     <li class="affiche_row">
-                        <a href="article?id={{item.id}}">
+                        <a href="news-detail">
                             <span class="affiche_origin">[{{item.origin}}]</span>
                             <span class="affiche_title">{{item.title}}</span>
                             <span class="affiche_time">{{item.time}}</span>
@@ -147,9 +147,10 @@
     </script>
     <script type="text/html" id="affiche_template1">
         <div class="ontop clearfix">
+            {{if $data.top}}
             <img src="{{$data.top.imgUrl || '../img/news_pattern.png'}}" alt="" width="200" height="130" class="fl">
             <div class="fl">
-                <a href="article?id={{$data.top.id}}"><h3>{{$data.top.title}}</h3></a>
+                <a href="news-detail.html"><h3>{{$data.top.title}}</h3></a>
                 <p class="from">
                     <label>来源 : </label>
                     <span>{{$data.top.origin || '暂无'}}</span>
@@ -160,11 +161,12 @@
                     {{$data.top.content || '暂无'}}
                 </p>
             </div>
+            {{/if}}
         </div>
         <ul class="affiche_list">
             {{each $data.list item}}
                 <li class="affiche_row">
-                    <a href="article?id={{item.id}}">
+                    <a href="news-detail.html">
                         <span class="affiche_origin">[{{item.origin}}]</span>
                         <span class="affiche_title">{{item.title}}</span>
                         <span class="affiche_time">{{item.time}}</span>
@@ -327,12 +329,6 @@
     </script>
     <script>
             var newsData = {
-                top: {
-                title: '陈敏尔：推进“两学一做”学习教育常...',
-                origin: '贵州晚报',
-                time: '2018-06-15',
-                content: '5月15日,全省推进“两学一做”学习教育常态化制度化工作部署会在贵阳召开。省委书记、省人大常委会主任陈敏尔出席会议并讲话。他强'
-                },
                 list: [
                     {
                         title: '陈敏尔：推进“两学一做”学习教育常...',
