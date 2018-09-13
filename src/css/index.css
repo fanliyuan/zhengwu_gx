@@ -77,14 +77,14 @@
   left: 0;
   top: 0;
   bottom: 0;
-  text-align: center;
 }
 .item_img > img {
   width: 74px;
   height: 74px;
   position: absolute;
   top: 50%;
-  transform: translate(-50%, -50%);
+  left: calc(109px / 2 - 74px / 2);
+  transform: translate(0, -50%);
 }
 .item_content {
   margin-left: 109px;
