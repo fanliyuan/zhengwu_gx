@@ -126,12 +126,15 @@
   margin-right: 5px;
 }
 .best_item {
-  display: flex;
+  /* display: flex; */
+  width: 1200px;
+  font-size: 0;
 }
 .best_item > li {
-  width: 240px;
+  width: 240px !important;
   height: 300px;
-  position: relative;
+  /* position: relative; */
+  font-size: 16px;
 }
 .recomment_content {
   text-align: center;

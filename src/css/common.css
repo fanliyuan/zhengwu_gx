@@ -9,6 +9,7 @@ body {
 }
 a {
   text-decoration-line: none;
+  text-decoration: none;
 }
 .clearfix::before,
 .clearfix::after {
