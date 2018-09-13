@@ -120,7 +120,7 @@
     <script type="text/html" id="affiche_template">
         <div class="ontop clearfix">
                 <div class="fl">
-                    <a href="news-detail"><h3>{{$data.top.title}}</h3></a>
+                    <a href="news-detail.html"><h3>{{$data.top.title}}</h3></a>
                     <p class="from">
                         <label>来源 : </label>
                         <span>{{$data.top.origin || '暂无'}}</span>
@@ -135,7 +135,7 @@
             <ul class="affiche_list">
                 {{each $data.list item}}
                     <li class="affiche_row">
-                        <a href="news-detail">
+                        <a href="news-detail.html">
                             <span class="affiche_origin">[{{item.origin}}]</span>
                             <span class="affiche_title">{{item.title}}</span>
                             <span class="affiche_time">{{item.time}}</span>
