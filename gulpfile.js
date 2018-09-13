@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var del = require('del');
 var fileinclude  = require('gulp-file-include');
 var uglify = require('gulp-uglify');
 var filter=require('gulp-filter');/*过滤器：筛选，恢复*/
@@ -6,6 +7,8 @@ var filter=require('gulp-filter');/*过滤器：筛选，恢复*/
 // var reload = browserSync.reload;
 
 gulp.task('build', function() {
+  // 删除以前的文件
+  del.sync('./dist/*');
   var jsFilter=filter('**/*.js',{restore:true});
   gulp.src('src/pages/**.html')
     .pipe(fileinclude({

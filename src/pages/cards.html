@@ -52,28 +52,30 @@
       </ul>
     </script>
     <script>
-      // 从地址栏获取搜索关键字
-      var keywords = decodeURI(window.location.search.replace('?keywords=', ''))
-      $('title').text('重要新闻')
-      $('#pagination_container').pagination({
-        dataSource: '/fakedata1.json?keywords='+keywords,
-        locator: 'data',
-        totalNumberLocator: function(res) {
-          return res.total
-        },
-        callback: function (data, pagination) {
-            // 生成html模板字符串
-            // 渲染dom
-            $('#list_container').html(template('list_template', data));
-        },
-        pageSize: 10,
-        prevText: '上一页',
-        nextText: '下一页',
-        ellipsisText: '···',
-        footer: function(currentPage, totalPage, totalNumber) {
-          return '<span class="pagination-footer">每页10条数据,'+'共'+totalPage+'页</span>'
-        },
-        pageLink: 'javascript:;'
+      $(function() {
+        // 从地址栏获取搜索关键字
+        var keywords = decodeURI(window.location.search.replace('?keywords=', ''))
+        $('title').text('重要新闻')
+        $('#pagination_container').pagination({
+          dataSource: '/fakedata1.json?keywords='+keywords,
+          locator: 'data',
+          totalNumberLocator: function(res) {
+            return res.total
+          },
+          callback: function (data, pagination) {
+              // 生成html模板字符串
+              // 渲染dom
+              $('#list_container').html(template('list_template', data));
+          },
+          pageSize: 10,
+          prevText: '上一页',
+          nextText: '下一页',
+          ellipsisText: '···',
+          footer: function(currentPage, totalPage, totalNumber) {
+            return '<span class="pagination-footer">每页10条数据,'+'共'+totalPage+'页</span>'
+          },
+          pageLink: 'javascript:;'
+        })
       })
     </script>
 </body>

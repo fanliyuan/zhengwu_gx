@@ -22,54 +22,56 @@
         <div id="data-container" class="data-container"></div>
         <div id="pagination-container" class="pagination-container"></div>
     </div>
+    @@include('commons/footer.html')
     <script>
-      // 内容模板
-      function simpleTemplating(data) {
-        var html = '<ul>';
-        $.each(data, function (index, item) {
-          html += '<li class="row"><h4 class="title"><a href="'
-            + (item.href || "javascript:;")
-            +'">' 
-            + (item.title || '暂无')
-            + '</a></h4><p class="content">'
-            + (item.content || '暂无')
-            + '</p><p class="description">'
-            + (item.description || '暂无')
-            +'</p></li>';
-        });
-        html += '</ul>';
-        return html;
-      }
-      // 从地址栏获取搜索关键字
-      var keywords = decodeURI(window.location.search.replace('?keywords=', ''))
-     $('#pagination-container').pagination({
-        dataSource: '/fakedata1.json?keywords='+keywords,
-        locator: 'data',
-        totalNumberLocator: function(res) {
-          return res.total
-        },
-        callback: function (data, pagination) {
-          // 数据遍历,同时替换关键字,使关键字加上标签,实现关键字变色
-          for(var i = 0; i < data.length; i++) {
-            data[i].title=data[i].title.replace(new RegExp(keywords, 'g'),'<span class="red">'+keywords+'</span>')
-            }
-            // 生成html模板字符串
-            var html = simpleTemplating(data);
-            // 渲染dom
-            $('#data-container').html(html);
-        },
-        pageSize: 10,
-        prevText: '上一页',
-        nextText: '下一页',
-        ellipsisText: '···',
-        footer: function(currentPage, totalPage, totalNumber) {
-          return '<span class="pagination-footer">每页10条数据,'+'共'+totalPage+'页</span>'
-        },
-        pageLink: 'javascript:;'
+      $(function() {
+        
+        // 内容模板
+        function simpleTemplating(data) {
+          var html = '<ul>';
+          $.each(data, function (index, item) {
+            html += '<li class="row"><h4 class="title"><a href="'
+              + (item.href || "javascript:;")
+              +'">' 
+              + (item.title || '暂无')
+              + '</a></h4><p class="content">'
+              + (item.content || '暂无')
+              + '</p><p class="description">'
+              + (item.description || '暂无')
+              +'</p></li>';
+          });
+          html += '</ul>';
+          return html;
+        }
+        // 从地址栏获取搜索关键字
+        var keywords = decodeURI(window.location.search.replace('?keywords=', ''))
+        $('#pagination-container').pagination({
+          dataSource: '/fakedata1.json?keywords='+keywords,
+          locator: 'data',
+          totalNumberLocator: function(res) {
+            return res.total
+          },
+          callback: function (data, pagination) {
+            // 数据遍历,同时替换关键字,使关键字加上标签,实现关键字变色
+            for(var i = 0; i < data.length; i++) {
+              data[i].title=data[i].title.replace(new RegExp(keywords, 'g'),'<span class="red">'+keywords+'</span>')
+              }
+              // 生成html模板字符串
+              var html = simpleTemplating(data);
+              // 渲染dom
+              $('#data-container').html(html);
+          },
+          pageSize: 10,
+          prevText: '上一页',
+          nextText: '下一页',
+          ellipsisText: '···',
+          footer: function(currentPage, totalPage, totalNumber) {
+            return '<span class="pagination-footer">每页10条数据,'+'共'+totalPage+'页</span>'
+          },
+          pageLink: 'javascript:;'
+        })
       })
     </script>
-
-    @@include('commons/footer.html')
     <script src="../js/common.js"></script>
 </body>
 </html>
