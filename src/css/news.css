@@ -13,7 +13,10 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
 }
 .carousel {
   margin-top: 10px;
@@ -157,11 +160,20 @@
   color: #333;
 }
 .hotItem ul {
-  display: flex;
-  justify-content: space-between;
+  /* display: flex; */
+  /* justify-content: space-between; */
+  width: 1200px;
+  font-size: 0;
 }
 .hotItem li {
   position: relative;
+  display: inline-block;
+  width: 285px;
+  height: 180px;
+  font-size: 14px;
+}
+.hotItem li + li {
+  margin-left: 20px;
 }
 .hotItem li span {
   position: absolute;

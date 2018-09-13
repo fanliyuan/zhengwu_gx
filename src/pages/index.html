@@ -12,9 +12,9 @@
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/iconfont.css">
-    <link rel="stylesheet" href="../assets/swiper.min.css">
+    <link rel="stylesheet" href="../assets/swiper-3.4.2.min.css">
     <script src="../assets/jquery.min.js"></script>
-    <script src="../assets/swiper.min.js"></script>
+    <script src="../assets/swiper-3.4.2.jquery.min.js"></script>
 </head>
 <body>
     @@include('commons/header.html')
@@ -358,15 +358,18 @@
         $('#important_news').html(template('affiche_template', newsData))
         $('#affiche').html(template('affiche_template', newsData))
     </script>
-    <script>        
-        var mySwiper = new Swiper ('.swiper-container', {
+    <script>
+        $(function(){
+            var mySwiper = new Swiper ('.swiper-container', {
             direction: 'horizontal',
               speed:3000,
               loop: true,
-              autoplay:500,
+              autoplay:1000,
+              autoplayDisableOnInteraction:false,
               // 如果需要分页器
               pagination: '.swiper-pagination',
-        })   
+        }) 
+        })          
     </script>
 </body>
 </html>
