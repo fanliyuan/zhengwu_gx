@@ -95,13 +95,14 @@
         $(function() {
             // 目录等内容动态生成,这里没用模板引擎,应该用模板引擎
             var queryData = {}
+            var cataId = location.search.replace('?id=', '') || 0
             var data = [ { title: '综合政务', href: '?catalog=1',id:1, }, { title: '经济管理', href: '?catalog=2',id:2, }, { title: '国土资源', href: 'javascript:;', id:3 }, { title: '工业交通', href: 'javascript:;' }, { title: '信息产业', href: 'javascript:;' }, { title: '城乡建设', href: 'javascript:;' }, { title: '农业水利', href: 'javascript:;' }, { title: '财政收支', href: 'javascript:;' }, { title: '商业贸易', href: 'javascript:;' }, { title: '旅游服务', href: 'javascript:;' }, { title: '气象水文', href: 'javascript:;' }, { title: '对外事务', href: 'javascript:;' }, { title: '政法监察', href: 'javascript:;' }, { title: '科技教育', href: 'javascript:;' }, { title: '文化卫生', href: 'javascript:;' }, { title: '军事国防', href: 'javascript:;' }]
             function getCatalogHtml(data) {
                 var html = '<ul class="clearfix">'
                 data.forEach(function(item, index) {
                     html += '<li class="row fl'
                         + (index%8 === 0 ? ' ml0':'')
-                        + (index === 0 ? ' click':'')
+                        + (index === +cataId ? ' click':'')
                         + '"'
                         + 'data-href="'+index+'"'
                         + 'data-id="'+(item.id)+'"'
@@ -166,6 +167,7 @@
                 $(this).addClass('active')
                 createPagination()
             })
+            
 
             // 列表页面生成
             var cardData =[]

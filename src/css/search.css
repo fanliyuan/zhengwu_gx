@@ -39,11 +39,20 @@
 .data-container .row .content {
   margin-top: 20px;
   font-size: 12px;
+  line-height: 1.5;
 }
 .data-container .row .description {
   margin-top: 20px;
   font-size: 12px;
   color: #919191;
+}
+.data-container .row .description * + label {
+  margin-left: 40px;
+}
+.data-container .row .description label::after {
+  content: ":";
+  margin-left: 2px;
+  margin-right: 4px;
 }
 .pagination-container {
   margin-top: 68px;
