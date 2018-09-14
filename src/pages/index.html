@@ -268,7 +268,6 @@
         $('#catalog').html(getCatalogHtml(data)).children('ul').delegate('li', 'click', function() {
             // alert($(this).attr('data-href'))
             queryData.catalogId = $(this).data('id')
-            createPagination()
             $(this).parent().children('.click').removeClass('click');
             $(this).addClass('click')
             // console.log(target)

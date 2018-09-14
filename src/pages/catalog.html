@@ -93,6 +93,45 @@
     </script>
     <script>
         $(function() {
+            // 生成分页器
+            function createPagination() {
+                var queryURI = ''
+                for(var key in queryData) {
+                    if (queryData[key] !== undefined) {
+                        queryURI+=key+'='+queryData[key]+'&'
+                    }
+                }
+                queryURI = queryURI ? '?'+queryURI.replace(/&$/,'') : ''
+                $('#pagination-container').pagination({
+                dataSource: '/fakedata1.json'+queryURI,
+                locator: 'data',
+                totalNumberLocator: function(res) {
+                return res.total
+                },
+                callback: function (data, pagination) {
+                // 数据遍历,同时替换关键字,使关键字加上标签,实现关键字变色
+                for(var i = 0; i < data.length; i++) {
+                    data[i].title=data[i].title.replace(new RegExp('keywords', 'g'),'<span class="red">'+'keywords'+'</span>')
+                    }
+                    var cardData = [ { title: '贵阳市主要粮油副食品每日监测表', types: ['XLS', 'XML', 'JSON', 'CSV'], new: true, updateTime: '2018-1-1', publicationTime: '2013-12-2', classify: '经济管理', department: '市发改委', summary: '资源摘要：提供贵阳市主要粮油副食品日监价格，包括商品名称、规 格、单位、主要农贸市场价格、主要超市价格...' }, { title: '北京市主要粮油副食品每日监测表', types: ['XLS', 'XML', 'JSON', 'CSV'], hot: true, updateTime: '2018-2-3', publicationTime: '2013-12-2', classify: '经济管理', department: '市发改委', summary: '资源摘要：提供贵阳市主要粮油副食品日监价格，包括商品名称、规 格、单位、主要农贸市场价格、主要超市价格...' }, { title: '北京市主要粮油副食品每日监测表', types: ['XLS', 'XML', 'JSON', 'CSV'], updateTime: '2018-2-3', publicationTime: '2013-12-2', classify: '经济管理', department: '市发改委', summary: '资源摘要：提供贵阳市主要粮油副食品日监价格，包括商品名称、规 格、单位、主要农贸市场价格、主要超市价格...' }, { title: '北京市主要粮油副食品每日监测表', types: ['XLS', 'XML', 'JSON', 'CSV'], updateTime: '2018-2-3', publicationTime: '2013-12-2', classify: '经济管理', department: '市发改委', summary: '资源摘要：提供贵阳市主要粮油副食品日监价格，包括商品名称、规 格、单位、主要农贸市场价格、主要超市价格...' }, { title: '北京市主要粮油副食品每日监测表', types: ['XLS', 'XML', 'JSON', 'CSV'], updateTime: '2018-2-3', publicationTime: '2013-12-2', classify: '经济管理', department: '市发改委', summary: '资源摘要：提供贵阳市主要粮油副食品日监价格，包括商品名称、规 格、单位、主要农贸市场价格、主要超市价格...' }, { title: '北京市主要粮油副食品每日监测表', types: ['XLS', 'XML', 'JSON', 'CSV'], updateTime: '2018-2-3', publicationTime: '2013-12-2', classify: '经济管理', department: '市发改委', summary: '资源摘要：提供贵阳市主要粮油副食品日监价格，包括商品名称、规 格、单位、主要农贸市场价格、主要超市价格...' }, { title: '北京市主要粮油副食品每日监测表', types: ['XLS', 'XML', 'JSON', 'CSV'], updateTime: '2018-2-3', publicationTime: '2013-12-2', classify: '经济管理', department: '市发改委', summary: '资源摘要：提供贵阳市主要粮油副食品日监价格，包括商品名称、规 格、单位、主要农贸市场价格、主要超市价格...' }, { title: '北京市主要粮油副食品每日监测表', types: ['XLS', 'XML', 'JSON', 'CSV'], updateTime: '2018-2-3', publicationTime: '2013-12-2', classify: '经济管理', department: '市发改委', summary: '资源摘要：提供贵阳市主要粮油副食品日监价格，包括商品名称、规 格、单位、主要农贸市场价格、主要超市价格...' }, { title: '北京市主要粮油副食品每日监测表', types: ['XLS', 'XML', 'JSON', 'CSV'], updateTime: '2018-2-3', publicationTime: '2013-12-2', classify: '经济管理', department: '市发改委', summary: '资源摘要：提供贵阳市主要粮油副食品日监价格，包括商品名称、规 格、单位、主要农贸市场价格、主要超市价格...' }, { title: '北京市主要粮油副食品每日监测表', types: ['XLS', 'XML', 'JSON', 'CSV'], updateTime: '2018-2-3', publicationTime: '2013-12-2', classify: '经济管理', department: '市发改委', summary: '资源摘要：提供贵阳市主要粮油副食品日监价格，包括商品名称、规 格、单位、主要农贸市场价格、主要超市价格...' },
+                    ]
+                    $('#card').html(template('card-list', cardData))
+                    // 生成html模板字符串
+                    // var html = simpleTemplating(data);
+                    // // 渲染dom
+                    // $('#data-container').html(html);
+                },
+                pageSize: 10,
+                prevText: '上一页',
+                nextText: '下一页',
+                ellipsisText: '···',
+                footer: function(currentPage, totalPage, totalNumber) {
+                return '<span class="pagination-footer">每页10条数据,'+'共'+totalPage+'页</span>'
+                },
+                pageLink: 'javascript:;'
+            })
+            }
+            createPagination()
             // 目录等内容动态生成,这里没用模板引擎,应该用模板引擎
             var queryData = {}
             var cataId = location.search.replace('?id=', '') || 0
@@ -173,44 +212,6 @@
             var cardData =[]
             $('#card').html(template('card-list', cardData))
             // 分页功能
-            function createPagination() {
-                var queryURI = ''
-                for(var key in queryData) {
-                    if (queryData[key] !== undefined) {
-                        queryURI+=key+'='+queryData[key]+'&'
-                    }
-                }
-                queryURI = queryURI ? '?'+queryURI.replace(/&$/,'') : ''
-                $('#pagination-container').pagination({
-                dataSource: '/fakedata1.json'+queryURI,
-                locator: 'data',
-                totalNumberLocator: function(res) {
-                return res.total
-                },
-                callback: function (data, pagination) {
-                // 数据遍历,同时替换关键字,使关键字加上标签,实现关键字变色
-                for(var i = 0; i < data.length; i++) {
-                    data[i].title=data[i].title.replace(new RegExp('keywords', 'g'),'<span class="red">'+'keywords'+'</span>')
-                    }
-                    var cardData = [ { title: '贵阳市主要粮油副食品每日监测表', types: ['XLS', 'XML', 'JSON', 'CSV'], new: true, updateTime: '2018-1-1', publicationTime: '2013-12-2', classify: '经济管理', department: '市发改委', summary: '资源摘要：提供贵阳市主要粮油副食品日监价格，包括商品名称、规 格、单位、主要农贸市场价格、主要超市价格...' }, { title: '北京市主要粮油副食品每日监测表', types: ['XLS', 'XML', 'JSON', 'CSV'], hot: true, updateTime: '2018-2-3', publicationTime: '2013-12-2', classify: '经济管理', department: '市发改委', summary: '资源摘要：提供贵阳市主要粮油副食品日监价格，包括商品名称、规 格、单位、主要农贸市场价格、主要超市价格...' }, { title: '北京市主要粮油副食品每日监测表', types: ['XLS', 'XML', 'JSON', 'CSV'], updateTime: '2018-2-3', publicationTime: '2013-12-2', classify: '经济管理', department: '市发改委', summary: '资源摘要：提供贵阳市主要粮油副食品日监价格，包括商品名称、规 格、单位、主要农贸市场价格、主要超市价格...' }, { title: '北京市主要粮油副食品每日监测表', types: ['XLS', 'XML', 'JSON', 'CSV'], updateTime: '2018-2-3', publicationTime: '2013-12-2', classify: '经济管理', department: '市发改委', summary: '资源摘要：提供贵阳市主要粮油副食品日监价格，包括商品名称、规 格、单位、主要农贸市场价格、主要超市价格...' }, { title: '北京市主要粮油副食品每日监测表', types: ['XLS', 'XML', 'JSON', 'CSV'], updateTime: '2018-2-3', publicationTime: '2013-12-2', classify: '经济管理', department: '市发改委', summary: '资源摘要：提供贵阳市主要粮油副食品日监价格，包括商品名称、规 格、单位、主要农贸市场价格、主要超市价格...' }, { title: '北京市主要粮油副食品每日监测表', types: ['XLS', 'XML', 'JSON', 'CSV'], updateTime: '2018-2-3', publicationTime: '2013-12-2', classify: '经济管理', department: '市发改委', summary: '资源摘要：提供贵阳市主要粮油副食品日监价格，包括商品名称、规 格、单位、主要农贸市场价格、主要超市价格...' }, { title: '北京市主要粮油副食品每日监测表', types: ['XLS', 'XML', 'JSON', 'CSV'], updateTime: '2018-2-3', publicationTime: '2013-12-2', classify: '经济管理', department: '市发改委', summary: '资源摘要：提供贵阳市主要粮油副食品日监价格，包括商品名称、规 格、单位、主要农贸市场价格、主要超市价格...' }, { title: '北京市主要粮油副食品每日监测表', types: ['XLS', 'XML', 'JSON', 'CSV'], updateTime: '2018-2-3', publicationTime: '2013-12-2', classify: '经济管理', department: '市发改委', summary: '资源摘要：提供贵阳市主要粮油副食品日监价格，包括商品名称、规 格、单位、主要农贸市场价格、主要超市价格...' }, { title: '北京市主要粮油副食品每日监测表', types: ['XLS', 'XML', 'JSON', 'CSV'], updateTime: '2018-2-3', publicationTime: '2013-12-2', classify: '经济管理', department: '市发改委', summary: '资源摘要：提供贵阳市主要粮油副食品日监价格，包括商品名称、规 格、单位、主要农贸市场价格、主要超市价格...' }, { title: '北京市主要粮油副食品每日监测表', types: ['XLS', 'XML', 'JSON', 'CSV'], updateTime: '2018-2-3', publicationTime: '2013-12-2', classify: '经济管理', department: '市发改委', summary: '资源摘要：提供贵阳市主要粮油副食品日监价格，包括商品名称、规 格、单位、主要农贸市场价格、主要超市价格...' },
-                    ]
-                    $('#card').html(template('card-list', cardData))
-                    // 生成html模板字符串
-                    // var html = simpleTemplating(data);
-                    // // 渲染dom
-                    // $('#data-container').html(html);
-                },
-                pageSize: 10,
-                prevText: '上一页',
-                nextText: '下一页',
-                ellipsisText: '···',
-                footer: function(currentPage, totalPage, totalNumber) {
-                return '<span class="pagination-footer">每页10条数据,'+'共'+totalPage+'页</span>'
-                },
-                pageLink: 'javascript:;'
-            })
-            }
-            createPagination()
         })
     </script>
 </body>
