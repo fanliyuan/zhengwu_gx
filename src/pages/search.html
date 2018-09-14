@@ -150,7 +150,7 @@
         // 从地址栏获取搜索关键字
         var keywords = decodeURI(window.location.search.replace('?keywords=', ''))
         $('#pagination-container').pagination({
-          dataSource: 'http://192.168.100.16:8805/search?articleTitle='+keywords,
+          dataSource: 'http://testgoveportal.tpaas.youedata.com/search?articleTitle='+keywords,
           locator: 'result.datas',
           totalNumberLocator: function(res) {
             return res.result.total
