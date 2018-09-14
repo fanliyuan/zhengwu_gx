@@ -73,6 +73,7 @@
         </div>
     @@include('commons/footer.html')
     <script src="../assets/art-template.js"></script>
+    <script src="../js/index.js"></script>
     <script type="text/html" id="card-list">
         <ul class="clear">
         {{each $data item}}
@@ -127,29 +128,31 @@
     </script>
     <script type="text/html" id="affiche_template">
         <div class="ontop clearfix">
-            <img src="{{$data.top.imgUrl || '../img/news_pattern.png'}}" alt="" width="200" height="130" class="fl">
+            <img src="{{$data[0].imgPath || '../img/news_pattern.png'}}" alt="" width="200" height="130" class="fl">
             <div class="fl">
-                <a href="news-detail.html?id={{$data.top.id}}"><h3>{{$data.top.title}}</h3></a>
+                <a href="news-detail.html?id={{$data[0].articleId}}"><h3>{{$data[0].articleTitle}}</h3></a>
                 <p class="from">
                     <label>来源 : </label>
-                    <span>{{$data.top.origin || '暂无'}}</span>
+                    <span>{{$data[0].articleSource || '暂无'}}</span>
                     <label class="time">时间 : </label>
-                    <span>{{$data.top.time || '未知'}}</span>
+                    <span>{{$data[0].creatOpenTime || '未知'}}</span>
                 </p>
                 <p class="affiche_content">
-                    {{$data.top.content || '暂无'}}
+                    {{$data[0].articleContent || '暂无'}}
                 </p>
             </div>
         </div>
         <ul class="affiche_list">
-            {{each $data.list item}}
+            {{each $data item index}}
+                {{if index!== 0}}
                 <li class="affiche_row">
-                    <a href="news-detail.html?id={{item.id}}">
-                        <span class="affiche_origin">[{{item.origin}}]</span>
-                        <span class="affiche_title">{{item.title}}</span>
-                        <span class="affiche_time">{{item.time}}</span>
+                    <a href="news-detail.html?id={{item.articleId}}">
+                        <span class="affiche_origin">[{{item.articleSource}}]</span>
+                        <span class="affiche_title">{{item.articleTitle}}</span>
+                        <span class="affiche_time">{{item.creatOpenTime}}</span>
                     </a>
                 </li>
+                {{/if}}
             {{/each}}
             <li></li>
         </ul>
@@ -354,8 +357,8 @@
                 },
             ]
         }
-        $('#important_news').html(template('affiche_template', newsData))
-        $('#affiche').html(template('affiche_template', newsData))
+        // $('#important_news').html(template('affiche_template', newsData))
+        // $('#affiche').html(template('affiche_template', newsData))
     </script>
     <script>
         $(function(){
@@ -363,7 +366,7 @@
             direction: 'horizontal',
               speed:3000,
               loop: true,
-              autoplay:1000,
+              autoplay:5000,
               autoplayDisableOnInteraction:false,
               // 如果需要分页器
               pagination: '.swiper-pagination',
