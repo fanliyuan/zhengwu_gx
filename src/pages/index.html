@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="../css/iconfont.css">
     <link rel="stylesheet" href="../assets/swiper-3.4.2.min.css">
     <script src="../assets/jquery.min.js"></script>
-    <script src="../assets/moment.min.js"></script>
     <script src="../assets/swiper-3.4.2.jquery.min.js"></script>
 </head>
 <body>
@@ -136,10 +135,10 @@
                     <label>来源 : </label>
                     <span>{{$data[0].articleSource || '暂无'}}</span>
                     <label class="time">时间 : </label>
-                    <span>{{$data[0].createOpenTime || '未知'}}</span>
+                    <span>{{$data[0].creatOpenTime || '未知'}}</span>
                 </p>
                 <p class="affiche_content">
-                    {{@ $data[0].articleContent || '暂无'}}
+                    {{$data[0].articleContent || '暂无'}}
                 </p>
             </div>
         </div>
@@ -150,7 +149,7 @@
                     <a href="news-detail.html?id={{item.articleId}}">
                         <span class="affiche_origin">[{{item.articleSource}}]</span>
                         <span class="affiche_title">{{item.articleTitle}}</span>
-                        <span class="affiche_time">{{item.createOpenTime}}</span>
+                        <span class="affiche_time">{{item.creatOpenTime}}</span>
                     </a>
                 </li>
                 {{/if}}
@@ -239,7 +238,7 @@
                 bgImg:'recommentTC1.png'
             },
         ]
-        // $('.content3 .newInstitutionSource').append(template('recomment-list', recommentData))
+        $('.content3 .newInstitutionSource').append(template('recomment-list', recommentData))
     </script>
     <script>
         var queryData = {}
