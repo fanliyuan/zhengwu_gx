@@ -26,13 +26,25 @@
   /* height: 120px; */
   padding: 20px 0;
   border-bottom: 1px solid #aaa;
+  position: relative;
+  height: 130px;
 }
 .list_container .row .row_left {
-  float: left;
+  /* float: left; */
+  position: absolute;
+  width: 200px;
+  height: 130px;
+  left: 0;
+  top: 20px;
+  bottom: 20px;
+}
+.list_container .row .row_left img {
+  max-width: 200px;
+  max-height: 130px;
 }
 .list_container .row .row_right {
-  float: left;
-  margin-left: 20px;
+  /* float: left; */
+  margin-left: 220px;
 }
 .list_container .row .title {
   font-size: 16px;
@@ -46,9 +58,13 @@
   /* text-decoration-line: underline; */
 }
 .list_container .row .content {
-  margin-top: 20px;
+  margin-top: 10px;
   font-size: 12px;
-  color: #666;
+  /* color: #666; */
+  color: #727272 !important;
+  text-decoration: none;
+  list-style: none;
+  line-height: 24px;
 }
 .list_container .row .description {
   margin-top: 20px;

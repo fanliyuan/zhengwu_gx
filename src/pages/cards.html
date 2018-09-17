@@ -6,9 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>搜索结果页</title>
     <link rel="shortcut icon" href="../img/logo.png" type="image/x-icon">
-    <script src="../assets/jquery.min.js"></script>
-    <script src="../assets/pagination.min.js"></script>
-    <script src="../assets/art-template.js"></script>
     <link rel="stylesheet" href="../assets/reset.css">
     <link rel="stylesheet" href="../css/iconfont.css">
     <link rel="stylesheet" href="../assets/pagination.css">
@@ -16,6 +13,10 @@
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/cards.css">
+    <script src="../assets/jquery.min.js"></script>
+    <script src="../assets/moment.min.js"></script>
+    <script src="../assets/pagination.min.js"></script>
+    <script src="../assets/art-template.js"></script>
 </head>
 <body>
     @@include('commons/header.html')
@@ -24,28 +25,29 @@
         <div id="pagination_container" class="pagination_container"></div>
     </div>
     @@include('commons/footer.html')
+    <script src="../js/cards.js"></script>
     <script type="text/html" id="list_template">
       <div class="list_title">重要新闻</div>
       <ul>
         {{each $data item}}
         <li class="row clearfix">
           <div class="row_left">
-            <img src="{{item.imgUrl || '../img/cards_pattern.png'}}" alt="" width="200" height="120">
+            <img src="{{item.imgPath || '../img/news_pattern.jpg'}}" alt="" width="200" height="120">
           </div>
           <div class="row_right">
-              <a href="article?id={{item.id}}" class="title"><h3>{{item.title}}</h3></a>
+              <a href="article?id={{item.id}}" class="title"><h3>{{item.articleTitle || '暂无'}}</h3></a>
               <p class="description">
                 <label>来源</label>
-                <span>{{item.origin}}</span>
+                <span>{{item.articleSource || '暂无'}}</span>
                 <label>时间</label>
-                <span>{{item.time}}</span>
-                {{if item.attachmentUrl}}
-                <a href="{{item.attachmentUrl}}" download="{{item.attachmentName}}" class="iconfont icon-fujian attachment">附件下载</a>
+                <span>{{item.createOpenTime || '未知'}}</span>
+                {{if item.filePath}}
+                <a href="{{item.filePath}}" download="{{item.filePath}}" class="iconfont icon-fujian attachment">附件下载</a>
                 {{/if}}
               </p>
-              <p class="content">
-                {{item.content}}
-              </p>
+              <div class="content">
+                {{@item.articleContent}}
+              </div>
           </div>
         </li>
         {{/each}}
@@ -57,7 +59,7 @@
         var keywords = decodeURI(window.location.search.replace('?keywords=', ''))
         $('title').text('重要新闻')
         $('#pagination_container').pagination({
-          dataSource: '/fakedata1.json?keywords='+keywords,
+          // dataSource: '/fakedata1.json?keywords='+keywords,
           locator: 'data',
           totalNumberLocator: function(res) {
             return res.total
@@ -65,6 +67,7 @@
           callback: function (data, pagination) {
               // 生成html模板字符串
               // 渲染dom
+              // console.log(pagination)
               $('#list_container').html(template('list_template', data));
           },
           pageSize: 10,

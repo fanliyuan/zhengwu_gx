@@ -20,6 +20,8 @@
 }
 .carousel {
   margin-top: 10px;
+  width: 100%;
+  height: 500px;
 }
 .swiper-container {
   width: 100%;

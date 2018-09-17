@@ -1,11 +1,10 @@
 $(function() {
   $.ajax({
     type: "get",
-    url: "http://testgoveportal.tpaas.youedata.com/getColumnArtiListById",
+    url: "http://192.168.100.16:8805/getColumnArtiListById",
     // dataType:'jsonp',
     data: { articleCid: 5, pageNum: 1, pageSize: 10 },
     success: function(res) {
-      console.log(res);
       if (+res.code === 0) {
         if (res.result.datas.length > 0) {
           res.result.datas[0].articleContent = res.result.datas[0].articleContent
@@ -33,14 +32,18 @@ $(function() {
         );
       }
     },
-    error: function(error) {},
-    timeout: function() {}
+    error: function(error) {
+      console.log(error);
+    },
+    timeout: function() {
+      console.log("连接超时");
+    }
   });
   $.ajax({
     type: "get",
-    url: "http://testgoveportal.tpaas.youedata.com/getColumnArtiListById",
+    url: "http://192.168.100.16:8805/getColumnArtiListById",
     // dataType:'jsonp',
-    data: { articleCid: 6, pageNum: 1, pageSize: 10 },
+    data: { articleCid: 4, pageNum: 1, pageSize: 10 },
     success: function(res) {
       console.log(res);
       if (+res.code === 0) {
@@ -71,7 +74,59 @@ $(function() {
         $("#affiche").html(template("affiche_template", res.result.datas));
       }
     },
-    error: function(error) {},
-    timeout: function() {}
+    error: function(error) {
+      console.log(error);
+    },
+    timeout: function() {
+      console.log("连接超时");
+    }
+  });
+  $.ajax({
+    type: "get",
+    url: "http://192.168.100.16:8805/getImListById",
+    // dataType:'jsonp',
+    data: { columnId: 1, pageNum: 1, pageSize: 10 },
+    success: function(res) {
+      if (+res.code === 0) {
+        var datas = [];
+        for (var i = 0; i < res.result.datas.length; i++) {
+          datas.push(res.result.datas[i].imagePath);
+        }
+        $(".carousel").html(template("carousel-list", datas));
+        if (res.result.datas.length <= 1) {
+          var mySwiper = new Swiper(".swiper-container", {
+            direction: "horizontal",
+            observer: true,
+            speed: 3000,
+            // loop: true,
+            observeParents: true,
+            autoplay: false,
+            autoplayDisableOnInteraction: false,
+            // 如果需要分页器
+            pagination: false
+          });
+          return;
+        }
+        var mySwiper = new Swiper(".swiper-container", {
+          direction: "horizontal",
+          observer: true,
+          speed: 3000,
+          loop: true,
+          observeParents: true,
+          autoplay: 5000,
+          autoplayDisableOnInteraction: false,
+          // 如果需要分页器
+          pagination: ".swiper-pagination",
+          prevButton: ".swiper-button-prev",
+          nextButton: ".swiper-button-next"
+        });
+      }
+    },
+    error: function(error) {
+      console.log(error);
+    },
+    timeout: function() {
+      console.log("连接超时");
+    }
   });
 });
