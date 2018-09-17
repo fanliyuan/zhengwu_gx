@@ -8,7 +8,7 @@ var filter=require('gulp-filter');/*过滤器：筛选，恢复*/
 
 gulp.task('build', function() {
   // 删除以前的文件
-  del.sync('./dist/*',{force: true});
+  // del.sync('./dist/*',{force: true});
   var jsFilter=filter('**/*.js',{restore:true});
   gulp.src('src/pages/**.html')
     .pipe(fileinclude({
