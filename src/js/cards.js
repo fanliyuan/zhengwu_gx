@@ -5,6 +5,35 @@ $(function() {
     if (r != null) return unescape(r[2]);
     return null; //返回参数值
   }
+  function results(res) {
+    if (+res.code === 0) {
+      if (res.result.datas.length > 0) {
+        for (var i = 0; i < res.result.datas.length; i++) {
+          res.result.datas[i].articleContent = res.result.datas[
+            i
+          ].articleContent
+            .replace(/\bsrc=".*?"[\b|>]/g, "")
+            .trim();
+          res.result.datas[i].createOpenTime = moment(
+            +res.result.datas[0].createOpenTime
+          ).format("YYYY-MM-DD");
+          var divHtml = document.createElement("div");
+          divHtml.innerHTML = res.result.datas[i].articleContent;
+          res.result.datas[i].articleContent = "";
+          $(divHtml)
+            .contents()
+            .each(function(index, item) {
+              res.result.datas[i].articleContent += item.textContent;
+            });
+          if (res.result.datas[i].articleContent.length > 130) {
+            res.result.datas[i].articleContent =
+              res.result.datas[i].articleContent.substr(0, 130) + "...";
+          }
+        }
+      }
+      $("#list_container").html(template("list_template", res.result.datas));
+    }
+  }
   function getList(pagination) {
     $.ajax({
       type: "get",
@@ -14,28 +43,7 @@ $(function() {
         pageNum: pagination.pageNum,
         pageSize: pagination.pageSize
       },
-      success: function(res) {
-        if (+res.code === 0) {
-          if (res.result.datas.length > 0) {
-            var datas = res.result.datas;
-            for (var i = 0; i < datas.length; i++) {
-              res.result.datas[
-                i
-              ].articleContent = res.result.datas[0].articleContent
-                .replace(/\bsrc=".*?"[\b|>]/g, "")
-                .trim();
-              res.result.datas[i].createOpenTime = moment(
-                +res.result.datas[0].createOpenTime
-              ).format("YYYY-MM-DD");
-              if (datas[i].articleContent.length > 300) {
-                datas[i].articleContent =
-                  datas[i].articleContent.substr(0, 300) + "...";
-              }
-            }
-          }
-          $("#list_container").html(template("list_template", datas));
-        }
-      },
+      success: results,
       error: function(error) {
         console.log(error);
       },

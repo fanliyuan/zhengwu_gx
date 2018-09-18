@@ -13,9 +13,17 @@ $(function() {
           res.result.datas[0].createOpenTime = moment(
             +res.result.datas[0].createOpenTime
           ).format("YYYY-MM-DD");
-          if (res.result.datas[0].articleContent.length > 160) {
+          var divHtml = document.createElement("div");
+          divHtml.innerHTML = res.result.datas[0].articleContent;
+          res.result.datas[0].articleContent = "";
+          $(divHtml)
+            .contents()
+            .each(function(index, item) {
+              res.result.datas[0].articleContent += item.textContent;
+            });
+          if (res.result.datas[0].articleContent.length > 80) {
             res.result.datas[0].articleContent =
-              res.result.datas[0].articleContent.substr(0, 160) + "...";
+              res.result.datas[0].articleContent.substr(0, 80) + "...";
           }
           for (var i = 1; i < res.result.datas.length; i++) {
             res.result.datas[i].createOpenTime = moment(

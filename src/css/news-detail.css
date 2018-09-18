@@ -49,14 +49,14 @@
 .new_detail .content_title a {
   color: #015293;
 }
-.class_content h1 {
+.class_content > h1 {
   line-height: 28px;
   font-size: 28px;
   color: #333;
   text-align: center;
   margin: 38px 0;
 }
-.class_content h5 {
+.class_content > h5 {
   line-height: 14px;
   font-size: 14px;
   color: #919191;
@@ -71,4 +71,11 @@
   margin: 38px 0;
   text-indent: 2em;
   line-height: 24px;
+  min-height: 330px;
+}
+.content em {
+  font-style: italic !important;
+}
+.content strong {
+  font-weight: bold !important;
 }

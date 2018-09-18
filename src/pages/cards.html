@@ -27,16 +27,16 @@
     @@include('commons/footer.html')
     <script src="../js/cards.js"></script>
     <script type="text/html" id="list_template">
-      <div class="list_title">重要新闻</div>
+      <div class="list_title">{{$data[0].articleCname}}</div>
       <ul>
-        {{each $data item}}
+        {{each $data item index}}
         <li class="row clearfix">
           <div class="row_left">
             <img src="{{item.imgPath || '../img/news_pattern.jpg'}}" alt="" width="200" height="120">
           </div>
           <div class="row_right">
-              <a href="article?id={{item.id}}" class="title"><h3>{{item.articleTitle || '暂无'}}</h3></a>
-              <p class="description">
+              <a href="news-detail.html?id={{item.articleId}}" class="title"><h3>{{item.articleTitle || '暂无'}}</h3></a>
+              <div class="description">
                 <label>来源</label>
                 <span>{{item.articleSource || '暂无'}}</span>
                 <label>时间</label>
@@ -44,9 +44,9 @@
                 {{if item.filePath}}
                 <a href="{{item.filePath}}" download="{{item.filePath}}" class="iconfont icon-fujian attachment">附件下载</a>
                 {{/if}}
-              </p>
+              </div>
               <div class="content">
-                {{@item.articleContent || '暂无'}}
+                {{item.articleContent || '暂无'}}
               </div>
           </div>
         </li>
@@ -56,10 +56,10 @@
     <script>
       $(function() {
         // 从地址栏获取搜索关键字
-        var keywords = decodeURI(window.location.search.replace('?keywords=', ''))
-        $('title').text('重要新闻')
+        // var keywords = decodeURI(window.location.search.replace('?keywords=', ''))
+        // $('title').text('重要新闻')
         $('#pagination_container').pagination({
-          // dataSource: '/fakedata1.json?keywords='+keywords,
+          dataSource: 'http://testgoveportal.tpaas.youedata.com/getColumnArtiListById',
           locator: 'data',
           totalNumberLocator: function(res) {
             return res.total

@@ -12,12 +12,13 @@
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/news-detail.css">
-    <link rel="stylesheet" href="../assets/swiper.min.css">
-    <link rel="stylesheet" href="../assets/quill.bubble.css">
-    <link rel="stylesheet" href="../assets/quill.core.css">
+    <script src="../assets/moment.min.js"></script>
+    <!-- <link rel="stylesheet" href="../assets/swiper.min.css"> -->
+    <!-- <link rel="stylesheet" href="../assets/quill.bubble.css">
+    <link rel="stylesheet" href="../assets/quill.core.css"> -->
     <link rel="stylesheet" href="../assets/quill.snow.css">
-    <script src="../assets/jquery.min.js"></script>
-    <script src="../assets/swiper.min.js"></script>
+    <!-- <script src="../assets/jquery.min.js"></script>
+     <script src="../assets/swiper.min.js"></script> -->
 </head>
 <body>
     @@include('commons/header.html')
@@ -29,15 +30,17 @@
     <script src="../assets/art-template.js"></script>
     <script src="../js/news-detail.js"></script>
     <script type="text/html" id="news_article">
-        <h2 class="content_title"><span>所在位置 > </span><span>{{$data.position1}} > </span><a href="#">{{$data.position2}}</a></h2>
+        <h2 class="content_title"><span>所在位置 > </span><a href="cards.html?articleCid={{$data.articleCid}}">{{$data.articleCname}} ></a><span>{{$data.articleFname}}</span></h2>
         <div class="class_content">
-          <h1>{{$data.title}}</h1>
-          <h5>来源:{{$data.source}} &nbsp;&nbsp;时间:{{$data.time}}</h5>
-          <div class="detail_img">
+          <h1>{{$data.articleTitle || '暂无'}}</h1>
+          <h5>来源:{{$data.articleSource || '暂无'}} &nbsp;&nbsp;时间:{{$data.createOpenTime || '未知'}}</h5>
+          <!-- <div class="detail_img">
             <img src="../img/{{$data.bigImg}}" alt="">
-          </div>
-          <div class="content">
-              {{$data.data}}
+          </div> -->
+          <div class="content ql-snow">
+            <div class="ql-editor" data-gramm="false"> <!-- contenteditable="true"-->
+                {{@$data.articleContent || '<span style="color:#999;font-size:20px;">暂无</span>'}}
+            </div>
           </div>
         </div>
     </script>
@@ -52,7 +55,7 @@
           bigImg:'detail_img.png',
           data:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo delectus eligendi, provident quis suscipit nesciunt eaque. Magni, facere ea sint nam soluta similique excepturi tempora? Doloribus quisquam accusamus obcaecati doloremque.",
         }
-      $(".new_detail .newInstitutionSource").html(template('news_article',articleData))
+      // $(".new_detail .newInstitutionSource").html(template('news_article',articleData))
     </script>
 </body>
 </html>
