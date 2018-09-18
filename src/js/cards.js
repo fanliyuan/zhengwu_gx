@@ -8,7 +8,7 @@ $(function() {
   function getList(pagination) {
     $.ajax({
       type: "get",
-      url: "http://192.168.100.16:8805/getColumnArtiListById",
+      url: "http://testgoveportal.tpaas.youedata.com/getColumnArtiListById",
       data: {
         articleCid: getUrlParam("articleCid"),
         pageNum: pagination.pageNum,
@@ -16,11 +16,21 @@ $(function() {
       },
       success: function(res) {
         if (+res.code === 0) {
-          var datas = res.result.datas;
-          for (var i = 0; i < datas.length; i++) {
-            if (datas[i].articleContent.length > 300) {
-              datas[i].articleContent =
-                datas[i].articleContent.substr(0, 300) + "...";
+          if (res.result.datas.length > 0) {
+            var datas = res.result.datas;
+            for (var i = 0; i < datas.length; i++) {
+              res.result.datas[
+                i
+              ].articleContent = res.result.datas[0].articleContent
+                .replace(/\bsrc=".*?"[\b|>]/g, "")
+                .trim();
+              res.result.datas[i].createOpenTime = moment(
+                +res.result.datas[0].createOpenTime
+              ).format("YYYY-MM-DD");
+              if (datas[i].articleContent.length > 300) {
+                datas[i].articleContent =
+                  datas[i].articleContent.substr(0, 300) + "...";
+              }
             }
           }
           $("#list_container").html(template("list_template", datas));

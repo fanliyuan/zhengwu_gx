@@ -60,7 +60,14 @@
 .list_container .row .content {
   margin-top: 10px;
   font-size: 12px;
-  /* color: #666; */
+  color: #727272 !important;
+  text-decoration: none;
+  list-style: none;
+  line-height: 24px;
+}
+.list_container .row .content span {
+  margin-top: 10px;
+  font-size: 12px;
   color: #727272 !important;
   text-decoration: none;
   list-style: none;

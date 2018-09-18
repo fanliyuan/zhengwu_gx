@@ -1,7 +1,7 @@
 $(function() {
   $.ajax({
     type: "get",
-    url: "http://192.168.100.16:8805/getColumnArtiListById",
+    url: "http://testgoveportal.tpaas.youedata.com/getColumnArtiListById",
     // dataType:'jsonp',
     data: { articleCid: 5, pageNum: 1, pageSize: 10 },
     success: function(res) {
@@ -41,7 +41,7 @@ $(function() {
   });
   $.ajax({
     type: "get",
-    url: "http://192.168.100.16:8805/getColumnArtiListById",
+    url: "http://testgoveportal.tpaas.youedata.com/getColumnArtiListById",
     // dataType:'jsonp',
     data: { articleCid: 4, pageNum: 1, pageSize: 10 },
     success: function(res) {
@@ -83,7 +83,7 @@ $(function() {
   });
   $.ajax({
     type: "get",
-    url: "http://192.168.100.16:8805/getImListById",
+    url: "http://testgoveportal.tpaas.youedata.com/getImListById",
     // dataType:'jsonp',
     data: { columnId: 1, pageNum: 1, pageSize: 10 },
     success: function(res) {
