@@ -77,8 +77,8 @@
                 </div>
                 <!-- 如果需要分页器 -->
                 <div class="swiper-pagination"></div>
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev leftBtn"></div>
+                <div class="swiper-button-next rightBtn"></div>
             </div>
     </script>
     <script type="text/html" id="card-list">
@@ -134,8 +134,11 @@
             </ul>
     </script>
     <script type="text/html" id="affiche_template">
+        {{if $data.length > 0}}
         <div class="ontop clearfix">
-            <img src="{{$data[0] && $data[0].imgPath || '../img/news_pattern.jpg'}}" alt="" width="200" height="130" class="fl">
+            <a href="news-detail.html?id={{$data[0] && $data[0].articleId}}">
+                <img src="{{$data[0] && $data[0].imgPath || '../img/news_pattern.jpg'}}" alt="" width="200" height="130" class="fl">
+            </a>
             <div class="fl">
                 <a href="news-detail.html?id={{$data[0] && $data[0].articleId}}"><h3>{{$data[0] && $data[0].articleTitle}}</h3>
                 <p class="from">
@@ -154,8 +157,8 @@
         </div>
         <ul class="affiche_list">
             {{each $data item index}}
-                {{if index!== 0}}
-                <li class="affiche_row">
+                {{if index!== 0 && index <= 5}}
+                <li class="affiche_row clearfix">
                     <a href="news-detail.html?id={{item.articleId}}">
                         <span class="affiche_origin">[{{item.articleSource}}]</span>
                         <span class="affiche_title">{{item.articleTitle}}</span>
@@ -166,6 +169,7 @@
             {{/each}}
             <li></li>
         </ul>
+        {{/if}}
     </script>
     <script>
         var cardData = [

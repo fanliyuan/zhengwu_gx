@@ -1,6 +1,7 @@
 .list_container {
   width: 1200px;
   margin: 0 auto;
+  min-height: 401px;
 }
 .list_title {
   margin-top: 40px;

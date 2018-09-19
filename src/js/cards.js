@@ -15,7 +15,7 @@ $(function() {
             .replace(/\bsrc=".*?"[\b|>]/g, "")
             .trim();
           res.result.datas[i].createOpenTime = moment(
-            +res.result.datas[0].createOpenTime
+            +res.result.datas[i].createOpenTime
           ).format("YYYY-MM-DD");
           var divHtml = document.createElement("div");
           divHtml.innerHTML = res.result.datas[i].articleContent;
@@ -31,6 +31,7 @@ $(function() {
           }
         }
       }
+      var itemNames = getUrlParam("name");
       $("#list_container").html(template("list_template", res.result.datas));
     }
   }

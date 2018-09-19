@@ -14,6 +14,7 @@
     <!-- <link rel="stylesheet" href="../css/index.css"> -->
     <link rel="stylesheet" href="../css/news.css">
     <link rel="stylesheet" href="../assets/swiper-3.4.2.min.css">
+    <script src="../assets/moment.min.js"></script>
     <script src="../assets/jquery.min.js"></script>
     <script src="../assets/swiper-3.4.2.jquery.min.js"></script>
 </head>
@@ -24,24 +25,6 @@
                 <h2 class="content_title">最新动态</h2>
                 <div class="clear">
                     <div class="news_img">
-                        <div class="swiper-container">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <img src="../img/banner1.png" alt="">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="../img/banner2.png" alt="">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="../img/banner3.png" alt="">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="../img/banner4.png" alt="">
-                                </div>
-                            </div>
-                            <!-- 如果需要分页器 -->
-                            <div class="swiper-pagination"></div>
-                        </div>
                     </div>
                     <div class="news_new">
                         <div class="content5">
@@ -58,11 +41,11 @@
         <div class="content5">
                 <div class="layout_center clearfix">
                     <div class="half_block fl clearfix">
-                        <h2 class="content_title"><span>重要新闻</span><a href="cards.html" class="more fr">查看更多&gt;&gt;</a></h2>
+                        <h2 class="content_title"><span>重要新闻</span><a href="cards.html?articleCid=10" class="more fr">查看更多&gt;&gt;</a></h2>
                         <div id="floor1"></div>
                     </div>
                     <div class="half_block fr clearfix">
-                        <h2 class="content_title"><span>通知公告</span><a href="cards.html" class="more fr">查看更多&gt;&gt;</a></h2>
+                        <h2 class="content_title"><span>通知公告</span><a href="cards.html?articleCid=15" class="more fr">查看更多&gt;&gt;</a></h2>
                         <div id="floor2"></div>
                     </div>
                 </div>
@@ -70,11 +53,11 @@
         <div class="content5 bg_white">
             <div class="layout_center clearfix">
                 <div class="half_block fl clearfix">
-                    <h2 class="content_title"><span>最新政策</span><a href="list.html" class="more fr">查看更多&gt;&gt;</a></h2>
+                    <h2 class="content_title"><span>最新政策</span><a href="cards.html?articleCid=11" class="more fr">查看更多&gt;&gt;</a></h2>
                     <div id="floor3"></div>
                 </div>
                 <div class="half_block fr clearfix">
-                    <h2 class="content_title"><span>政策解读</span><a href="list.html" class="more fr">查看更多&gt;&gt;</a></h2>
+                    <h2 class="content_title"><span>政策解读</span><a href="cards.html?articleCid=12" class="more fr">查看更多&gt;&gt;</a></h2>
                     <div id="floor4"></div>
                 </div>
             </div>
@@ -86,15 +69,41 @@
         </div>
     @@include('commons/footer.html')
     <script src="../assets/art-template.js"></script>
+    <script src="../js/news.js"></script>
+    <script type="text/html" id="carousel-list">
+        <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    {{if $data.length <= 0}}
+                    <div class="swiper-slide">
+                            <!-- <img src="{{item}}" alt=""> -->
+                        <div style="width:100%;height:400px;background:url(../img/no-pic.jpg) no-repeat center;background-size:cover;"></div>
+                    </div>
+                    {{else if $data}}
+                    {{each $data item}}
+                    <div class="swiper-slide">
+                        <!-- <img src="{{item}}" alt=""> -->
+                        <div style="width:100%;height:500px;background:url({{item}}) no-repeat center;background-size:cover;"></div>
+                    </div>
+                    {{/each}}
+                    {{/if}}
+                </div>
+                <!-- 如果需要分页器 -->
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev leftBtn"></div>
+                <div class="swiper-button-next rightBtn"></div>
+            </div>
+    </script>
     <script type="text/html" id="hot_zt">
+        {{if $data.length > 0}}
         <ul>
             {{each $data item}}
             <li>
-                <img src="../img/{{item.img}}" alt="">
-                <span>{{item.info}}</span>
+                <img src="{{item.imgPath || '../img/no-pic285a180.jpg'}}" alt="">
+                <span>{{item.articleContent || '暂无'}}</span>
             </li>
             {{/each}}
         </ul>
+        {{/if}}
     </script>
     <script>
         var hotData=[
@@ -115,65 +124,86 @@
                 info:'陈敏尔:推进"两学一做"学习教育常态化...'
             }
         ]
-        $('.hotItem .newInstitutionSource').append(template('hot_zt', hotData))
+        // $('.hotItem .newInstitutionSource').append(template('hot_zt', hotData))
     </script>
     <script type="text/html" id="affiche_template">
         <div class="ontop clearfix">
-                <div class="fl">
-                    <a href="news-detail.html"><h3>{{$data.top.title}}</h3></a>
-                    <p class="from">
-                        <label>来源 : </label>
-                        <span>{{$data.top.origin || '暂无'}}</span>
-                        <label class="time">时间 : </label>
-                        <span>{{$data.top.time || '未知'}}</span>
-                    </p>
-                    <p class="affiche_content">
-                        {{$data.top.content || '暂无'}}
-                    </p>
-                </div>
+            <div class="fl">
+                <a href="news-detail.html?id={{$data[0] && $data[0].articleId}}"><h3>{{$data[0] && $data[0].articleTitle || '暂无'}}</h3>
+                <p class="from">
+                    <label>来源 : </label>
+                    <span>{{$data[0] &&　$data[0].articleSource || '暂无'}}</span>
+                    <label class="time">时间 : </label>
+                    <span>{{$data[0] && $data[0].createOpenTime || '未知'}}</span>
+                </p>
+                <p class="affiche_content">
+                    <!-- <a href="news-detail.html?id={{$data[0] && $data[0].articleId}}"> -->
+                         {{ $data[0] && $data[0].articleContent || '暂无'}}
+                    <!-- </a> --> 
+                </p>
+                </a>
+            </div>
             </div>
             <ul class="affiche_list">
-                {{each $data.list item}}
-                    <li class="affiche_row">
-                        <a href="news-detail.html">
-                            <span class="affiche_origin">[{{item.origin}}]</span>
-                            <span class="affiche_title">{{item.title}}</span>
-                            <span class="affiche_time">{{item.time}}</span>
-                        </a>
-                    </li>
-                {{/each}}
-                <li></li>
+                {{each $data item index}}
+                {{if index!== 0 && index <= 8}}
+                <li class="affiche_row">
+                    <a href="news-detail.html?id={{item.articleId}}">
+                        <span class="affiche_origin">[{{item.articleSource}}]</span>
+                        <span class="affiche_title">{{item.articleTitle}}</span>
+                        <span class="affiche_time">{{item.createOpenTime}}</span>
+                    </a>
+                </li>
+                {{/if}}
+            {{/each}}
             </ul>
     </script>
     <script type="text/html" id="affiche_template1">
         <div class="ontop clearfix">
-            {{if $data.top}}
-            <img src="{{$data.top.imgUrl || '../img/news_pattern.png'}}" alt="" width="200" height="130" class="fl">
+            <a href="news-detail.html?id={{$data[0] && $data[0].articleId}}">
+                <img src="{{$data[0] && $data[0].imgPath || '../img/news_pattern.jpg'}}" alt="" width="200" height="130" class="fl">
+            </a>
             <div class="fl">
-                <a href="news-detail.html"><h3>{{$data.top.title}}</h3></a>
+                <a href="news-detail.html?id={{$data[0] && $data[0].articleId}}"><h3>{{$data[0] && $data[0].articleTitle}}</h3>
                 <p class="from">
                     <label>来源 : </label>
-                    <span>{{$data.top.origin || '暂无'}}</span>
+                    <span>{{$data[0] &&　$data[0].articleSource || '暂无'}}</span>
                     <label class="time">时间 : </label>
-                    <span>{{$data.top.time || '未知'}}</span>
+                    <span>{{$data[0] && $data[0].createOpenTime || '未知'}}</span>
                 </p>
                 <p class="affiche_content">
-                    {{$data.top.content || '暂无'}}
+                    {{ $data[0] && $data[0].articleContent || '暂无'}}
                 </p>
+                </a>
             </div>
-            {{/if}}
         </div>
         <ul class="affiche_list">
-            {{each $data.list item}}
-                <li class="affiche_row">
-                    <a href="news-detail.html">
-                        <span class="affiche_origin">[{{item.origin}}]</span>
-                        <span class="affiche_title">{{item.title}}</span>
-                        <span class="affiche_time">{{item.time}}</span>
+            {{each $data item index}}
+                {{if index!== 0 && index <= 5}}
+                <li class="affiche_row clearfix">
+                    <a href="news-detail.html?id={{item.articleId}}">
+                        <span class="affiche_origin">[{{item.articleSource}}]</span>
+                        <span class="affiche_title">{{item.articleTitle}}</span>
+                        <span class="affiche_time">{{item.createOpenTime}}</span>
                     </a>
                 </li>
+                {{/if}}
             {{/each}}
-            <li></li>
+        </ul>
+    </script>
+    <script type="text/html" id="affiche_template2">
+        <ul class="affiche_list">
+            {{each $data item index}}
+                {{if index <= 7}}
+                <li class="affiche_row clearfix">
+                    <a href="news-detail.html?id={{item.articleId}}">
+                        <span class="affiche_origin">[{{item.articleSource}}]</span>
+                        <span class="affiche_title">{{item.articleTitle}}</span>
+                        <span class="affiche_time">{{item.createOpenTime}}</span>
+                    </a>
+                </li>
+                {{/if}}
+            {{/each}}
         </ul>
     </script>
     <script>
@@ -241,7 +271,7 @@
                 },
             ]
         }
-        $('.news_new .important_news').html(template('affiche_template', newsData))
+        // $('.news_new .important_news').html(template('affiche_template', newsData))
     </script>
     <script>
         var newsData = {
@@ -324,8 +354,8 @@
                 },
             ]
         }
-        $('#floor1').html(template('affiche_template1', newsData))
-        $('#floor2').html(template('affiche_template1', newsData))
+        // $('#floor1').html(template('affiche_template1', newsData))
+        // $('#floor2').html(template('affiche_template1', newsData))
     </script>
     <script>
             var newsData = {
@@ -402,10 +432,10 @@
                     },
                 ]
             }
-            $('#floor3').html(template('affiche_template1', newsData))
-            $('#floor4').html(template('affiche_template1', newsData))
+            // $('#floor3').html(template('affiche_template1', newsData))
+            // $('#floor4').html(template('affiche_template1', newsData))
         </script>
-    <script>        
+    <!-- <script>        
             var mySwiper = new Swiper ('.swiper-container', {
               direction: 'horizontal',
               speed:3000,
@@ -414,6 +444,6 @@
               // 如果需要分页器
               pagination: '.swiper-pagination',
             })   
-    </script>
+    </script> -->
 </body>
 </html>

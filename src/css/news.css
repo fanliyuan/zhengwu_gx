@@ -115,7 +115,7 @@
 }
 .news_new .ontop > div {
   width: 100%;
-  margin-left: 10px;
+  margin-left: 0;
 }
 .ontop > div > h3 {
   font-size: 16px;
@@ -123,7 +123,7 @@
   color: #333;
 }
 .ontop > div .from {
-  margin: 20px 0;
+  margin: 15px 0 10px;
   color: #ccc;
 }
 .ontop > div .affiche_content {
@@ -147,8 +147,6 @@
 }
 .affiche_list .affiche_time {
   text-align: right;
-}
-.news_new .affiche_list .affiche_time {
   float: right;
 }
 .affiche_list .affiche_row a {
@@ -187,5 +185,8 @@
 }
 .hotItem li img {
   width: 285px;
-  height: 180px;
+  max-height: 180px;
+}
+.ontop > div p span {
+  margin-right: 10px;
 }

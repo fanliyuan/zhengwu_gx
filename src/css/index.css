@@ -269,6 +269,7 @@
 }
 .affiche_list .affiche_time {
   text-align: right;
+  float: right;
 }
 #important_news img {
   max-width: 200px;
@@ -287,6 +288,7 @@
 }
 .ontop > div p span {
   color: #727272 !important;
+  margin-right: 10px;
 }
 .ontop > div .from label,
 .ontop > div .from span {
@@ -300,6 +302,6 @@
 }
 .affiche_list .affiche_origin {
   margin-right: 20px;
-  width: 60px;
+  min-width: 60px;
   display: inline-block;
 }
