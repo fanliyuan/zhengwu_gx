@@ -254,41 +254,31 @@
         ]
         $('.content3 .newInstitutionSource').append(template('recomment-list', recommentData))
     </script>
+    <script type="text/html" id="catalog_list">
+        <ul class="clearfix">
+            {{each $data item index}}
+            <li class="row fl {{index%8 === 0 ? ' ml0':''}}" data-id={{item.typeId}} data-href={{item.typeId}}>
+                <a href="catalog.html?id={{index}}">
+                    <div class="icon">
+                        <img src="{{item.typePathOne || '../img/no-img60×60.jpg'}}" class="no_active">
+                        <img src="{{item.typePathTwo || '../img/no-img60×60.jpg'}}" class="active">
+                    </div>
+                    <span class="span">{{item.typeName}}</span>
+                </a>
+            </li>
+            {{/each}}
+        </ul>
+    </script>
     <script>
-        var queryData = {}
-        var data = [ { title: '综合政务', href: '?catalog=1',id:1, }, { title: '经济管理', href: '?catalog=2',id:2, }, { title: '国土资源', href: 'javascript:;', id:3 }, { title: '工业交通', href: 'javascript:;' }, { title: '信息产业', href: 'javascript:;' }, { title: '城乡建设', href: 'javascript:;' }, { title: '农业水利', href: 'javascript:;' }, { title: '财政收支', href: 'javascript:;' }, { title: '商业贸易', href: 'javascript:;' }, { title: '旅游服务', href: 'javascript:;' }, { title: '气象水文', href: 'javascript:;' }, { title: '对外事务', href: 'javascript:;' }, { title: '政法监察', href: 'javascript:;' }, { title: '科技教育', href: 'javascript:;' }, { title: '文化卫生', href: 'javascript:;' }, { title: '军事国防', href: 'javascript:;' }]
-        function getCatalogHtml(data) {
-            var html = '<ul class="clearfix">'
-            data.forEach(function(item, index) {
-                html += '<li class="row fl'
-                    + (index%8 === 0 ? ' ml0':'')
-                    + '"'
-                    + 'data-href="'+index+'"'
-                    + 'data-id="'+(item.id)+'"'
-                    +'>'
-                    + '<a '
-                    + 'href="'
-                    + 'catalog.html?id='
-                    + index 
-                    + '">'
-                    + '<div class="icon">'
-                    + '<img src="../img/catalog_icon/icon_'+(index+1)+'.png" class="no_active">'
-                    + '<img src="../img/catalog_icon/icon_'+(index+1)+'_on.png" class="active">'
-                    +'</div><span class="span">'
-                    + (item.title || '')
-                    + '</span></a>'
-                    + '</li>'
-            })
-            html += '</ul>';
-            return html
-        }
-        $('#catalog').html(getCatalogHtml(data)).children('ul').delegate('li', 'click', function() {
-            // alert($(this).attr('data-href'))
-            queryData.catalogId = $(this).data('id')
-            $(this).parent().children('.click').removeClass('click');
-            $(this).addClass('click')
-            // console.log(target)
-        })
+
+        // var data = [ { title: '综合政务', href: '?catalog=1',id:1, }, { title: '经济管理', href: '?catalog=2',id:2, }, { title: '国土资源', href: 'javascript:;', id:3 }, { title: '工业交通', href: 'javascript:;' }, { title: '信息产业', href: 'javascript:;' }, { title: '城乡建设', href: 'javascript:;' }, { title: '农业水利', href: 'javascript:;' }, { title: '财政收支', href: 'javascript:;' }, { title: '商业贸易', href: 'javascript:;' }, { title: '旅游服务', href: 'javascript:;' }, { title: '气象水文', href: 'javascript:;' }, { title: '对外事务', href: 'javascript:;' }, { title: '政法监察', href: 'javascript:;' }, { title: '科技教育', href: 'javascript:;' }, { title: '文化卫生', href: 'javascript:;' }, { title: '军事国防', href: 'javascript:;' }]
+        // var queryData = {}
+        // $('#catalog').html(template('catalog_list', data))
+        // $('#catalog').children('ul').delegate('li', 'click', function() {
+        //     queryData.catalogId = $(this).data('id')
+        //     $(this).parent().children('.click').removeClass('click');
+        //     $(this).addClass('click')
+        // })
     </script>
     <script>
         var newsData = {

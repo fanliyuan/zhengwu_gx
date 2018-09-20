@@ -207,6 +207,11 @@
   display: block;
   margin-bottom: 20px;
 }
+.catalog .row .icon img {
+  width: 66px;
+  height: 66px;
+  border-radius: 33px;
+}
 .catalog .row .icon .no_active {
   display: block;
 }
