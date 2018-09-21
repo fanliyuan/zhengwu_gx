@@ -40,7 +40,7 @@
             </ul>
         </div>
         <div class="card" id="card"></div>
-        <div id="pagination-container" class="pagination-container"></div>
+        <div id="pagination_container" class="pagination-container"></div>
     </div>
 
     @@include('commons/footer.html')
@@ -57,7 +57,7 @@
                     <img src="{{item.icon || '../img/new1.png'}}" alt="">
                 </div>
                 <div class="right fl">
-                    <div class="title"><a href="catalog-detail.html?id={{item.id}}">{{item.title}}</a></div>
+                    <div class="title"><a href="catalog-detail.html?id={{item.resourceId}}">{{item.title}}</a></div>
                     <div class="row">
                         <span class="label">所含格式</span>
                         {{each item.types sub}}
@@ -67,7 +67,7 @@
                     <div class="row bold">
                         <div>
                             <span class="label">更新时间</span>
-                            <span>{{item.updateTime}}</span>
+                            <span>{{item.creaetTime}}</span>
                         </div>
                         <div>
                             <span class="label">发布时间</span>
@@ -139,7 +139,7 @@
                     }
                     var cardData = [ { title: '贵阳市主要粮油副食品每日监测表', types: ['XLS', 'XML', 'JSON', 'CSV'], new: true, updateTime: '2018-1-1', publicationTime: '2013-12-2', classify: '经济管理', department: '市发改委', summary: '资源摘要：提供贵阳市主要粮油副食品日监价格，包括商品名称、规 格、单位、主要农贸市场价格、主要超市价格...' }, { title: '北京市主要粮油副食品每日监测表', types: ['XLS', 'XML', 'JSON', 'CSV'], hot: true, updateTime: '2018-2-3', publicationTime: '2013-12-2', classify: '经济管理', department: '市发改委', summary: '资源摘要：提供贵阳市主要粮油副食品日监价格，包括商品名称、规 格、单位、主要农贸市场价格、主要超市价格...' }, { title: '北京市主要粮油副食品每日监测表', types: ['XLS', 'XML', 'JSON', 'CSV'], updateTime: '2018-2-3', publicationTime: '2013-12-2', classify: '经济管理', department: '市发改委', summary: '资源摘要：提供贵阳市主要粮油副食品日监价格，包括商品名称、规 格、单位、主要农贸市场价格、主要超市价格...' }, { title: '北京市主要粮油副食品每日监测表', types: ['XLS', 'XML', 'JSON', 'CSV'], updateTime: '2018-2-3', publicationTime: '2013-12-2', classify: '经济管理', department: '市发改委', summary: '资源摘要：提供贵阳市主要粮油副食品日监价格，包括商品名称、规 格、单位、主要农贸市场价格、主要超市价格...' }, { title: '北京市主要粮油副食品每日监测表', types: ['XLS', 'XML', 'JSON', 'CSV'], updateTime: '2018-2-3', publicationTime: '2013-12-2', classify: '经济管理', department: '市发改委', summary: '资源摘要：提供贵阳市主要粮油副食品日监价格，包括商品名称、规 格、单位、主要农贸市场价格、主要超市价格...' }, { title: '北京市主要粮油副食品每日监测表', types: ['XLS', 'XML', 'JSON', 'CSV'], updateTime: '2018-2-3', publicationTime: '2013-12-2', classify: '经济管理', department: '市发改委', summary: '资源摘要：提供贵阳市主要粮油副食品日监价格，包括商品名称、规 格、单位、主要农贸市场价格、主要超市价格...' }, { title: '北京市主要粮油副食品每日监测表', types: ['XLS', 'XML', 'JSON', 'CSV'], updateTime: '2018-2-3', publicationTime: '2013-12-2', classify: '经济管理', department: '市发改委', summary: '资源摘要：提供贵阳市主要粮油副食品日监价格，包括商品名称、规 格、单位、主要农贸市场价格、主要超市价格...' }, { title: '北京市主要粮油副食品每日监测表', types: ['XLS', 'XML', 'JSON', 'CSV'], updateTime: '2018-2-3', publicationTime: '2013-12-2', classify: '经济管理', department: '市发改委', summary: '资源摘要：提供贵阳市主要粮油副食品日监价格，包括商品名称、规 格、单位、主要农贸市场价格、主要超市价格...' }, { title: '北京市主要粮油副食品每日监测表', types: ['XLS', 'XML', 'JSON', 'CSV'], updateTime: '2018-2-3', publicationTime: '2013-12-2', classify: '经济管理', department: '市发改委', summary: '资源摘要：提供贵阳市主要粮油副食品日监价格，包括商品名称、规 格、单位、主要农贸市场价格、主要超市价格...' }, { title: '北京市主要粮油副食品每日监测表', types: ['XLS', 'XML', 'JSON', 'CSV'], updateTime: '2018-2-3', publicationTime: '2013-12-2', classify: '经济管理', department: '市发改委', summary: '资源摘要：提供贵阳市主要粮油副食品日监价格，包括商品名称、规 格、单位、主要农贸市场价格、主要超市价格...' },
                     ]
-                    $('#card').html(template('card-list', cardData))
+                    // $('#card').html(template('card-list', cardData))
                     // 生成html模板字符串
                     // var html = simpleTemplating(data);
                     // // 渲染dom
@@ -155,7 +155,7 @@
                 pageLink: 'javascript:;'
             })
             }
-            createPagination()
+            // createPagination()
             // 目录等内容动态生成,这里没用模板引擎,应该用模板引擎
             var queryData = {}
             var cataId = location.search.replace('?id=', '') || 0

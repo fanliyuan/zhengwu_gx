@@ -5,6 +5,28 @@ $(function() {
     if (r != null) return unescape(r[2]);
     return null; //返回参数值
   }
+  function handleDownload(articleId) {
+    $.ajax({
+      type: "get",
+      url: "http://192.168.100.16:8805/downloadOssFile",
+      data: {
+        articleId: articleId
+      },
+      success: function(res) {
+        if (+res.code === 0) {
+          window.open(res.result.data);
+          window.location = res.result.data;
+          window.location.href = res.result.data;
+        }
+      },
+      error: function(error) {
+        console.log(error);
+      },
+      timeout: function() {
+        console.log("连接超时");
+      }
+    });
+  }
   function results(res) {
     // if (+res.code === 0) {
     if (res.length > 0) {
