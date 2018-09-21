@@ -23,6 +23,7 @@
     <div class="layout">
         <div id="list_container" class="list_container"></div>
         <div id="pagination_container" class="pagination_container"></div>
+        <!-- <div id="pagination-container" class="pagination-container"></div> -->
     </div>
     @@include('commons/footer.html')
     <script src="../js/cards.js"></script>
@@ -42,7 +43,7 @@
                 <label>时间</label>
                 <span>{{item.createOpenTime || '未知'}}</span>
                 {{if item.filePath}}
-                <a href="{{item.filePath}}" download="{{item.filePath}}" class="iconfont icon-fujian attachment">附件下载</a>
+                <span  class="iconfont icon-fujian attachment downItem" style="cursor:pointer" data-id={{item.articleId}}>附件下载</span>
                 {{/if}}
               </div>
               <div class="content">
@@ -52,78 +53,6 @@
         </li>
         {{/each}}
       </ul>
-    </script>
-    <script>
-      $(function() {
-        $('#pagination-container').pagination({
-          dataSource: function(done){
-            $.ajax({
-              type: "get",
-              url: "http://testgoveportal.tpaas.youedata.com/getColumnArtiListById",
-              data: {
-                articleCid: getUrlParam("articleCid"),
-                pageNum: pagination.pageNum,
-                pageSize: pagination.pageSize
-              },
-              success:function(res){
-                done(res.result.datas)
-              }
-            })
-          },
-          // locator: 'result.datas',
-          totalNumberLocator: function(res) {
-            return res.result.total
-          },
-          callback: function (data, pagination) {
-            console.log(data,pagination)
-            // // 数据遍历,同时替换关键字,使关键字加上标签,实现关键字变色
-            // for(var i = 0; i < data.length; i++) {
-            //   // console.log(data[i])
-            //   data[i].title=data[i].articleTitle.replace(new RegExp(keywords, 'g'),'<span class="red">'+keywords+'</span>')
-            //   // 正则替换html标签失败
-            //   // data[i].articleContent = data[i].articleContent.replace(/<[A-z]+.*?\/?>(.*?)(<\/\S?[A-z]>?)/g, RegExp.$1)
-            //   // 从html中截取文字内容300个字
-            //   data[i].articleContent = data[i].articleContent.replace(/\bsrc=".*?"[\b|>]/g,'')
-            //   var html = document.createElement('div')
-            //   html.innerHTML = data[i].articleContent
-            //   data[i].content = ''
-            //   $(html).contents().each(function(index, item) {
-            //     if (data[i].content.length>300) {
-            //       return false
-            //     }
-            //     data[i].content += item.textContent
-            //   })
-            //   var suff = ''
-            //   if (data[i].content.length > 300) {
-            //     suff = ' ···'
-            //   }
-            //   data[i].content = data[i].content.substr(0, 300)+suff
-            //   data[i].createOpenTime = moment(+data[i].createOpenTime).format('l')
-            // }
-            //   // 生成html模板字符串
-            // var html = template('list_template',data);
-            // // 渲染dom
-            // $('#data-container').html(html);
-            $("#list_container").html(template("list_template", res.result.datas));
-          },
-          pageNumber:1,
-          pageSize: 10,
-          prevText: '上一页',
-          nextText: '下一页',
-          ellipsisText: '···',
-          footer: function(currentPage, totalPage, totalNumber) {
-            return '<span class="pagination-footer">每页10条数据,'+'共'+totalPage+'页</span>'
-          },
-          pageLink: 'javascript:;',
-          alias: {
-              pageNumber: 'pageNum',
-              pageSize: 'pageSize'
-          },
-          formatAjaxError: function() {
-            console.log('访问错误')
-          }
-        })
-      })
     </script>
 </body>
 </html>

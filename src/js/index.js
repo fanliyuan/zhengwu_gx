@@ -156,7 +156,7 @@ $(function() {
   });
   $.ajax({
     type: "get",
-    url: "http://192.168.100.16:8809/directoryOpenList",
+    url: "http://192.168.100.16:8805/directoryOpenList",
     success: function(res) {
       if (+res.code === 0) {
         if (res.result.datas.length > 16) {

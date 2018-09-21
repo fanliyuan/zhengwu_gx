@@ -6,52 +6,67 @@ $(function() {
     return null; //返回参数值
   }
   function results(res) {
-    if (+res.code === 0) {
-      if (res.result.datas.length > 0) {
-        for (var i = 0; i < res.result.datas.length; i++) {
-          res.result.datas[i].articleContent = res.result.datas[
-            i
-          ].articleContent
-            .replace(/\bsrc=".*?"[\b|>]/g, "")
-            .trim();
-          res.result.datas[i].createOpenTime = moment(
-            +res.result.datas[i].createOpenTime
-          ).format("YYYY-MM-DD");
-          var divHtml = document.createElement("div");
-          divHtml.innerHTML = res.result.datas[i].articleContent;
-          res.result.datas[i].articleContent = "";
-          $(divHtml)
-            .contents()
-            .each(function(index, item) {
-              res.result.datas[i].articleContent += item.textContent;
-            });
-          if (res.result.datas[i].articleContent.length > 130) {
-            res.result.datas[i].articleContent =
-              res.result.datas[i].articleContent.substr(0, 130) + "...";
-          }
+    // if (+res.code === 0) {
+    if (res.length > 0) {
+      for (var i = 0; i < res.length; i++) {
+        res[i].articleContent = res[i].articleContent
+          .replace(/\bsrc=".*?"[\b|>]/g, "")
+          .trim();
+        res[i].createOpenTime = moment(+res[i].createOpenTime).format(
+          "YYYY-MM-DD"
+        );
+        var divHtml = document.createElement("div");
+        divHtml.innerHTML = res[i].articleContent;
+        res[i].articleContent = "";
+        $(divHtml)
+          .contents()
+          .each(function(index, item) {
+            res[i].articleContent += item.textContent;
+          });
+        if (res[i].articleContent.length > 130) {
+          res[i].articleContent = res[i].articleContent.substr(0, 130) + "...";
         }
       }
-      var itemNames = getUrlParam("name");
-      $("#list_container").html(template("list_template", res.result.datas));
     }
-  }
-  function getList(pagination) {
-    $.ajax({
-      type: "get",
-      url: "http://testgoveportal.tpaas.youedata.com/getColumnArtiListById",
-      data: {
-        articleCid: getUrlParam("articleCid"),
-        pageNum: pagination.pageNum,
-        pageSize: pagination.pageSize
-      },
-      success: results,
-      error: function(error) {
-        console.log(error);
-      },
-      timeout: function() {
-        console.log("连接超时");
-      }
+    $("#list_container").html(template("list_template", res));
+    $("#list_container .downItem").click(function() {
+      var id = $(this).attr("data-id");
+      handleDownload(id);
     });
+    // }
   }
-  getList({ pageNum: 1, pageSize: 10 });
+  // var pagination = { pageNum: 1, pageSize: 10 }
+  $("#pagination_container").pagination({
+    dataSource:
+      "http://testgoveportal.tpaas.youedata.com/getColumnArtiListById?articleCid=" +
+      getUrlParam("articleCid"),
+    locator: "result.datas",
+    totalNumberLocator: function(res) {
+      return res.result.total;
+    },
+    callback: function(data, pagination) {
+      results(data);
+    },
+    pageNumber: 1,
+    pageSize: 10,
+    prevText: "上一页",
+    nextText: "下一页",
+    ellipsisText: "···",
+    footer: function(currentPage, totalPage, totalNumber) {
+      return (
+        '<span class="pagination-footer">每页10条数据,' +
+        "共" +
+        totalPage +
+        "页</span>"
+      );
+    },
+    pageLink: "javascript:;",
+    alias: {
+      pageNumber: "pageNum",
+      pageSize: "pageSize"
+    },
+    formatAjaxError: function() {
+      console.log("访问错误");
+    }
+  });
 });
