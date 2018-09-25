@@ -183,4 +183,44 @@ $(function() {
       console.log("连接超时");
     }
   });
+  $.ajax({
+    type: "get",
+    url: "http://192.168.100.16:8805/resourceNewList",
+    success: function(res) {
+      if (+res.code === 0) {
+        if (res.result.datas.length > 4) {
+          res.result.datas = res.result.datas.slice(0, 4);
+        }
+        $(".content1 .newInstitutionSource").append(
+          template("card-list", res.result.datas)
+        );
+      }
+    },
+    error: function(error) {
+      console.log(error);
+    },
+    timeout: function() {
+      console.log("连接超时");
+    }
+  });
+  $.ajax({
+    type: "get",
+    url: "http://192.168.100.16:8805/resourceHotList",
+    success: function(res) {
+      if (+res.code === 0) {
+        if (res.result.datas.length > 4) {
+          res.result.datas = res.result.datas.slice(0, 4);
+        }
+        $(".content2 .newInstitutionSource").append(
+          template("card-list", res.result.datas)
+        );
+      }
+    },
+    error: function(error) {
+      console.log(error);
+    },
+    timeout: function() {
+      console.log("连接超时");
+    }
+  });
 });

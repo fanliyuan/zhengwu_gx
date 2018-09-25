@@ -89,22 +89,23 @@
                     <img src="{{item.icon || '../img/new1.png'}}" alt="">
                 </div>
                 <div class="item_content">
-                    <a href="catalog-detail.html?id={{item.id}}"><h2>{{item.supperTitle}}</h2></a>
+                    <a href="catalog-detail.html?id={{item.resourceId}}">
+                    <h2>{{item.resourceName}}</h2></a>
                     <ul>
                         <li>
                             所含格式:&nbsp;&nbsp;
-                            {{each item.types sub}}
-                            <span class="spe_block">{{sub}}</span>
-                            {{/each}}
+                            <!-- {{each item.types sub}} {{/each}} -->
+                            <span class="spe_block">{{item.resourceFormatClassify}}</span>
+                 
                         </li>
                         <li>
                             <ul>
-                                <li>所属主题:&nbsp;&nbsp;<span>{{item.classify}}</span></li>
-                                <li>所属部门:&nbsp;&nbsp;<span></span>{{item.department}}</span></li>
+                                <li>所属分类:&nbsp;&nbsp;<span>{{item.typeName}}</span></li>
+                                <!-- <li>所属部门:&nbsp;&nbsp;<span></span>{{item.department}}</span></li> -->
                             </ul>
                         </li>
                         <li>
-                            资源摘要:&nbsp;&nbsp;<span>{{item.summary || '暂无'}}</span>
+                            资源摘要:&nbsp;&nbsp;<span>{{item.resourceAbstract || '暂无'}}</span>
                         </li>
                     </ul>
                 </div>
@@ -125,7 +126,7 @@
                             <h1>{{item.title}}</h1>
                         </li>
                         <li class="retc_btn">
-                            <a href="{{item.url}}">查看详情</a>
+                            <a href="javascript:">查看详情</a>
                         </li>
                     </ul>
                 </div>
@@ -216,8 +217,8 @@
                 summary: '资源摘要：提供贵阳市主要粮油副食品日监价格，包括商品名称、规 格、单位、主要农贸市场价格、主要超市价格...'
             },
         ]
-        $('.content1 .newInstitutionSource').append(template('card-list', cardData))
-        $('.content2 .newInstitutionSource').append(template('card-list', cardData))
+        // $('.content1 .newInstitutionSource').append(template('card-list', cardData))
+        // $('.content2 .newInstitutionSource').append(template('card-list', cardData))
     </script>
     <script>
         var recommentData = [

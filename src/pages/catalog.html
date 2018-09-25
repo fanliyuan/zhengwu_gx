@@ -28,9 +28,11 @@
 
     <div class="layout">
         <div class="catalog" id="catalog"></div>
-        <div class="time" id="time"></div>
-        <div class="type" id="type"></div>
-        <div class="sort" id="sort">
+        <div class="time" id="times">
+        </div>
+        <div class="type" id="types">
+        </div>
+        <div class="sort" id="sorts">
             <span class="label">排序方式</span>
             <ul class="clearfix" style="display: inline-block;vertical-align: top">
                 <li class="fl row iconfont icon-paixu active" data-sort="default">默认</li>
@@ -39,7 +41,10 @@
                 <li class="fl row iconfont icon-paixu" data-sort="dataVisit">访问量</li>
             </ul>
         </div>
-        <div class="card" id="card"></div>
+        <div class="content1">
+                <div class="newInstitutionSource">
+                </div>
+            </div>
         <div id="pagination_container" class="pagination-container"></div>
     </div>
 
@@ -47,7 +52,42 @@
     <script src="../assets/art-template.js"></script>
     <script src="../js/catalog.js"></script>
     <script type="text/html" id="card-list">
-        <!-- 列表页模板 -->
+        <ul class="clear">
+        {{each $data item}}
+            <li>
+                {{if item.hot}}<div class="hot-flag"></div>{{/if}}
+                {{if item.new}}<div class="new-flag"></div>{{/if}}
+                <div class="item_img">
+                    <img src="{{item.icon || '../img/new1.png'}}" alt="">
+                </div>
+                <div class="item_content">
+                    <a href="catalog-detail.html?id={{item.resourceId}}">
+                    <h2>{{item.resourceName}}</h2></a>
+                    <ul>
+                        <li>
+                            {{if item.dataType}}
+                            所含格式:&nbsp;&nbsp;
+                            <!-- {{each item.types sub}} {{/each}} -->
+                            <span class="spe_block">{{item.dataType}}</span>
+                            {{/if}}
+                        </li>
+                        <li>
+                            <ul>
+                                <li>所属分类:&nbsp;&nbsp;<span>{{item.typeName}}</span></li>
+                                <!-- <li>所属部门:&nbsp;&nbsp;<span></span>{{item.department}}</span></li> -->
+                            </ul>
+                        </li>
+                        <li>
+                            资源摘要:&nbsp;&nbsp;<span>{{item.switchContent || '暂无'}}</span>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            {{/each}}
+        </ul>
+    </script>
+    <!-- <script type="text/html" id="card-list">
+       列表页模板 
         <ul class="clearfix">
         {{each $data item index}}
             <li class="fl item clearfix {{if index%2 === 1}}ml20{{/if}}">
@@ -57,52 +97,52 @@
                     <img src="{{item.icon || '../img/new1.png'}}" alt="">
                 </div>
                 <div class="right fl">
-                    <div class="title"><a href="catalog-detail.html?id={{item.resourceId}}">{{item.title}}</a></div>
+                    <div class="title"><a href="catalog-detail.html?id={{item.resourceId}}">{{item.resourceName}}</a></div>
                     <div class="row">
                         <span class="label">所含格式</span>
-                        {{each item.types sub}}
-                            <span class="tag">{{sub}}</span>
-                        {{/each}}
+                        {{each item.types sub}} 
+                            <span class="tag">{{item.dataType}}</span>
+                         {{/each}} 
                     </div>
                     <div class="row bold">
                         <div>
                             <span class="label">更新时间</span>
-                            <span>{{item.creaetTime}}</span>
+                            <span style="">{{item.createTime}}</span>
                         </div>
                         <div>
                             <span class="label">发布时间</span>
-                            <span>{{item.publicationTime}}</span>
+                            <span>{{item.updateTime}}</span>
                         </div>
                     </div>
                     <div class="row">
                         <div>
-                            <span class="label">所属主题</span>
-                            <span>{{item.classify}}</span>
+                            <span class="label">所属分类</span>
+                            <span>{{item.typeName}}</span>
                         </div>
-                        <div>
+                     <div>
                             <span class="label">所属部门</span>
                             <span>{{item.department}}</span>
-                        </div>
+                        </div> 
                     </div>
                     <div class="row">
-                        <p class="summary">{{item.summary || '暂无'}}</p>
+                        <p class="summary">{{item.switchContent || '暂无'}}</p>
                     </div>
                 </div>
             </li>
         {{/each}}
         </ul>
-    </script>
+    </script> -->
     <script type="text/html" id="catalog_list">
         <ul class="clearfix">
             {{each $data item index}}
-            <li class="row fl {{index%8 === 0 ? ' ml0':''}}" data-id={{item.typeId}} data-href={{item.typeId}}>
-                <a href="catalog.html?id={{index}}">
+            <li class="row fl {{index%8 === 0 ? ' ml0':''}}" data-id={{index}} data-href={{item.typeId}} style="cursor:pointer">
+                <!-- <a href="catalog.html?id={{index}}"> -->
                     <div class="icon">
                         <img src="{{item.typePathOne || '../img/no-img60×60.jpg'}}" class="no_active">
                         <img src="{{item.typePathTwo || '../img/no-img60×60.jpg'}}" class="active">
                     </div>
                     <span class="span">{{item.typeName}}</span>
-                </a>
+                <!-- </a> -->
             </li>
             {{/each}}
         </ul>
@@ -115,128 +155,21 @@
             {{/each}}
         </ul>
     </script>
-    <script>
-        $(function() {
-            // 生成分页器
-            function createPagination() {
-                var queryURI = ''
-                for(var key in queryData) {
-                    if (queryData[key] !== undefined) {
-                        queryURI+=key+'='+queryData[key]+'&'
-                    }
-                }
-                queryURI = queryURI ? '?'+queryURI.replace(/&$/,'') : ''
-                $('#pagination-container').pagination({
-                dataSource: '/fakedata1.json'+queryURI,
-                locator: 'data',
-                totalNumberLocator: function(res) {
-                return res.total
-                },
-                callback: function (data, pagination) {
-                // 数据遍历,同时替换关键字,使关键字加上标签,实现关键字变色
-                for(var i = 0; i < data.length; i++) {
-                    data[i].title=data[i].title.replace(new RegExp('keywords', 'g'),'<span class="red">'+'keywords'+'</span>')
-                    }
-                    var cardData = [ { title: '贵阳市主要粮油副食品每日监测表', types: ['XLS', 'XML', 'JSON', 'CSV'], new: true, updateTime: '2018-1-1', publicationTime: '2013-12-2', classify: '经济管理', department: '市发改委', summary: '资源摘要：提供贵阳市主要粮油副食品日监价格，包括商品名称、规 格、单位、主要农贸市场价格、主要超市价格...' }, { title: '北京市主要粮油副食品每日监测表', types: ['XLS', 'XML', 'JSON', 'CSV'], hot: true, updateTime: '2018-2-3', publicationTime: '2013-12-2', classify: '经济管理', department: '市发改委', summary: '资源摘要：提供贵阳市主要粮油副食品日监价格，包括商品名称、规 格、单位、主要农贸市场价格、主要超市价格...' }, { title: '北京市主要粮油副食品每日监测表', types: ['XLS', 'XML', 'JSON', 'CSV'], updateTime: '2018-2-3', publicationTime: '2013-12-2', classify: '经济管理', department: '市发改委', summary: '资源摘要：提供贵阳市主要粮油副食品日监价格，包括商品名称、规 格、单位、主要农贸市场价格、主要超市价格...' }, { title: '北京市主要粮油副食品每日监测表', types: ['XLS', 'XML', 'JSON', 'CSV'], updateTime: '2018-2-3', publicationTime: '2013-12-2', classify: '经济管理', department: '市发改委', summary: '资源摘要：提供贵阳市主要粮油副食品日监价格，包括商品名称、规 格、单位、主要农贸市场价格、主要超市价格...' }, { title: '北京市主要粮油副食品每日监测表', types: ['XLS', 'XML', 'JSON', 'CSV'], updateTime: '2018-2-3', publicationTime: '2013-12-2', classify: '经济管理', department: '市发改委', summary: '资源摘要：提供贵阳市主要粮油副食品日监价格，包括商品名称、规 格、单位、主要农贸市场价格、主要超市价格...' }, { title: '北京市主要粮油副食品每日监测表', types: ['XLS', 'XML', 'JSON', 'CSV'], updateTime: '2018-2-3', publicationTime: '2013-12-2', classify: '经济管理', department: '市发改委', summary: '资源摘要：提供贵阳市主要粮油副食品日监价格，包括商品名称、规 格、单位、主要农贸市场价格、主要超市价格...' }, { title: '北京市主要粮油副食品每日监测表', types: ['XLS', 'XML', 'JSON', 'CSV'], updateTime: '2018-2-3', publicationTime: '2013-12-2', classify: '经济管理', department: '市发改委', summary: '资源摘要：提供贵阳市主要粮油副食品日监价格，包括商品名称、规 格、单位、主要农贸市场价格、主要超市价格...' }, { title: '北京市主要粮油副食品每日监测表', types: ['XLS', 'XML', 'JSON', 'CSV'], updateTime: '2018-2-3', publicationTime: '2013-12-2', classify: '经济管理', department: '市发改委', summary: '资源摘要：提供贵阳市主要粮油副食品日监价格，包括商品名称、规 格、单位、主要农贸市场价格、主要超市价格...' }, { title: '北京市主要粮油副食品每日监测表', types: ['XLS', 'XML', 'JSON', 'CSV'], updateTime: '2018-2-3', publicationTime: '2013-12-2', classify: '经济管理', department: '市发改委', summary: '资源摘要：提供贵阳市主要粮油副食品日监价格，包括商品名称、规 格、单位、主要农贸市场价格、主要超市价格...' }, { title: '北京市主要粮油副食品每日监测表', types: ['XLS', 'XML', 'JSON', 'CSV'], updateTime: '2018-2-3', publicationTime: '2013-12-2', classify: '经济管理', department: '市发改委', summary: '资源摘要：提供贵阳市主要粮油副食品日监价格，包括商品名称、规 格、单位、主要农贸市场价格、主要超市价格...' },
-                    ]
-                    // $('#card').html(template('card-list', cardData))
-                    // 生成html模板字符串
-                    // var html = simpleTemplating(data);
-                    // // 渲染dom
-                    // $('#data-container').html(html);
-                },
-                pageSize: 10,
-                prevText: '上一页',
-                nextText: '下一页',
-                ellipsisText: '···',
-                footer: function(currentPage, totalPage, totalNumber) {
-                return '<span class="pagination-footer">每页10条数据,'+'共'+totalPage+'页</span>'
-                },
-                pageLink: 'javascript:;'
-            })
-            }
-            // createPagination()
-            // 目录等内容动态生成,这里没用模板引擎,应该用模板引擎
-            var queryData = {}
-            var cataId = location.search.replace('?id=', '') || 0
-            // var data = [ { title: '综合政务', href: '?catalog=1',id:1, }, { title: '经济管理', href: '?catalog=2',id:2, }, { title: '国土资源', href: 'javascript:;', id:3 }, { title: '工业交通', href: 'javascript:;' }, { title: '信息产业', href: 'javascript:;' }, { title: '城乡建设', href: 'javascript:;' }, { title: '农业水利', href: 'javascript:;' }, { title: '财政收支', href: 'javascript:;' }, { title: '商业贸易', href: 'javascript:;' }, { title: '旅游服务', href: 'javascript:;' }, { title: '气象水文', href: 'javascript:;' }, { title: '对外事务', href: 'javascript:;' }, { title: '政法监察', href: 'javascript:;' }, { title: '科技教育', href: 'javascript:;' }, { title: '文化卫生', href: 'javascript:;' }, { title: '军事国防', href: 'javascript:;' }]
-            // function getCatalogHtml(data) {
-            //     var html = '<ul class="clearfix">'
-            //     data.forEach(function(item, index) {
-            //         html += '<li class="row fl'
-            //             + (index%8 === 0 ? ' ml0':'')
-            //             + (index === +cataId ? ' click':'')
-            //             + '"'
-            //             + 'data-href="'+index+'"'
-            //             + 'data-id="'+(item.id)+'"'
-            //             +'>'
-            //             + '<a '
-            //             + 'href="'
-            //             + 'javascript:;'
-            //             + '">'
-            //             + '<div class="icon">'
-            //             + '<img src="../img/catalog_icon/icon_'+(index+1)+'.png" class="no_active">'
-            //             + '<img src="../img/catalog_icon/icon_'+(index+1)+'_on.png" class="active">'
-            //             +'</div><span class="span">'
-            //             + (item.title || '')
-            //             + '</span></a>'
-            //             + '</li>'
-            //     })
-            //     html += '</ul>';
-            //     return html
-            // }
-            // $('#catalog').html(getCatalogHtml(data)).children('ul').delegate('li', 'click', function() {
-            //     // alert($(this).attr('data-href'))
-            //     queryData.catalogId = $(this).data('id')
-            //     createPagination()
-            //     $(this).parent().children('.click').removeClass('click');
-            //     $(this).addClass('click')
-            //     // console.log(target)
-            // })
-            var timeData = ['全部', 2018, 2017, 2016, 2015, 2014, 2013, 2012]
-            function getTimeHtml(data) {
-                var html = '<span class="label">选择时间</span><ul class="clearfix" style="display: inline-block;vertical-align: top;">'
-                data.forEach(function(item, index) {
-                    html += '<li class="row fl'+(index===0?" active":"")+'" data-time="'+item+'">'+item+'</li>'
-                })
-                return html+'</ul>'
-            }
-            $('#time').html(getTimeHtml(timeData)).children('ul').delegate('li', 'click', function() {
-                // alert($(this).attr('data-time'))
-                queryData.time = $(this).data('time')
-                $(this).parent().children('.active').removeClass('active');
-                $(this).addClass('active')
-                createPagination()
-            })
-            var typeData = ['全部', 'XLS', 'XML', 'JSON', 'CSV']
-            function getTypeHtml(data) {
-                var html = '<span class="label">格式分类</span><ul class="clearfix" style="display: inline-block;vertical-align: top;">'
-                data.forEach(function(item, index) {
-                    html += '<li class="row fl'+(index===0?" active":"")+'" data-type="'+item+'">'+item+'</li>'
-                })
-                return html+'</ul>'
-            }
-            $('#type').html(getTypeHtml(typeData)).delegate('li', 'click', function(){
-                // alert($(this).attr('data-type'))
-                queryData.type = $(this).data('type')
-                $(this).parent().children('.active').removeClass('active');
-                $(this).addClass('active')
-                createPagination()
-            })
-            $('#sort').delegate('li', 'click', function() {
-                // alert($(this).html())
-                queryData.sort = $(this).data('sort')
-                $(this).parent().children('.active').removeClass('active');
-                $(this).addClass('active')
-                createPagination()
-            })
-            
-
-            // 列表页面生成
-            var cardData =[]
-            $('#card').html(template('card-list', cardData))
-            // 分页功能
-        })
+    <script type="text/html" id="type_list">
+        <span class="label">格式分类</span>
+        <ul class="clearfix" style="display: inline-block;vertical-align: top;">
+            {{each $data item index}}
+            <li class="row fl {{index===0 ? 'active' : ''}}" data-type={{item}}>{{item}}</li>
+            {{/each}}
+        </ul>
     </script>
+    <!-- <script type="text/html" id="sort_list">
+        <span class="label">选择时间</span>
+        <ul class="clearfix" style="display: inline-block;vertical-align: top;">
+            {{each $data item index}}
+            <li class="row fl {{index===0 ? 'active' : ''}}" data-time={{item}}>{{item}}</li>
+            {{/each}}
+        </ul>
+    </script> -->
 </body>
 </html>
