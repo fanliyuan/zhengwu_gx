@@ -96,10 +96,10 @@
                 <tbody>
                     {{each $data item index}}
                     <tr>
-                        <td>{{item.resourceItemCode}} || '暂无'</td>
-                        <td>{{item.resourceItemName}} || '暂无'</td>
-                        <td>{{item.resourceType}} || '暂无'</td>
-                        <td>{{item.resourceLength}} || '暂无'</td>
+                        <td>{{item.resourceItemCode || '暂无'}}</td>
+                        <td>{{item.resourceItemName || '暂无'}}</td>
+                        <td>{{item.resourceType || '暂无'}}</td>
+                        <td>{{item.resourceLength || '暂无'}}</td>
                     </tr>
                     {{/each}}
                 </tbody>

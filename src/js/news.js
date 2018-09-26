@@ -268,6 +268,7 @@ $(function() {
         if (!res.result.datas) {
           res.result.datas = [];
         }
+        console.log(res.result);
         for (var i = 0; i < res.result.datas.length; i++) {
           res.result.datas[i].articleContent = res.result.datas[
             i
