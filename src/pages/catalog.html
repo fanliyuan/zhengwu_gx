@@ -65,15 +65,13 @@
                     <h2>{{item.resourceName}}</h2></a>
                     <ul>
                         <li>
-                            {{if item.dataType}}
                             所含格式:&nbsp;&nbsp;
                             <!-- {{each item.types sub}} {{/each}} -->
-                            <span class="spe_block">{{item.dataType}}</span>
-                            {{/if}}
+                            <span class="spe_block">{{item.dataType || '暂无'}}</span>
                         </li>
                         <li>
                             <ul>
-                                <li>所属分类:&nbsp;&nbsp;<span>{{item.typeName}}</span></li>
+                                <li>所属分类:&nbsp;&nbsp;<span>{{item.typeName || '暂无'}}</span></li>
                                 <!-- <li>所属部门:&nbsp;&nbsp;<span></span>{{item.department}}</span></li> -->
                             </ul>
                         </li>
