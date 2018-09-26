@@ -1,3 +1,9 @@
+/*
+ * @Author: mikey.zhaopeng 
+ * @Date: 2018-09-26 17:22:08 
+ * @Last Modified by:   mikey.zhaopeng 
+ * @Last Modified time: 2018-09-26 17:22:08 
+ */
 $(function() {
   var queryData = {};
   function getList(queryData) {

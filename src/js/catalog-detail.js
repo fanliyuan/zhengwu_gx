@@ -1,3 +1,9 @@
+/*
+ * @Author: mikey.zhaopeng 
+ * @Date: 2018-09-26 17:24:15 
+ * @Last Modified by:   mikey.zhaopeng 
+ * @Last Modified time: 2018-09-26 17:24:15 
+ */
 $(function() {
   function getUrlParam(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象

@@ -14,7 +14,7 @@ $(function() {
       },
       success: function(res) {
         if (+res.code === 0) {
-          window.open(res.result.data);
+          // window.open(res.result.data);
           window.location = res.result.data;
           window.location.href = res.result.data;
         }
