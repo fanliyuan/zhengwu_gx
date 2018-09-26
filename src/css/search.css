@@ -1,6 +1,7 @@
 .data-container {
   width: 1200px;
   margin: 0 auto;
+  min-height: 352px;
 }
 .search-title {
   margin-top: 40px;

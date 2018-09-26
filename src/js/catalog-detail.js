@@ -14,6 +14,9 @@ $(function() {
         $("#detail .info").html(
           template("detail-template", JSON.parse(res.data))
         );
+        // $("#detail .info").children(".downloadBtn").click(function(){
+
+        // })
       }
     },
     error: function(error) {
@@ -30,6 +33,27 @@ $(function() {
     success: function(res) {
       if (+res.code === 0) {
         $("#detail .info_footer").html(template("code_list", res.data));
+      }
+    },
+    error: function(error) {
+      console.log(error);
+    },
+    timeout: function() {
+      console.log("连接超时");
+    }
+  });
+  $.ajax({
+    type: "get",
+    url: "http://192.168.100.16:8805/getReqBeanEntityInfo",
+    data: { id: "60f68572f608491896959e720c289eff" },
+    success: function(res) {
+      if (+res.code === 200) {
+        $("#detail .info").on("click", ".downloadBtn", function() {
+          var hrefs = "http://cdyoue.com.cn:19081/connector/" + "jdbc-20";
+          // window.open(hrefs);
+          window.location = hrefs;
+          window.location.href = hrefs;
+        });
       }
     },
     error: function(error) {
