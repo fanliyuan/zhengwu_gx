@@ -265,6 +265,9 @@ $(function() {
     url: "http://testgoveportal.tpaas.youedata.com/articleHotList",
     success: function(res) {
       if (+res.code === 0) {
+        if (!res.result.datas) {
+          res.result.datas = [];
+        }
         for (var i = 0; i < res.result.datas.length; i++) {
           res.result.datas[i].articleContent = res.result.datas[
             i

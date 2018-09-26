@@ -53,17 +53,17 @@ $(function() {
         // var queryData = {}
         $("#catalog").html(template("catalog_list", res.result.datas));
 
-        $("#catalog li").each(function(item, index) {
+        $("#catalog li").each(function(index, item) {
           if (
-            (getUrlParam("id") || +getUrlParam("id") === 0) &&
+            (getUrlParam("id") || getUrlParam("id") === 0) &&
             +$(item).attr("data-id") === +getUrlParam("id")
           ) {
             $(item).addClass("click");
             queryData.typeId = $(item).attr("data-href");
           } else if (
             !getUrlParam("id") &&
-            +getUrlParam("id") !== 0 &&
-            +$(item).attr("data-id") === 0
+            getUrlParam("id") !== 0 &&
+            +index === 0
           ) {
             $(item).addClass("click");
             queryData.typeId = $(item).attr("data-href");
