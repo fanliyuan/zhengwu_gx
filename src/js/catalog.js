@@ -3,7 +3,7 @@ $(function() {
   function getList(queryData) {
     $("#pagination_container").pagination({
       dataSource:
-        "http://192.168.100.16:8805/listResourceBasicByType?typeId=" +
+        "http://testgoveportal.tpaas.youedata.com/listResourceBasicByType?typeId=" +
         (queryData.typeId ? queryData.typeId : null),
       locator: "data.rows",
       totalNumberLocator: function(res) {
@@ -43,7 +43,7 @@ $(function() {
   }
   $.ajax({
     type: "get",
-    url: "http://192.168.100.16:8805/directoryOpenList",
+    url: "http://testgoveportal.tpaas.youedata.com/directoryOpenList",
     success: function(res) {
       if (+res.code === 0) {
         if (res.result.datas.length > 16) {
@@ -52,12 +52,24 @@ $(function() {
         // var typeId = 0;
         // var queryData = {}
         $("#catalog").html(template("catalog_list", res.result.datas));
+
         $("#catalog li").each(function(item, index) {
-          if (+$(this).attr("data-id") === +getUrlParam("id")) {
-            $(this).addClass("click");
-            queryData.typeId = $(this).attr("data-href");
+          if (
+            (getUrlParam("id") || +getUrlParam("id") === 0) &&
+            +$(item).attr("data-id") === +getUrlParam("id")
+          ) {
+            $(item).addClass("click");
+            queryData.typeId = $(item).attr("data-href");
+          } else if (
+            !getUrlParam("id") &&
+            +getUrlParam("id") !== 0 &&
+            +$(item).attr("data-id") === 0
+          ) {
+            $(item).addClass("click");
+            queryData.typeId = $(item).attr("data-href");
           }
         });
+
         getList(queryData);
         $("#catalog")
           .children("ul")

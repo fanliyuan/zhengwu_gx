@@ -7,7 +7,7 @@ $(function() {
   }
   $.ajax({
     type: "get",
-    url: "http://192.168.100.16:8805/getResourceTypeById",
+    url: "http://testgoveportal.tpaas.youedata.com/getResourceTypeById",
     data: { resourceId: getUrlParam("id") },
     success: function(res) {
       if (+res.code === 0) {
@@ -25,7 +25,7 @@ $(function() {
   });
   $.ajax({
     type: "get",
-    url: "http://192.168.100.16:8805/getResourceItemList",
+    url: "http://testgoveportal.tpaas.youedata.com/getResourceItemList",
     data: { limit: 10, index: 1, resourceId: getUrlParam("id") },
     success: function(res) {
       if (+res.code === 0) {

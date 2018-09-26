@@ -8,7 +8,7 @@ $(function() {
   function handleDownload(articleId) {
     $.ajax({
       type: "get",
-      url: "http://192.168.100.16:8805/downloadOssFile",
+      url: "http://testgoveportal.tpaas.youedata.com/downloadOssFile",
       data: {
         articleId: articleId
       },

@@ -264,26 +264,30 @@ $(function() {
     type: "get",
     url: "http://testgoveportal.tpaas.youedata.com/articleHotList",
     success: function(res) {
-      for (var i = 0; i < res.result.datas.length; i++) {
-        res.result.datas[i].articleContent = res.result.datas[i].articleContent
-          .replace(/\bsrc=".*?"[\b|>]/g, "")
-          .trim();
-        var divHtml = document.createElement("div");
-        divHtml.innerHTML = res.result.datas[i].articleContent;
-        res.result.datas[i].articleContent = "";
-        $(divHtml)
-          .contents()
-          .each(function(index, item) {
-            res.result.datas[i].articleContent += item.textContent;
-          });
-        if (res.result.datas[i].articleContent.length > 17) {
-          res.result.datas[i].articleContent =
-            res.result.datas[i].articleContent.substr(0, 17) + "...";
+      if (+res.code === 0) {
+        for (var i = 0; i < res.result.datas.length; i++) {
+          res.result.datas[i].articleContent = res.result.datas[
+            i
+          ].articleContent
+            .replace(/\bsrc=".*?"[\b|>]/g, "")
+            .trim();
+          var divHtml = document.createElement("div");
+          divHtml.innerHTML = res.result.datas[i].articleContent;
+          res.result.datas[i].articleContent = "";
+          $(divHtml)
+            .contents()
+            .each(function(index, item) {
+              res.result.datas[i].articleContent += item.textContent;
+            });
+          if (res.result.datas[i].articleContent.length > 17) {
+            res.result.datas[i].articleContent =
+              res.result.datas[i].articleContent.substr(0, 17) + "...";
+          }
         }
+        $(".hotItem .newInstitutionSource").append(
+          template("hot_zt", res.result.datas)
+        );
       }
-      $(".hotItem .newInstitutionSource").append(
-        template("hot_zt", res.result.datas)
-      );
     },
     error: function(error) {
       console.log(error);

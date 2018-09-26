@@ -156,7 +156,7 @@ $(function() {
   });
   $.ajax({
     type: "get",
-    url: "http://192.168.100.16:8805/directoryOpenList",
+    url: "http://testgoveportal.tpaas.youedata.com/directoryOpenList",
     success: function(res) {
       if (+res.code === 0) {
         if (res.result.datas.length > 16) {
@@ -185,7 +185,7 @@ $(function() {
   });
   $.ajax({
     type: "get",
-    url: "http://192.168.100.16:8805/resourceNewList",
+    url: "http://testgoveportal.tpaas.youedata.com/resourceNewList",
     success: function(res) {
       if (+res.code === 0) {
         if (res.result.datas.length > 4) {
@@ -205,7 +205,7 @@ $(function() {
   });
   $.ajax({
     type: "get",
-    url: "http://192.168.100.16:8805/resourceHotList",
+    url: "http://testgoveportal.tpaas.youedata.com/resourceHotList",
     success: function(res) {
       if (+res.code === 0) {
         if (res.result.datas.length > 4) {
