@@ -55,7 +55,7 @@ $(function() {
     type: "get",
     url: "http://testgoveportal.tpaas.youedata.com/getColumnArtiListById",
     // dataType:'jsonp',
-    data: { articleCid: 13, pageNum: 1, pageSize: 10 },
+    data: { articleCid: 6, pageNum: 1, pageSize: 10 },
     success: function(res) {
       if (+res.code === 0) {
         if (res.result.datas.length > 0) {
@@ -157,7 +157,7 @@ $(function() {
     type: "get",
     url: "http://testgoveportal.tpaas.youedata.com/getColumnArtiListById",
     // dataType:'jsonp',
-    data: { articleCid: 15, pageNum: 1, pageSize: 10 },
+    data: { articleCid: 7, pageNum: 1, pageSize: 10 },
     success: function(res) {
       if (+res.code === 0) {
         if (res.result.datas.length > 0) {
@@ -207,7 +207,7 @@ $(function() {
     type: "get",
     url: "http://testgoveportal.tpaas.youedata.com/getColumnArtiListById",
     // dataType:'jsonp',
-    data: { articleCid: 11, pageNum: 1, pageSize: 10 },
+    data: { articleCid: 8, pageNum: 1, pageSize: 10 },
     success: function(res) {
       if (+res.code === 0) {
         if (res.result.datas.length > 0) {
@@ -235,7 +235,7 @@ $(function() {
     type: "get",
     url: "http://testgoveportal.tpaas.youedata.com/getColumnArtiListById",
     // dataType:'jsonp',
-    data: { articleCid: 12, pageNum: 1, pageSize: 10 },
+    data: { articleCid: 9, pageNum: 1, pageSize: 10 },
     success: function(res) {
       if (+res.code === 0) {
         if (res.result.datas.length > 0) {
