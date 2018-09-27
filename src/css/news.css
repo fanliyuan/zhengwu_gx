@@ -169,6 +169,7 @@
   width: 285px;
   height: 180px;
   font-size: 14px;
+  vertical-align: middle;
 }
 .hotItem li + li {
   margin-left: 20px;
