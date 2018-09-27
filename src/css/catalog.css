@@ -293,6 +293,7 @@
   width: 1200px;
   margin: 0 auto;
   padding: 0 0 30px;
+  min-height: 334px;
 }
 * {
   box-sizing: border-box;
