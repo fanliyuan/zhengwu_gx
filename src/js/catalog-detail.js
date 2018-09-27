@@ -2,7 +2,7 @@
  * @Author: mikey.zhaopeng 
  * @Date: 2018-09-26 17:24:15 
  * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2018-09-27 13:33:49
+ * @Last Modified time: 2018-09-27 16:10:01
  */
 $(function() {
   function getUrlParam(name) {
@@ -51,10 +51,10 @@ $(function() {
   $.ajax({
     type: "get",
     url: "http://testgoveportal.tpaas.youedata.com/getReqBeanEntityInfo",
-    data: { id: "60f68572f608491896959e720c289eff" },
+    data: { id: getUrlParam("id") },
     success: function(res) {
       if (+res.code === 200) {
-        var cs = res.data.name ? res.data.name : "jdbc-20";
+        var cs = res.data.kafkaTopic ? res.data.kafkaTopic : "jdbc-20";
         $("#detail .info").on("click", ".downloadBtn", function() {
           var hrefs = "http://cdyoue.com.cn:19081/connector/" + cs;
           // window.open(hrefs);

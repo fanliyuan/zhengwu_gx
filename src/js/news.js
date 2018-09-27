@@ -8,7 +8,11 @@ $(function() {
       if (+res.code === 0) {
         var datas = [];
         for (var i = 0; i < res.result.datas.length; i++) {
-          datas.push(res.result.datas[i].imagePath);
+          var zc = {
+            img: res.result.datas[i].imagePath,
+            address: res.result.datas[i].imgAddress
+          };
+          datas.push(zc);
         }
         $(".contentN1 .news_img").html(template("carousel-list", datas));
         if (res.result.datas.length <= 1) {
