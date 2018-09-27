@@ -1,8 +1,8 @@
 /*
  * @Author: mikey.zhaopeng 
  * @Date: 2018-09-26 17:24:15 
- * @Last Modified by:   mikey.zhaopeng 
- * @Last Modified time: 2018-09-26 17:24:15 
+ * @Last Modified by: mikey.zhaopeng
+ * @Last Modified time: 2018-09-27 13:30:39
  */
 $(function() {
   function getUrlParam(name) {
@@ -50,12 +50,12 @@ $(function() {
   });
   $.ajax({
     type: "get",
-    url: "http://192.168.100.16:8805/getReqBeanEntityInfo",
+    url: "http://testgoveportal.tpaas.youedata.com/getReqBeanEntityInfo",
     data: { id: "60f68572f608491896959e720c289eff" },
     success: function(res) {
       if (+res.code === 200) {
         $("#detail .info").on("click", ".downloadBtn", function() {
-          var hrefs = "http://cdyoue.com.cn:19081/connector/" + "jdbc-20";
+          var hrefs = "http://cdyoue.com.cn:19081/connector/" + res.data.name;
           // window.open(hrefs);
           window.location = hrefs;
           window.location.href = hrefs;
