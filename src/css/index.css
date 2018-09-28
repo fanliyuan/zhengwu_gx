@@ -340,3 +340,12 @@
   max-width: 100px;
   /* transform:translate(-50%,0); */
 }
+.swiper-pagination-bullet {
+  background: #cdcfd2 !important;
+  opacity: 1 !important;
+  width: 10px !important;
+  height: 10px !important;
+}
+.swiper-pagination-bullet-active {
+  background: #ffb43f !important;
+}

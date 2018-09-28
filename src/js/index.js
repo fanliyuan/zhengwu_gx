@@ -143,6 +143,7 @@ $(function() {
           loop: true,
           observeParents: true,
           autoplay: 5000,
+          paginationClickable: true,
           autoplayDisableOnInteraction: false,
           // 如果需要分页器
           pagination: ".swiper-pagination",

@@ -10,7 +10,8 @@ $(function() {
         for (var i = 0; i < res.result.datas.length; i++) {
           var zc = {
             img: res.result.datas[i].imagePath,
-            address: res.result.datas[i].imgAddress
+            address: res.result.datas[i].imgAddress,
+            name: res.result.datas[i].imgName
           };
           datas.push(zc);
         }
@@ -40,7 +41,11 @@ $(function() {
           loop: true,
           observeParents: true,
           autoplay: 5000,
+          paginationClickable: true,
           autoplayDisableOnInteraction: false,
+          paginationBulletRender: function(swiper, index, className) {
+            return '<span class="' + className + '">' + "</span>";
+          },
           // 如果需要分页器
           pagination: ".swiper-pagination",
           prevButton: ".swiper-button-prev",
