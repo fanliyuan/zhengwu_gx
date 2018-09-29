@@ -2,7 +2,7 @@
  * @Author: mikey.zhaopeng 
  * @Date: 2018-09-26 17:24:15 
  * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2018-09-29 17:37:45
+ * @Last Modified time: 2018-09-29 18:41:44
  */
 $(function() {
   function getUrlParam(name) {
@@ -56,7 +56,8 @@ $(function() {
       if (+res.code === 200) {
         var cs = res.data && res.data.kafkaTopic ? res.data.kafkaTopic : "";
         $("#detail .info").on("click", ".downloadBtn", function() {
-          var hrefs = "http://cdyoue.com.cn:19081/connector/" + cs + ".json";
+          var hrefs =
+            "http://cdyoue.com.cn:19081/connector/" + cs + ".json.data";
           // window.open(hrefs);
           window.location = hrefs;
           window.location.href = hrefs;
