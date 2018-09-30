@@ -228,4 +228,32 @@ $(function() {
       console.log("连接超时");
     }
   });
+  $.ajax({
+    type: "get",
+    url: "http://192.168.100.16:8805/columnList",
+    // dataType:'jsonp',
+    // data: { articleCid: 5, pageNum: 1, pageSize: 10 },
+    success: function(res) {
+      if (+res.code === 0) {
+        for (var i = 0; i < res.result.datas.length; i++) {
+          if (+res.result.datas[i].columnId === 1) {
+            var lmdata = res.result.datas[i].children;
+            for (var j = 0; j < lmdata.length; j++) {
+              if (+lmdata[j].columnId === 5) {
+                $(".content5 .title_5 span").html(lmdata[j].columnPage);
+              } else if (+lmdata[j].columnId === 4) {
+                $(".content5 .title_4 span").html(lmdata[j].columnPage);
+              }
+            }
+          }
+        }
+      }
+    },
+    error: function(error) {
+      console.log(error);
+    },
+    timeout: function() {
+      console.log("连接超时");
+    }
+  });
 });

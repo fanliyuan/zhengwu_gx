@@ -252,7 +252,6 @@ $(function() {
             res.result.datas[i].createOpenTime = moment(
               +res.result.datas[i].createOpenTime
             ).format("YYYY-MM-DD");
-            console.log(res.result.datas[i].createOpenTime);
             if (res.result.datas[i].articleTitle.length > 30) {
               res.result.datas[i].articleTitle =
                 res.result.datas[i].articleTitle.substr(0, 30).trim() + "...";
@@ -300,6 +299,42 @@ $(function() {
         $(".hotItem .newInstitutionSource").append(
           template("hot_zt", res.result.datas)
         );
+      }
+    },
+    error: function(error) {
+      console.log(error);
+    },
+    timeout: function() {
+      console.log("连接超时");
+    }
+  });
+  $.ajax({
+    type: "get",
+    url: "http://192.168.100.16:8805/columnList",
+    // dataType:'jsonp',
+    // data: { articleCid: 5, pageNum: 1, pageSize: 10 },
+    success: function(res) {
+      if (+res.code === 0) {
+        for (var i = 0; i < res.result.datas.length; i++) {
+          if (+res.result.datas[i].columnId === 2) {
+            var lmdata = res.result.datas[i].children;
+            for (var j = 0; j < lmdata.length; j++) {
+              if (+lmdata[j].columnId === 6) {
+                $(".zxdt span").html(lmdata[j].columnPage);
+              } else if (+lmdata[j].columnId === 7) {
+                $(".tzgg span").html(lmdata[j].columnPage);
+              } else if (+lmdata[j].columnId === 8) {
+                $(".zxzc span").html(lmdata[j].columnPage);
+              } else if (+lmdata[j].columnId === 9) {
+                $(".zcjd span").html(lmdata[j].columnPage);
+              } else if (+lmdata[j].columnId === 10) {
+                $(".zyxw span").html(lmdata[j].columnPage);
+              } else if (+lmdata[j].columnId === 11) {
+                $(".hotItem .rmzt span").html(lmdata[j].columnPage);
+              }
+            }
+          }
+        }
       }
     },
     error: function(error) {
