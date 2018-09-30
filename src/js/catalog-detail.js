@@ -2,7 +2,7 @@
  * @Author: mikey.zhaopeng 
  * @Date: 2018-09-26 17:24:15 
  * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2018-09-29 18:41:44
+ * @Last Modified time: 2018-09-30 12:41:33
  */
 $(function() {
   function getUrlParam(name) {
@@ -48,9 +48,20 @@ $(function() {
       console.log("连接超时");
     }
   });
+  function downloadFile(url) {
+    try {
+      var elemIF = document.createElement("iframe");
+      elemIF.src = url;
+      elemIF.style.display = "none";
+      document.body.appendChild(elemIF);
+    } catch (e) {
+      zzrw.alert("下载异常！");
+    }
+  }
   $.ajax({
     type: "get",
     url: "http://testgoveportal.tpaas.youedata.com/getReqBeanEntityInfo",
+    // url: "http://192.168.100.16:8805/getReqBeanEntityInfo",
     data: { id: getUrlParam("id") },
     success: function(res) {
       if (+res.code === 200) {
@@ -59,10 +70,17 @@ $(function() {
           var hrefs =
             "http://cdyoue.com.cn:19081/connector/" + cs + ".json.data";
           // window.open(hrefs);
-          window.location = hrefs;
-          window.location.href = hrefs;
-          // $(".fjdownLoad").attr("download",hrefs);
-          // $(".fjdownLoad").attr("href",hrefs);
+          // window.location = hrefs;
+          // window.location.href = hrefs;
+          var $eleForm = $("<form method='get'></form>");
+
+          $eleForm.attr("action", hrefs);
+
+          $(document.body).append($eleForm);
+
+          //提交表单，实现下载
+          $eleForm.submit();
+          // downloadFile(hrefs)
         });
       }
     },
