@@ -310,7 +310,7 @@ $(function() {
   });
   $.ajax({
     type: "get",
-    url: "http://192.168.100.16:8805/columnList",
+    url: "http://testgoveportal.tpaas.youedata.com/columnList",
     // dataType:'jsonp',
     // data: { articleCid: 5, pageNum: 1, pageSize: 10 },
     success: function(res) {
