@@ -1,4 +1,6 @@
 $(function() {
+  // var urlBase = 'http://192.168.100.16:8804/zwjh/api/v1';
+  var urlBase = "http://testgoveportal.tpaas.youedata.com";
   function getUrlParam(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
     var r = window.location.search.substr(1).match(reg); //匹配目标参数
@@ -8,7 +10,7 @@ $(function() {
   function handleDownload(articleId) {
     $.ajax({
       type: "get",
-      url: "http://testgoveportal.tpaas.youedata.com/downloadOssFile",
+      url: urlBase + "/downloadOssFile",
       data: {
         articleId: articleId
       },
@@ -60,7 +62,8 @@ $(function() {
   // var pagination = { pageNum: 1, pageSize: 10 }
   $("#pagination_container").pagination({
     dataSource:
-      "http://testgoveportal.tpaas.youedata.com/getColumnArtiListById?articleCid=" +
+      urlBase +
+      "/getColumnArtiListById?articleCid=" +
       getUrlParam("articleCid"),
     locator: "result.datas",
     totalNumberLocator: function(res) {

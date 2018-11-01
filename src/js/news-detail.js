@@ -1,4 +1,6 @@
 $(function() {
+  // var urlBase = 'http://192.168.100.16:8804/zwjh/api/v1';
+  var urlBase = "http://testgoveportal.tpaas.youedata.com";
   function getUrlParam(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
     var r = window.location.search.substr(1).match(reg); //匹配目标参数
@@ -7,7 +9,7 @@ $(function() {
   }
   $.ajax({
     type: "get",
-    url: "http://testgoveportal.tpaas.youedata.com/getArtiInfoById", //http://testgoveportal.tpaas.youedata.com
+    url: urlBase + "/getArtiInfoById", //http://testgoveportal.tpaas.youedata.com
     data: { articleId: getUrlParam("id") },
     success: function(res) {
       res.result.data.createOpenTime = moment(

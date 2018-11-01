@@ -2,9 +2,11 @@
  * @Author: mikey.zhaopeng 
  * @Date: 2018-09-26 17:24:15 
  * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2018-09-30 12:41:33
+ * @Last Modified time: 2018-11-01 18:01:50
  */
 $(function() {
+  // var urlBase = 'http://192.168.100.16:8804/zwjh/api/v1';
+  var urlBase = "http://testgoveportal.tpaas.youedata.com";
   function getUrlParam(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
     var r = window.location.search.substr(1).match(reg); //匹配目标参数
@@ -13,7 +15,7 @@ $(function() {
   }
   $.ajax({
     type: "get",
-    url: "http://testgoveportal.tpaas.youedata.com/getResourceTypeById",
+    url: urlBase + "/getResourceTypeById",
     data: { resourceId: getUrlParam("id") },
     success: function(res) {
       if (+res.code === 0) {
@@ -34,7 +36,7 @@ $(function() {
   });
   $.ajax({
     type: "get",
-    url: "http://testgoveportal.tpaas.youedata.com/getResourceItemList",
+    url: urlBase + "/getResourceItemList",
     data: { limit: 10, index: 1, resourceId: getUrlParam("id") },
     success: function(res) {
       if (+res.code === 0) {
@@ -60,7 +62,7 @@ $(function() {
   }
   $.ajax({
     type: "get",
-    url: "http://testgoveportal.tpaas.youedata.com/getReqBeanEntityInfo",
+    url: urlBase + "/getReqBeanEntityInfo",
     // url: "http://192.168.100.16:8805/getReqBeanEntityInfo",
     data: { id: getUrlParam("id") },
     success: function(res) {

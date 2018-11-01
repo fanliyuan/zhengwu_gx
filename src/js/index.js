@@ -1,4 +1,6 @@
 $(function() {
+  // var urlBase = 'http://192.168.100.16:8804/zwjh/api/v1';
+  var urlBase = "http://testgoveportal.tpaas.youedata.com";
   function results(res) {
     if (+res.code === 0) {
       if (res.result.datas.length > 0) {
@@ -39,7 +41,7 @@ $(function() {
   }
   $.ajax({
     type: "get",
-    url: "http://testgoveportal.tpaas.youedata.com/getColumnArtiListById",
+    url: urlBase + "/getColumnArtiListById",
     // dataType:'jsonp',
     data: { articleCid: 5, pageNum: 1, pageSize: 10 },
     success: results,
@@ -52,7 +54,7 @@ $(function() {
   });
   $.ajax({
     type: "get",
-    url: "http://testgoveportal.tpaas.youedata.com/getColumnArtiListById",
+    url: urlBase + "/getColumnArtiListById",
     // dataType:'jsonp',
     data: { articleCid: 4, pageNum: 1, pageSize: 10 },
     success: function(res) {
@@ -102,7 +104,7 @@ $(function() {
   });
   $.ajax({
     type: "get",
-    url: "http://testgoveportal.tpaas.youedata.com/getImListById",
+    url: urlBase + "/getImListById",
     // dataType:'jsonp',
     data: { columnId: 1, pageNum: 1, pageSize: 10 },
     success: function(res) {
@@ -161,7 +163,7 @@ $(function() {
   });
   $.ajax({
     type: "get",
-    url: "http://testgoveportal.tpaas.youedata.com/directoryOpenList",
+    url: urlBase + "/directoryOpenList",
     success: function(res) {
       if (+res.code === 0) {
         if (res.result.datas.length > 16) {
@@ -190,7 +192,7 @@ $(function() {
   });
   $.ajax({
     type: "get",
-    url: "http://testgoveportal.tpaas.youedata.com/resourceNewList",
+    url: urlBase + "/resourceNewList",
     success: function(res) {
       if (+res.code === 0) {
         if (res.result.datas.length > 4) {
@@ -210,7 +212,7 @@ $(function() {
   });
   $.ajax({
     type: "get",
-    url: "http://testgoveportal.tpaas.youedata.com/resourceHotList",
+    url: urlBase + "/resourceHotList",
     success: function(res) {
       if (+res.code === 0) {
         if (res.result.datas.length > 4) {
@@ -230,7 +232,7 @@ $(function() {
   });
   $.ajax({
     type: "get",
-    url: "http://testgoveportal.tpaas.youedata.com/columnList",
+    url: urlBase + "/columnList",
     // dataType:'jsonp',
     // data: { articleCid: 5, pageNum: 1, pageSize: 10 },
     success: function(res) {

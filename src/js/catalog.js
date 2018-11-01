@@ -2,16 +2,16 @@
  * @Author: mikey.zhaopeng 
  * @Date: 2018-09-26 17:22:08 
  * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2018-09-29 11:05:31
+ * @Last Modified time: 2018-11-01 18:01:57
  */
 $(function() {
   var queryData = {};
+  // var urlBase = 'http://192.168.100.16:8804/zwjh/api/v1';
+  var urlBase = "http://testgoveportal.tpaas.youedata.com";
   function getList(queryData) {
     var cs = queryData.typeId ? "typeId=" + queryData.typeId : "";
     $("#pagination_container").pagination({
-      dataSource:
-        "http://testgoveportal.tpaas.youedata.com/listResourceBasicByType?" +
-        cs,
+      dataSource: urlBase + "/listResourceBasicByType?" + cs,
       locator: "data.rows",
       totalNumberLocator: function(res) {
         return res.data.total;
@@ -50,7 +50,7 @@ $(function() {
   }
   $.ajax({
     type: "get",
-    url: "http://testgoveportal.tpaas.youedata.com/directoryOpenList",
+    url: urlBase + "/directoryOpenList",
     success: function(res) {
       if (+res.code === 0) {
         if (res.result.datas.length > 16) {
