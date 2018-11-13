@@ -2,11 +2,11 @@
  * @Author: mikey.zhaopeng 
  * @Date: 2018-09-26 17:24:15 
  * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2018-11-01 18:01:50
+ * @Last Modified time: 2018-11-13 14:53:14
  */
 $(function() {
-  // var urlBase = 'http://192.168.100.16:8804/zwjh/api/v1';
-  var urlBase = "http://testgoveportal.tpaas.youedata.com";
+  var urlBase = "http://192.168.100.16:8805";
+  // var urlBase = "http://testgoveportal.tpaas.youedata.com";
   function getUrlParam(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
     var r = window.location.search.substr(1).match(reg); //匹配目标参数
@@ -66,14 +66,11 @@ $(function() {
     // url: "http://192.168.100.16:8805/getReqBeanEntityInfo",
     data: { id: getUrlParam("id") },
     success: function(res) {
-      if (+res.code === 200) {
-        var cs = res.data && res.data.kafkaTopic ? res.data.kafkaTopic : "";
+      if (+res.code === 0) {
         $("#detail .info").on("click", ".downloadBtn", function() {
-          var hrefs =
-            "http://cdyoue.com.cn:19081/connector/" + cs + ".json.data";
-          // window.open(hrefs);
-          // window.location = hrefs;
-          // window.location.href = hrefs;
+          // var hrefs =
+          //   "http://cdyoue.com.cn:19081/connector/" + cs + ".json.data";
+          var hrefs = res.result && res.result.data;
           var $eleForm = $("<form method='get'></form>");
 
           $eleForm.attr("action", hrefs);
