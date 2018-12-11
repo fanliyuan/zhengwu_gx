@@ -1,13 +1,13 @@
 /*
- * @Author: mikey.zhaopeng 
- * @Date: 2018-09-26 17:22:08 
- * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2018-11-13 14:48:32
+ * @Author: mikey.zhaopeng
+ * @Date: 2018-09-26 17:22:08
+ * @Last Modified by: ChouEric
+ * @Last Modified time: 2018-12-11 15:44:31
  */
 $(function() {
   var queryData = {};
-  var urlBase = "http://192.168.100.16:8805";
-  // var urlBase = "http://testgoveportal.tpaas.youedata.com";
+  // var urlBase = 'http://cdyoue.com.cn:19082/zwjh/api/v1';  // 改成开发地址(不经过nginx代理的地址)
+  var urlBase = "/portalapi/zwjh/api/v1/"; // 打包后用nginx代理到目标地址
   function getList(queryData) {
     var cs = queryData.typeId ? "typeId=" + queryData.typeId : "";
     $("#pagination_container").pagination({
