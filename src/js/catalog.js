@@ -2,12 +2,12 @@
  * @Author: mikey.zhaopeng 
  * @Date: 2018-09-26 17:22:08 
  * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2018-11-13 14:48:32
+ * @Last Modified time: 2018-11-13 15:16:21
  */
 $(function() {
   var queryData = {};
-  var urlBase = "http://192.168.100.16:8805";
-  // var urlBase = "http://testgoveportal.tpaas.youedata.com";
+  // var urlBase = "http://192.168.100.16:8805";
+  var urlBase = "http://testgoveportal.tpaas.youedata.com";
   function getList(queryData) {
     var cs = queryData.typeId ? "typeId=" + queryData.typeId : "";
     $("#pagination_container").pagination({
