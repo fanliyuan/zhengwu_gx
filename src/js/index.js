@@ -1,6 +1,6 @@
 $(function() {
-  // var urlBase = 'http://192.168.100.16:8804/zwjh/api/v1';
-  var urlBase = "http://testgoveportal.tpaas.youedata.com";
+  // var urlBase = 'http://cdyoue.com.cn:19082/zwjh/api/v1';  // 改成开发地址(不经过nginx代理的地址)
+  var urlBase = "/portalapi/zwjh/api/v1/"; // 打包后用nginx代理到目标地址
   function results(res) {
     if (+res.code === 0) {
       if (res.result.datas.length > 0) {
