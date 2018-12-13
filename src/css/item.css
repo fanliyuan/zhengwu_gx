@@ -1,0 +1,236 @@
+.layouts {
+  width: 1200px;
+  margin: 1px auto;
+  position: relative;
+  height: auto;
+  min-height: 1000px;
+  padding-top: 20px;
+}
+.layout_left {
+  width: 200px;
+  display: inline-block;
+  min-height: 1000px;
+  background: #f5f5f5;
+}
+.layout_left li {
+  padding: 15px 0 15px 20px;
+  cursor: pointer;
+}
+.layout_left li.active {
+  color: #fff;
+  background: #0dbbf3;
+}
+.layout_right {
+  position: absolute;
+  margin-left: 200px;
+  left: 0;
+  top: 0;
+  width: calc(100% - 200px);
+  margin-bottom: 40px;
+  padding: 30px;
+}
+.times {
+  margin-top: 20px;
+}
+.times .label {
+  display: inline-block;
+  font-weight: bold;
+  height: 28px;
+  line-height: 28px;
+  color: #333;
+}
+.times .label::after {
+  content: ":";
+  margin: 0 14px 0 4px;
+}
+.times .row {
+  width: 100px;
+  height: 35px;
+  line-height: 28px;
+  margin-right: 10px;
+  text-align: center;
+  background: #f5f5f5;
+  color: #333;
+  cursor: pointer;
+}
+.times .row.active {
+  color: white;
+  background: #0dbbf3;
+}
+.time {
+  margin-top: 20px;
+}
+.time .label {
+  display: inline-block;
+  font-weight: bold;
+  height: 28px;
+  line-height: 28px;
+  color: #333;
+}
+.time .label::after {
+  content: ":";
+  margin: 0 14px 0 4px;
+}
+.time .row {
+  width: 80px;
+  height: 28px;
+  line-height: 28px;
+  margin-right: 10px;
+  text-align: center;
+  background: #f5f5f5;
+  color: #333;
+  cursor: pointer;
+}
+.time .row.active {
+  color: white;
+  background: #0dbbf3;
+}
+.type {
+  margin-top: 20px;
+}
+.type .label {
+  display: inline-block;
+  font-weight: bold;
+  height: 28px;
+  line-height: 28px;
+  color: #333;
+}
+.type .label::after {
+  content: ":";
+  margin: 0 14px 0 4px;
+}
+.type .row {
+  width: 80px;
+  height: 28px;
+  line-height: 28px;
+  margin-right: 10px;
+  text-align: center;
+  background: #f5f5f5;
+  color: #333;
+  cursor: pointer;
+}
+.type .row.active {
+  color: white;
+  background: #0dbbf3;
+}
+.sort {
+  margin-top: 20px;
+  color: #333;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #999;
+  /* margin-bottom: 30px; */
+}
+.sort .label {
+  font-weight: bold;
+}
+.sort .label::after {
+  content: ":";
+  margin: 0 14px 0 4px;
+}
+.sort .row {
+  margin-right: 30px;
+  cursor: pointer;
+}
+.sort .row.active {
+  color: #0dbbf3 !important;
+}
+.catalog .row {
+  margin-top: 30px;
+  margin-left: 2%;
+  text-align: center;
+  width: 10.75%;
+  /* text-align:center; */
+  position: relative;
+  height: 66px;
+  margin-bottom: 35px;
+}
+.catalog .row .icon {
+  width: 66px;
+  height: 66px;
+  display: block;
+  margin-bottom: 35px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  /* transform:translate(-50%,0); */
+}
+.catalog .row .span {
+  color: #333;
+  position: absolute;
+  /* bottom:-35px; */
+  top: 82px;
+  left: 0;
+  min-width: 66px;
+  max-width: 100px;
+  /* transform:translate(-50%,0); */
+}
+.newInstitutionSource > ul > li {
+  display: inline-block;
+  width: 490px;
+  background: #f5f5f5;
+  margin-top: 20px;
+  vertical-align: middle;
+  position: relative;
+  padding: 15px 20px;
+  box-sizing: border-box;
+}
+.content2 .newInstitutionSource > ul > li {
+  background: #fff;
+}
+.newInstitutionSource > ul > li:nth-child(2n) {
+  float: right;
+}
+.newInstitutionSource {
+  width: 1000px;
+  margin: 0 auto;
+  /* padding: 0 0 30px; */
+  /* min-height: 334px; */
+  /* padding: 30px 0; */
+}
+.item_img {
+  position: absolute;
+  width: 109px;
+  left: 0;
+  top: 0;
+  bottom: 0;
+}
+.item_img > img {
+  width: 74px;
+  height: 74px;
+  position: absolute;
+  top: 50%;
+  left: calc(109px / 2 - 74px / 2);
+  -ms-transform: translate(0, -50%);
+  -webkit-transform: translate(0, -50%);
+  -moz-transform: translate(0, -50%);
+  -o-transform: translate(0, -50%);
+}
+.item_content {
+  margin-left: 109px;
+  position: relative;
+}
+.item_content:after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: -20px;
+  top: 0;
+  bottom: 0;
+  border-left: 1px solid #ddd;
+}
+.item_content h2 {
+  font-size: 16px;
+  color: #333;
+  font-weight: bold;
+  margin-bottom: 7px;
+}
+.item_content li {
+  line-height: 23px;
+  font-size: 14px;
+}
+.item_content li ul {
+  display: flex;
+}
+.item_content li ul li {
+  flex: 1 1;
+}

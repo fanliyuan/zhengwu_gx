@@ -1,6 +1,7 @@
 $(function() {
   // var urlBase = 'http://cdyoue.com.cn:19082/zwjh/api/v1';  // 改成开发地址(不经过nginx代理的地址)
-  var urlBase = "/portalapi/zwjh/api/v1/"; // 打包后用nginx代理到目标地址
+  var urlBase = "http://192.168.100.16:2181/zwjh/api/v1"; // 改成开发地址(不经过nginx代理的地址)
+  // var urlBase = "/portalapi/zwjh/api/v1/"; // 打包后用nginx代理到目标地址
   function results(res) {
     if (+res.code === 0) {
       if (res.result.datas.length > 0) {
@@ -161,45 +162,47 @@ $(function() {
       console.log("连接超时");
     }
   });
+  // $.ajax({
+  //   type: "get",
+  //   url: urlBase + "/directoryOpenList",
+  //   success: function(res) {
+  //     if (+res.code === 0) {
+  //       if (res.result.datas.length > 16) {
+  //         res.result.datas = res.result.datas.slice(0, 16);
+  //       }
+  //       // var queryData = {}
+  //       $("#catalog").html(template("catalog_list", res.result.datas));
+  //       $("#catalog")
+  //         .children("ul")
+  //         .on("click", "li", function() {
+  //           // queryData.catalogId = $(this).data('typeId')
+  //           $(this)
+  //             .parent()
+  //             .children(".click")
+  //             .removeClass("click");
+  //           $(this).addClass("click");
+  //         });
+  //     }
+  //   },
+  //   error: function(error) {
+  //     console.log(error);
+  //   },
+  //   timeout: function() {
+  //     console.log("连接超时");
+  //   }
+  // });
   $.ajax({
     type: "get",
-    url: urlBase + "/directoryOpenList",
+    url: urlBase + "/listResourceBasicByType",
+    contentType: "application/json",
+    data: { index: 1, limit: 10 },
     success: function(res) {
       if (+res.code === 0) {
-        if (res.result.datas.length > 16) {
-          res.result.datas = res.result.datas.slice(0, 16);
-        }
-        // var queryData = {}
-        $("#catalog").html(template("catalog_list", res.result.datas));
-        $("#catalog")
-          .children("ul")
-          .on("click", "li", function() {
-            // queryData.catalogId = $(this).data('typeId')
-            $(this)
-              .parent()
-              .children(".click")
-              .removeClass("click");
-            $(this).addClass("click");
-          });
-      }
-    },
-    error: function(error) {
-      console.log(error);
-    },
-    timeout: function() {
-      console.log("连接超时");
-    }
-  });
-  $.ajax({
-    type: "get",
-    url: urlBase + "/resourceNewList",
-    success: function(res) {
-      if (+res.code === 0) {
-        if (res.result.datas.length > 4) {
-          res.result.datas = res.result.datas.slice(0, 4);
-        }
-        $(".content1 .newInstitutionSource").append(
-          template("card-list", res.result.datas)
+        $(".content1 .newInstitutionSource").html(
+          template("card-list_new", res.data)
+        );
+        $(".content2 .newInstitutionSource").html(
+          template("card-list_hot", res.data)
         );
       }
     },
@@ -210,26 +213,46 @@ $(function() {
       console.log("连接超时");
     }
   });
-  $.ajax({
-    type: "get",
-    url: urlBase + "/resourceHotList",
-    success: function(res) {
-      if (+res.code === 0) {
-        if (res.result.datas.length > 4) {
-          res.result.datas = res.result.datas.slice(0, 4);
-        }
-        $(".content2 .newInstitutionSource").append(
-          template("card-list", res.result.datas)
-        );
-      }
-    },
-    error: function(error) {
-      console.log(error);
-    },
-    timeout: function() {
-      console.log("连接超时");
-    }
-  });
+  // $.ajax({
+  //   type: "get",
+  //   url: urlBase + "/resourceNewList",
+  //   success: function(res) {
+  //     if (+res.code === 0) {
+  //       if (res.result.datas.length > 4) {
+  //         res.result.datas = res.result.datas.slice(0, 4);
+  //       }
+  //       $(".content1 .newInstitutionSource").append(
+  //         template("card-list", res.result.datas)
+  //       );
+  //     }
+  //   },
+  //   error: function(error) {
+  //     console.log(error);
+  //   },
+  //   timeout: function() {
+  //     console.log("连接超时");
+  //   }
+  // });
+  // $.ajax({
+  //   type: "get",
+  //   url: urlBase + "/resourceHotList",
+  //   success: function(res) {
+  //     if (+res.code === 0) {
+  //       if (res.result.datas.length > 4) {
+  //         res.result.datas = res.result.datas.slice(0, 4);
+  //       }
+  //       $(".content2 .newInstitutionSource").append(
+  //         template("card-list", res.result.datas)
+  //       );
+  //     }
+  //   },
+  //   error: function(error) {
+  //     console.log(error);
+  //   },
+  //   timeout: function() {
+  //     console.log("连接超时");
+  //   }
+  // });
   $.ajax({
     type: "get",
     url: urlBase + "/columnList",

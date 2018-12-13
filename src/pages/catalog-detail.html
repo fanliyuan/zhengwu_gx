@@ -48,7 +48,7 @@
                 </li>
                 <li class="fl item clearfix">
                     <span class="name fl">数据分类</span>
-                    <span class="value fl">{{$data.resourceFormatClassifyName}}</span>
+                    <span class="value fl">{{$data.dataType}}</span>
                 </li>
                 <li class="fl item clearfix">
                     <span class="name fl">信息资源代码</span>
@@ -90,20 +90,20 @@
     <script type="text/html" id="code_list">
         <table class="list">
                 <thead>
-                    <tr>
-                        <td>信息项编码</td>
+                    <tr> 
                         <td>信息项名称</td>
                         <td>数据类型</td>
                         <td>数据长度</td>
+                        <td>共享条件</td>
                     </tr>
                 </thead>
                 <tbody>
                     {{each $data item index}}
                     <tr>
-                        <td>{{item.resourceItemCode || '暂无'}}</td>
                         <td>{{item.resourceItemName || '暂无'}}</td>
                         <td>{{item.resourceType || '暂无'}}</td>
                         <td>{{item.resourceLength || '暂无'}}</td>
+                        <td>{{item.shareType || '暂无'}}</td>
                     </tr>
                     {{/each}}
                 </tbody>

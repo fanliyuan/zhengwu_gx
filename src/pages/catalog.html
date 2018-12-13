@@ -28,32 +28,34 @@
     @@include('commons/header.html')
 
     <div class="layout">
-        <div class="catalog" id="catalog"></div>
-        <div class="time" id="times">
-        </div>
-        <div class="type" id="types">
-        </div>
-        <div class="sort" id="sorts">
-            <span class="label">排序方式</span>
-            <ul class="clearfix" style="display: inline-block;vertical-align: top">
-                <li class="fl row iconfont icon-paixu active" data-sort="default">默认</li>
-                <li class="fl row iconfont icon-paixu" data-sort="updateTime">更新时间</li>
-                <li class="fl row iconfont icon-paixu" data-sort="dataSize">数据量</li>
-                <li class="fl row iconfont icon-paixu" data-sort="dataVisit">访问量</li>
+        <div class="resourceFloor1">
+            <ul id="classfiy">
+                <li class="active" i="1">基础信息资源类</li>
+                <li i="2">主题信息资源类</li>
+                <li i="3">部门信息资源类</li>
             </ul>
+            <div id="itemsList">
+            </div>
         </div>
-        <div class="content1">
+        </div>
+            <div class="content2">
                 <div class="newInstitutionSource">
+                    <!-- <h2 class="content_title">最热目录信息资源</h2> -->
                 </div>
             </div>
-        <div id="pagination_container" class="pagination-container"></div>
-    </div>
+            <div class="content1">
+                <div class="newInstitutionSource">
+                    <!-- <h2 class="content_title">最新目录信息资源</h2> -->
+                </div>
+            </div>
 
     @@include('commons/footer.html')
     <script src="../js/catalog.js"></script>
-    <script type="text/html" id="card-list">
+    <script type="text/html" id="card-list_new">
+        <h2 class="content_title">最新目录信息资源</h2>
         <ul class="clear">
-        {{each $data item}}
+        {{each $data item index}}
+        {{if index <= 3}}
             <li>
                 {{if item.hot}}<div class="hot-flag"></div>{{/if}}
                 {{if item.new}}<div class="new-flag"></div>{{/if}}
@@ -72,102 +74,66 @@
                         <li>
                             <ul>
                                 <li>所属分类:&nbsp;&nbsp;<span>{{item.typeName || '暂无'}}</span></li>
-                                <!-- <li>所属部门:&nbsp;&nbsp;<span></span>{{item.department}}</span></li> -->
+                                <li>所属部门:&nbsp;&nbsp;<span></span>{{item.resourceProviderName}}</span></li>
                             </ul>
                         </li>
                         <li>
-                            资源摘要:&nbsp;&nbsp;<span>{{item.resourceName || '暂无'}}</span>
+                            资源摘要:&nbsp;&nbsp;<span>{{item.subscribeCount || '暂无'}}</span>
                         </li>
                     </ul>
                 </div>
             </li>
+            {{/if}}
             {{/each}}
         </ul>
     </script>
-    <!-- <script type="text/html" id="card-list">
-       列表页模板 
-        <ul class="clearfix">
+    <script type="text/html" id="card-list_hot">
+        <h2 class="content_title">最热目录信息资源</h2>
+        <ul class="clear">
         {{each $data item index}}
-            <li class="fl item clearfix {{if index%2 === 1}}ml20{{/if}}">
+        {{if index <= 3}}
+            <li>
                 {{if item.hot}}<div class="hot-flag"></div>{{/if}}
                 {{if item.new}}<div class="new-flag"></div>{{/if}}
-                <div class="left fl">
+                <div class="item_img">
                     <img src="{{item.icon || '../img/new1.png'}}" alt="">
                 </div>
-                <div class="right fl">
-                    <div class="title"><a href="catalog-detail.html?id={{item.resourceId}}">{{item.resourceName}}</a></div>
-                    <div class="row">
-                        <span class="label">所含格式</span>
-                        {{each item.types sub}} 
-                            <span class="tag">{{item.dataType}}</span>
-                         {{/each}} 
-                    </div>
-                    <div class="row bold">
-                        <div>
-                            <span class="label">更新时间</span>
-                            <span style="">{{item.createTime}}</span>
-                        </div>
-                        <div>
-                            <span class="label">发布时间</span>
-                            <span>{{item.updateTime}}</span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div>
-                            <span class="label">所属分类</span>
-                            <span>{{item.typeName}}</span>
-                        </div>
-                     <div>
-                            <span class="label">所属部门</span>
-                            <span>{{item.department}}</span>
-                        </div> 
-                    </div>
-                    <div class="row">
-                        <p class="summary">{{item.switchContent || '暂无'}}</p>
-                    </div>
+                <div class="item_content">
+                    <a href="catalog-detail.html?id={{item.resourceId}}">
+                    <h2>{{item.resourceName || '暂无'}}</h2></a>
+                    <ul>
+                        <li>
+                            所含格式:&nbsp;&nbsp;
+                            <!-- {{each item.types sub}} {{/each}} -->
+                            <span class="spe_block">{{item.dataType || '暂无'}}</span>
+                        </li>
+                        <li>
+                            <ul>
+                                <li>所属分类:&nbsp;&nbsp;<span>{{item.typeName || '暂无'}}</span></li>
+                                <li>所属部门:&nbsp;&nbsp;<span></span>{{item.resourceProviderName}}</span></li>
+                            </ul>
+                        </li>
+                        <li>
+                            资源摘要:&nbsp;&nbsp;<span>{{item.subscribeCount || '暂无'}}</span>
+                        </li>
+                    </ul>
                 </div>
             </li>
-        {{/each}}
+            {{/if}}
+            {{/each}}
         </ul>
-    </script> -->
-    <script type="text/html" id="catalog_list">
-        <ul class="clearfix">
-            {{each $data item index}}
-            <li class="row fl {{index%8 === 0 ? ' ml0':''}}" data-id={{index}} data-href={{item.typeId}} style="cursor:pointer">
-                <!-- <a href="catalog.html?id={{index}}"> -->
-                    <div class="icon">
-                        <img src="{{item.typePathOne || '../img/no-img60×60.jpg'}}" class="no_active">
-                        <img src="{{item.typePathTwo || '../img/no-img60×60.jpg'}}" class="active">
-                    </div>
-                    <span class="span">{{item.typeName}}</span>
-                <!-- </a> -->
+    </script>
+    <script type="text/html" id="item-list">
+        <ul class="itemList">
+            {{each $data item}}
+            <li>
+                <a href="item.html?code={{item.code}}&&id={{item.id}}">
+                    <img src="../img/catalog.png" alt="">
+                    <span>{{item.name}}</span>
+                </a>
             </li>
             {{/each}}
-        </ul>
+            </ul> 
     </script>
-    <script type="text/html" id="time_list">
-        <span class="label">选择时间</span>
-        <ul class="clearfix" style="display: inline-block;vertical-align: top;">
-            {{each $data item index}}
-            <li class="row fl {{index===0 ? 'active' : ''}}" data-time={{item}}>{{item}}</li>
-            {{/each}}
-        </ul>
-    </script>
-    <script type="text/html" id="type_list">
-        <span class="label">格式分类</span>
-        <ul class="clearfix" style="display: inline-block;vertical-align: top;">
-            {{each $data item index}}
-            <li class="row fl {{index===0 ? 'active' : ''}}" data-type={{item}}>{{item}}</li>
-            {{/each}}
-        </ul>
-    </script>
-    <!-- <script type="text/html" id="sort_list">
-        <span class="label">选择时间</span>
-        <ul class="clearfix" style="display: inline-block;vertical-align: top;">
-            {{each $data item index}}
-            <li class="row fl {{index===0 ? 'active' : ''}}" data-time={{item}}>{{item}}</li>
-            {{/each}}
-        </ul>
-    </script> -->
 </body>
 </html>

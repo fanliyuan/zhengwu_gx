@@ -24,12 +24,12 @@
         </div>
         <div class="content1">
             <div class="newInstitutionSource">
-                <h2 class="content_title">最新目录信息资源</h2>
+                <!-- <h2 class="content_title">最新目录信息资源</h2> -->
             </div>
         </div>
         <div class="content2">
             <div class="newInstitutionSource">
-                <h2 class="content_title">最热目录信息资源</h2>
+                <!-- <h2 class="content_title">最热目录信息资源</h2> -->
             </div>
         </div>
         <div class="content3">
@@ -37,12 +37,12 @@
                 <h2 class="content_title">推荐主题分类</h2>
             </div>
         </div>
-        <div class="content4">
+        <!-- <div class="content4">
             <div class="newInstitutionSource">
                 <h2 class="content_title">目录分类</h2>
                 <div class="catalog" id="catalog"></div>
             </div>
-        </div>
+        </div> -->
         <div class="content5">
             <div class="layout_center clearfix">
                 <div class="half_block fl clearfix">
@@ -221,6 +221,78 @@
                     <span class="span">{{item.typeName}}</span>
                 </a>
             </li>
+            {{/each}}
+        </ul>
+    </script>
+    <script type="text/html" id="card-list_new">
+        <h2 class="content_title">最新目录信息资源</h2>
+        <ul class="clear">
+        {{each $data item index}}
+        {{if index <= 3}}
+            <li>
+                {{if item.hot}}<div class="hot-flag"></div>{{/if}}
+                {{if item.new}}<div class="new-flag"></div>{{/if}}
+                <div class="item_img">
+                    <img src="{{item.icon || '../img/new1.png'}}" alt="">
+                </div>
+                <div class="item_content">
+                    <a href="catalog-detail.html?id={{item.resourceId}}">
+                    <h2>{{item.resourceName || '暂无'}}</h2></a>
+                    <ul>
+                        <li>
+                            所含格式:&nbsp;&nbsp;
+                            <!-- {{each item.types sub}} {{/each}} -->
+                            <span class="spe_block">{{item.dataType || '暂无'}}</span>
+                        </li>
+                        <li>
+                            <ul>
+                                <li>所属分类:&nbsp;&nbsp;<span>{{item.typeName || '暂无'}}</span></li>
+                                <li>所属部门:&nbsp;&nbsp;<span></span>{{item.resourceProviderName}}</span></li>
+                            </ul>
+                        </li>
+                        <li>
+                            资源摘要:&nbsp;&nbsp;<span>{{item.subscribeCount || '暂无'}}</span>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            {{/if}}
+            {{/each}}
+        </ul>
+    </script>
+    <script type="text/html" id="card-list_hot">
+        <h2 class="content_title">最热目录信息资源</h2>
+        <ul class="clear">
+        {{each $data item index}}
+        {{if index <= 3}}
+            <li>
+                {{if item.hot}}<div class="hot-flag"></div>{{/if}}
+                {{if item.new}}<div class="new-flag"></div>{{/if}}
+                <div class="item_img">
+                    <img src="{{item.icon || '../img/new1.png'}}" alt="">
+                </div>
+                <div class="item_content">
+                    <a href="catalog-detail.html?id={{item.resourceId}}">
+                    <h2>{{item.resourceName || '暂无'}}</h2></a>
+                    <ul>
+                        <li>
+                            所含格式:&nbsp;&nbsp;
+                            <!-- {{each item.types sub}} {{/each}} -->
+                            <span class="spe_block">{{item.dataType || '暂无'}}</span>
+                        </li>
+                        <li>
+                            <ul>
+                                <li>所属分类:&nbsp;&nbsp;<span>{{item.typeName || '暂无'}}</span></li>
+                                <li>所属部门:&nbsp;&nbsp;<span></span>{{item.resourceProviderName}}</span></li>
+                            </ul>
+                        </li>
+                        <li>
+                            资源摘要:&nbsp;&nbsp;<span>{{item.subscribeCount || '暂无'}}</span>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            {{/if}}
             {{/each}}
         </ul>
     </script>
