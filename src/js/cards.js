@@ -11,7 +11,7 @@ $(function() {
   function handleDownload(articleId) {
     $.ajax({
       type: "get",
-      url: urlBase + "/downloadOssFile",
+      url: urlBase + "/downloadFastDfs", // downloadOssFile
       data: {
         articleId: articleId
       },
