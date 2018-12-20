@@ -361,7 +361,25 @@
   left: 0;
   top: 50%;
   transform: translate(0, -50%);
-  width: calc(100% - 50);
+  width: calc(100% - 50px);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.itemList > li i {
+  position: absolute;
+  bottom: -25px;
+  left: 0;
+  margin-left: 60px;
+  font-size: 14px;
+  overflow: visible;
+  width: 500px;
+  opacity: 0;
+  color: #777;
+  transition: all 500ms;
+  -moz-transition: all 500ms; /* Firefox 4 */
+  -webkit-transition: all 500ms; /* Safari 和 Chrome */
+  -o-transition: all 500ms; /* Opera */
 }
 .resourceFloor1 {
   padding-bottom: 50px;

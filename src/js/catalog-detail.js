@@ -2,7 +2,7 @@
  * @Author: mikey.zhaopeng
  * @Date: 2018-09-26 17:24:15
  * @Last Modified by: fly
- * @Last Modified time: 2018-12-13 20:38:15
+ * @Last Modified time: 2018-12-20 18:13:51
  */
 $(function() {
   // var urlBase = 'http://cdyoue.com.cn:19082/zwjh/api/v1';  // 改成开发地址(不经过nginx代理的地址)

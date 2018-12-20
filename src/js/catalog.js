@@ -2,7 +2,7 @@
  * @Author: mikey.zhaopeng
  * @Date: 2018-09-26 17:22:08
  * @Last Modified by: fly
- * @Last Modified time: 2018-12-13 20:38:25
+ * @Last Modified time: 2018-12-20 18:13:59
  */
 // $(function() {
 //   var queryData = {};
@@ -62,5 +62,15 @@ $(function() {
       .removeClass("active");
     $(this).addClass("active");
     getItem(1, i, i);
+  });
+  $("#itemsList").on("mouseenter", ".itemList li a", function() {
+    $(this)
+      .find("i")
+      .css("opacity", 1);
+  });
+  $("#itemsList").on("mouseleave", ".itemList li a", function() {
+    $(this)
+      .find("i")
+      .css("opacity", 0);
   });
 });
