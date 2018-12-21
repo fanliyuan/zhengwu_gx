@@ -1,7 +1,7 @@
 $(function() {
   // var urlBase = 'http://cdyoue.com.cn:19082/zwjh/api/v1';  // 改成开发地址(不经过nginx代理的地址)
-  var urlBase = "/portalapi/zwjh/api/v1"; // 打包后用nginx代理到目标地址
-  // var urlBase = "http://192.168.100.16:2181/zwjh/api/v1"; // 改成开发地址(不经过nginx代理的地址)
+  // var urlBase = "/portalapi/zwjh/api/v1"; // 打包后用nginx代理到目标地址
+  var urlBase = "http://192.168.100.16:2181/zwjh/api/v1"; // 改成开发地址(不经过nginx代理的地址)
   function getUrlParam(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
     var r = window.location.search.substr(1).match(reg); //匹配目标参数
@@ -115,6 +115,16 @@ $(function() {
       // getResource("typeId",ids,".content1 .newInstitutionSource","card-list",1,10)
       fy("typeId", ids, ".content1 .newInstitutionSource", "card-list", 1, 10);
     }
+  });
+  $(".times").on("mouseenter", ".row", function() {
+    $(this)
+      .children("i")
+      .css("opacity", 1);
+  });
+  $(".times").on("mouseleave", ".row", function() {
+    $(this)
+      .children("i")
+      .css("opacity", 0);
   });
   var timeData = ["全部", 2018, 2017, 2016, 2015, 2014, 2013, 2012];
   $("#times").html(template("time_list", timeData));

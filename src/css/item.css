@@ -53,18 +53,33 @@
   color: #333;
   cursor: pointer;
   padding: 0 6px;
+  position: relative;
+}
+.times .row span {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  display: inline-block;
+  /* width:100%; */
+  width: 100px;
+  padding: 0 6px;
 }
-/* .times .row span{
-  position:absolute;
-  left:0;
-  bottom:-20px;
-  width:300px;
-  z-index:9999;
-  border:1px solid blue;
-} */
+.times .row i {
+  position: absolute;
+  left: 50px;
+  font-size: 12px;
+  bottom: -28px;
+  /* width:300px; */
+  overflow: visible;
+  width: 500px;
+  text-align: left;
+  opacity: 0;
+  color: #777;
+  transition: all 500ms;
+  -moz-transition: all 500ms; /* Firefox 4 */
+  -webkit-transition: all 500ms; /* Safari 和 Chrome */
+  -o-transition: all 500ms; /* Opera */
+}
 .times .row:first-child {
   width: 80px;
   height: 28px;
