@@ -93,6 +93,7 @@ $(function() {
     $(this).addClass("active");
     mu_id = ids;
     getItem(3, codes, ids, "#classify", "classify_list");
+    fy("catalogId", ids, ".content1 .newInstitutionSource", "card-list", 1, 10);
   });
   $("#classify").on("click", "li", function() {
     var codes = $(this).attr("data-code");
