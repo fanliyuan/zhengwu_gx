@@ -1,0 +1,143 @@
+.layout .title {
+  margin-top: 40px;
+  line-height: 24px;
+  color: #005a9f;
+  font-weight: 700;
+  font-size: 18px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #aaa;
+}
+.layout .title::before {
+  content: "";
+  display: inline-block;
+  border-left: 4px solid #005a9f;
+  margin-right: 8px;
+  height: 24px;
+  vertical-align: top;
+}
+.info {
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+.info .item {
+  border-bottom: 1px solid white;
+}
+.info .item > span {
+  display: inline-block;
+  box-sizing: border-box;
+}
+.info .item .name {
+  width: 200px;
+  height: 47px;
+  line-height: 47px;
+  text-align: center;
+  font-weight: bold;
+  background: #f7f7f7;
+  border-right: 1px solid white;
+}
+.info .item .value {
+  width: 400px;
+  height: 47px;
+  line-height: 47px;
+  background: #fbfbfb;
+  border-right: 1px solid white;
+  padding-left: 20px;
+}
+.info .item.summary {
+  background: #f7f7f7;
+  padding-left: 70px;
+  font-weight: bold;
+}
+.info .item.summary .value {
+  width: 1000px;
+  font-weight: normal;
+  margin-left: 69px;
+  background: #fbfbfb;
+  height: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  line-height: 28px;
+  border-left: 1px solid white;
+  vertical-align: middle;
+}
+.list {
+  width: 100%;
+  margin-bottom: 30px;
+}
+.list > thead {
+  line-height: 47px;
+  font-weight: bold;
+  text-align: center;
+  background: #f7f7f7;
+}
+.list > thead > tr {
+  border-bottom: 1px solid white;
+}
+.list > thead td + td {
+  border-left: 1px solid white;
+}
+.list > tbody {
+  line-height: 47px;
+  text-align: center;
+  background: #fbfbfb;
+}
+.list > tbody > tr {
+  border-bottom: 1px solid white;
+}
+.list > tbody > tr > td + td {
+  border-left: 1px solid white;
+}
+h1.api_title {
+  text-align: center;
+  line-height: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 30px;
+}
+span.apply_button {
+  float: right;
+  font-size: 14px;
+  color: #2d88de;
+  border: 1px solid #2d88de;
+  line-height: 20px;
+  padding: 0 10px;
+}
+ul.api_doc {
+  margin: 30px 0 20px;
+}
+ul.api_doc li {
+  float: left;
+  margin-right: 10px;
+  background: #e5f1fd;
+  padding: 8px 30px;
+  font-weight: 600;
+}
+ul.api_detail {
+  margin-bottom: 10px;
+}
+ul.api_detail li {
+  line-height: 35px;
+}
+ul.api_detail li b {
+  font-weight: bold;
+  display: inline-block;
+}
+div.api_detail1 {
+  position: relative;
+  margin-bottom: 30px;
+}
+div.api_detail1 b {
+  position: absolute;
+  width: 75px;
+  font-weight: bold;
+  left: 0;
+  top: 0;
+}
+div.api_detail1 .content {
+  margin-left: 75px;
+}
+div.api_detail1 .content.exampleCode,
+div.api_detail1 .content.exampleBackCode {
+  background: #f0f7fd;
+  padding: 15px;
+}

@@ -9,6 +9,9 @@
 /* .header .nav ul {
   padding-left: 100px;
 } */
+.header .nav ul {
+  border: 1px solid red;
+}
 .header .nav ul li {
   float: left;
   font-size: 18px;
@@ -17,7 +20,7 @@
 .header .nav ul li a {
   display: inline-block;
   line-height: 60px;
-  padding: 0 50px;
+  padding: 0 30px;
   color: white !important;
   text-decoration-line: none;
 }
@@ -26,7 +29,7 @@
 }
 .header .nav .search {
   margin-top: 15px;
-  margin-right: 100px;
+  /* margin-right: 100px; */
 }
 .header .nav .search input {
   font-size: 14px;

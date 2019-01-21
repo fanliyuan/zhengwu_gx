@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>api资源目录详情</title>
+    <link rel="shortcut icon" href="../img/logo.png" type="image/x-icon">
+    <script src="../assets/jquery.min.js"></script>
+    <script src="../assets/art-template.js"></script>
+    <link rel="stylesheet" href="../assets/reset.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/apiPort.css">
+</head>
+<body>
+    @@include('commons/header.html')
+
+    <div class="layout">
+        <div class="title">
+            api资源目录详情
+        </div>
+        <div class="detail" id="detail">
+            <div>
+              <h1 class="api_title clearfix">北京市领导出行安排<span class="apply_button">申请</span></h1>
+            </div>
+            <div class="info"></div>
+            <ul class="api_doc clearfix">
+              <li>API文档</li>
+              <li>错误代码</li>
+            </ul>
+            <ul class="api_detail">
+              <li>
+                <b>接口地址：</b>
+                <span>http://apis.juhe.cn/mobile/get</span>
+              </li>
+              <li>
+                  <b>调用方式：</b>
+                  <span>get</span>
+              </li>
+              <li>
+                  <b>请求实例：</b>
+                  <span>http://apis.juhe.cn/mobile/get</span>
+              </li>
+            </ul>
+            <div class="api_detail1">
+              <b>请求参数：</b>
+              <div class="info_footer content"></div>
+            </div>
+            <div class="api_detail1">
+              <b>请求示例：</b>
+              <div class="content exampleCode">
+                {<br/>
+                  "resultcode":"200",<br/>
+                  "reason":"Return Successed!",<br/>
+                  "result":{<br/>
+                    "province":"浙江",<br/>
+                    "province":"浙江",<br/>
+                    "province":"浙江",<br/>
+                    "province":"浙江",<br/>
+                    "province":"浙江",<br/>
+                    "province":"浙江",<br/>
+                  }<br/>
+                }
+              </div>
+            </div>
+            <div class=" api_detail1">
+              <b>请求参数：</b>
+              <div class="info_backFooter content"></div>
+            </div>
+            <div class="api_detail1">
+              <b>请求示例：</b>
+              <div class="content exampleBackCode">
+                  {<br/>
+                    "resultcode":"200",<br/>
+                    "reason":"Return Successed!",<br/>
+                    "result":{<br/>
+                      "province":"浙江",<br/>
+                      "province":"浙江",<br/>
+                      "province":"浙江",<br/>
+                      "province":"浙江",<br/>
+                      "province":"浙江",<br/>
+                      "province":"浙江",<br/>
+                    }<br/>
+                  }
+              </div>
+            </div>
+        </div>
+    </div>
+
+    @@include('commons/footer.html')
+    <script src="../js/apiPort.js"></script>
+    <script type="text/html" id="detail-template" >
+        <div class="info">
+            <ul class="clearfix">
+                <li class="fl item clearfix">
+                    <span class="name fl">发布方</span>
+                    <span class="value fl">{{$data.providerName}}</span>
+                </li>
+                <li class="fl item clearfix">
+                    <span class="name fl">资源属性分类</span>
+                    <span class="value fl">{{$data.classify}}</span>
+                </li>
+                <li class="fl item clearfix">
+                    <span class="name fl">共享时间</span>
+                    <span class="value fl">{{$data.shareTime}}</span>
+                </li>
+                <li class="fl item clearfix">
+                    <span class="name fl">更新时间</span>
+                    <span class="value fl">{{$data.updateTime}}</span>
+                </li>
+                <li class="fl item clearfix">
+                    <span class="name fl">信息资源摘要</span>
+                    <span class="value fl">{{$data.abstract}}</span>
+                </li>
+                <li class="fl item clearfix">
+                    <span class="name fl">调用次数</span>
+                    <span class="value fl">{{$data.useCount}}</span>
+                </li>
+            </ul>
+        </div>
+    </script>
+    <script type="text/html" id="code_list">
+        <table class="list">
+                <thead>
+                    <tr> 
+                        <td>信息项编码</td>
+                        <td>必填</td>
+                        <td>数据类型</td>
+                        <td>描述</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{each $data item index}}
+                    <tr>
+                        <td>{{item.itemCode || '暂无'}}</td>
+                        <td>{{item.isRequire || '暂无'}}</td>
+                        <td>{{item.dataType || '暂无'}}</td>
+                        <td>{{item.description || '暂无'}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+    </script>
+    <script>
+        $(function() {
+            var detailData = {
+                info: {
+                    name: '订单目录',
+                    classify: '建筑数据',
+                    code: '10602/000000',
+                    type: '电子文件',
+                    providerName: '金区国土局',
+                    providerDepartment: '金区国土局',
+                    providerCode: '113',
+                    upload: '订单附件.zip',
+                    uploadUrl: 'http://t2.hddhhn.com/uploads/tu/201612/98/st93.png',
+                    summary: '是否打算发的撒发达士大夫撒旦法选为入围区二极管的发送到撒飞机撒是否打算发的撒发达士大夫撒旦法选为入围区二极管的发送到撒飞机撒是否打算发的撒发达士大夫撒旦法选为入围区二极管的发送到撒飞机撒是否打算发的撒发达士大夫撒旦法选为入围区二极管的发送到撒飞机撒是否打算发的撒发达士大夫撒旦法选为入围区二极管的发送到撒飞机撒是否打算发的撒发达士大夫撒旦法选为入围区二否打算发的撒发达士大夫撒旦法选为入围区二极管的发送到撒飞机撒是否打算发的撒发达士大夫撒旦法选为入围区二极管的发送到撒飞机撒是否打算发的撒发达士大夫撒旦法选为入围区二极管的发送到撒飞机撒是否打算发的撒发达士大夫撒旦法选为入围区二极管的发送到撒飞机撒是否打算发的撒发达士大夫撒旦法选为入围区二极管的发送到撒飞机撒是否打算发的撒发达士大夫撒旦法选为入围区二否打算发的撒发达士大夫撒旦法选为入围区二极管的发送到撒飞机撒是否打算发的撒发达士大夫撒旦法选为入围区二极管的发送到撒飞机撒是否打算发的撒发达士大夫撒旦法选为入围区二极管的发送到撒飞机撒是否打算发的撒发达士大夫撒旦法选为入围区二极管的发送到撒飞机撒是否打算发的撒发达士大夫撒旦法选为入围区二极管的发送到撒飞机撒是否打算发的撒发达士大夫撒旦法选为入围区二极管的发送到撒飞机撒是否打算发的撒发达士大夫撒旦法选为入围区二极管的发送到撒飞机撒',
+                },
+                list: [
+                    {
+                        code: '010',
+                        name: '测试1',
+                        type: 'JSON',
+                        size: '30K'
+                    },
+                    {
+                        code: '011',
+                        name: '测试2',
+                        type: 'XML',
+                        size: '123K'
+                    },
+                ]
+            }
+            // $('#detail').append(template('detail-template', detailData))
+            // $('#detail').append(template('code_list', detailData))
+        })
+    </script>
+</body>
+</html>
