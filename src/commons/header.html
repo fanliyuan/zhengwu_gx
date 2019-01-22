@@ -2,19 +2,27 @@
   <nav class="nav">
     <div class="clearfix">
         <ul class="clearfix fl">
-          <li class="project_name">政务数据开放平台</li>
+          <li class="project_name"><img src="../img/logo_header.png" alt=""> <span>政务数据开放平台</span> </li>
           <li class="index"><a href="/index.html" >首页</a></li>
           <li class="news"><a href="/news.html">开放动态</a></li>
           <li class="catalog"><a href="/catalog.html">资源目录</a></li>
           <li class="apiPort"><a href="/apiPort.html">API接口</a></li>
         </ul>
-        <div class="search fr clearfix">
-            <button>登录</button>
-            <button>注册</button>
+        <div class="assign fr clearfix">
+            <span>登录</span>
+            <span>注册</span>
         </div>
-        <form class="search fr clearfix" action="search.html" >
+        <form class="search fr clearfix searchForm" action="search.html" >
           <input type="text" id="input-keywords" name="keywords" placeholder="请输入数据关键字" class="fl">
-          <button type="submit" class="fl button">搜索</button>
+          <!-- <button type="submit" class="fl button" src="../img/search.png"></button> -->
+          <span class="searchBtn" onClick="searchBeat()">
+            <img src="../img/search.png" alt="">
+          </span>
+          <script>
+            function searchBeat (){
+              window.location.href="search.html?keywords="+document.getElementById("input-keywords").value
+            }
+          </script>
         </form>
     </div>
   </nav>
